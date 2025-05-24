@@ -8,8 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Visualization & Content Choices: 
         - Report Info: Pitch Deck - Title. Goal: Immediate engagement. Viz/Method: Hero section with large, impactful text and a primary call to action. Interaction: Button click. Justification: Strong opening. Library/Method: HTML/Tailwind.
-        - Report Info: Pitch Deck - The Challenge (SMB Pain Points). Goal: Emphasize the problem. Viz/Method: Bullet points with Unicode icons (e.g., 😟, ⏳, 💸). Interaction: None, direct information. Justification: Clear, concise problem statement. Library/Method: HTML/Tailwind.
-        - Report Info: Pitch Deck - Our Solution (Platform features, How it Works). Goal: Explain the product clearly. Viz/Method: Interactive 3-step visual process using cards. Interaction: Clicking a step card subtly highlights it. Justification: Makes "How it Works" engaging. Library/Method: HTML/Tailwind/JS.
+        - Report Info: Pitch Deck - The Challenge (SMB Pain Points). Goal: Emphasize the problem. Viz/Method: Bullet points with Unicode icons (e.g., 😟, ⏳, 💸, 🤔). Interaction: None, direct information. Justification: Clear, concise problem statement. Library/Method: HTML/Tailwind.
+        - Report Info: Pitch Deck - Our Solution (Platform features, How it Works). Goal: Explain the product clearly. Viz/Method: Interactive 3-step visual process using cards, highlighting account setup and boosting. Interaction: Clicking a step card subtly highlights it. Justification: Makes "How it Works" engaging. Library/Method: HTML/Tailwind/JS.
         - Report Info: Pitch Deck - The Goal. Goal: Reinforce the mission. Viz/Method: Emphasized text block. Interaction: None. Justification: Clear mission statement. Library/Method: HTML/Tailwind.
         - Report Info: Pitch Deck - Market Opportunity. Goal: Showcase market size and potential. Viz/Method: Key stat callouts and a Bar Chart (Chart.js) illustrating growth. Interaction: Chart is dynamic. Justification: Visually represents opportunity. Library/Method: Chart.js, HTML/Tailwind/JS.
         - Report Info: Pitch Deck - Our Vision & Path Forward. Goal: Inspire confidence in the future and outline direction. Viz/Method: Impactful statements about future goals, potential impact, and invitation to join the journey. Interaction: CTA button. Justification: Clearly states long-term view and invites engagement. Library/Method: HTML/Tailwind.
@@ -150,7 +150,7 @@
         <section id="challenge" class="py-12 sm:py-16">
             <h2 class="section-title text-center">The Problem: Untapped Potential</h2>
             <p class="text-center text-base sm:text-lg text-gray-600 mb-10 sm:mb-12 max-w-xl md:max-w-2xl mx-auto">
-                Millions of Indian Small and Medium Businesses are embracing the digital world, but face significant hurdles in creating compelling marketing content. This gap represents a massive opportunity.
+                Millions of Indian Small and Medium Businesses are embracing the digital world, but face significant hurdles in creating compelling marketing content and navigating social media effectively. This gap represents a massive opportunity.
             </p>
             <div class="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
                 <div class="space-y-4 sm:space-y-6 bg-white p-6 sm:p-8 rounded-xl shadow-lg">
@@ -175,6 +175,13 @@
                             <p class="text-sm sm:text-base text-gray-600">Hiring professional agencies or freelancers for video and graphic design can be prohibitively expensive for many SMBs.</p>
                         </div>
                     </div>
+                    <div class="flex items-start">
+                        <span class="text-2xl sm:text-3xl mr-3 sm:mr-4 text-[#FF8C61]">🤔</span>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-semibold mb-1">Social Media Complexity</h3>
+                            <p class="text-sm sm:text-base text-gray-600">Many SMBs struggle with effectively posting content, managing business accounts, or even setting them up on platforms like Facebook and Instagram.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="text-center md:text-left mt-6 md:mt-0">
                     <img src="https://placehold.co/400x280/A0A083/FFF7F0?text=SMBs+Challenges" alt="Illustration of SMB challenges" class="rounded-lg shadow-xl mx-auto w-full max-w-md" onerror="this.src='https://placehold.co/400x280/E2E8F0/4A5568?text=Image+Not+Found'">
@@ -188,12 +195,12 @@
         <section id="solution" class="py-12 sm:py-16 bg-white rounded-xl shadow-xl my-10 sm:my-12 p-6 sm:p-8 md:p-12">
             <h2 class="section-title text-center">Our Solution: SaralAds AI</h2>
             <p class="text-center text-base sm:text-lg text-gray-600 mb-3 sm:mb-4 max-w-xl md:max-w-2xl mx-auto">
-                We are developing an AI-driven platform designed to empower SMBs by making the creation of high-impact marketing videos and social posts simple, fast, and affordable.
+                We are developing an AI-driven platform designed to empower SMBs by making the creation of high-impact marketing videos and social posts simple, fast, and affordable, handling everything from content creation to social media account setup and strategic posting.
             </p>
             <p class="text-center text-xl sm:text-2xl font-semibold accent-text mb-10 sm:mb-12">Simple Inputs, Powerful Outputs.</p>
 
             <h3 class="text-xl sm:text-2xl font-semibold text-center mb-2 accent-text">How It Works:</h3>
-            <p class="text-center text-sm sm:text-md text-gray-500 mb-8 sm:mb-10 max-w-lg md:max-w-xl mx-auto">Our streamlined process enables anyone to generate professional marketing content in minutes.</p>
+            <p class="text-center text-sm sm:text-md text-gray-500 mb-8 sm:mb-10 max-w-lg md:max-w-xl mx-auto">Our streamlined process enables anyone to generate professional marketing content and manage their social presence in minutes.</p>
             <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-center">
                 <div class="step-card bg-[#FFF7F0] p-4 sm:p-6 rounded-lg shadow-md" onclick="selectStep(this)">
                     <div class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-[#FF8C61]">①</div>
@@ -207,15 +214,15 @@
                 </div>
                 <div class="step-card bg-[#FFF7F0] p-4 sm:p-6 rounded-lg shadow-md" onclick="selectStep(this)">
                     <div class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-[#FF8C61]">③</div>
-                    <h4 class="text-lg sm:text-xl font-semibold mb-2">Smart Distribution</h4>
-                    <p class="text-xs sm:text-sm text-gray-600">The platform suggests and helps post content on suitable social media (Facebook, Instagram, etc.) aligned with their budget.</p>
+                    <h4 class="text-lg sm:text-xl font-semibold mb-2">Smart Social Management</h4>
+                    <p class="text-xs sm:text-sm text-gray-600">SaralAds AI seamlessly posts to your business accounts (or helps create them!), and can boost posts on Facebook, Instagram, etc., all tailored to your budget.</p>
                 </div>
             </div>
 
             <div class="mt-10 sm:mt-12 text-center">
                 <h3 class="text-xl sm:text-2xl font-semibold accent-text mb-2 sm:mb-3">Our Core Goal:</h3>
                 <p class="text-base sm:text-xl text-gray-700 max-w-2xl md:max-w-3xl mx-auto">
-                    To make professional-grade marketing accessible and affordable for <span class="font-bold text-[#FF8C61]">every</span> Indian SMB, leveling the playing field and fueling their growth in the digital era.
+                    To make professional-grade marketing and social media management accessible and affordable for <span class="font-bold text-[#FF8C61]">every</span> Indian SMB, leveling the playing field and fueling their growth in the digital era.
                 </p>
             </div>
         </section>
@@ -236,8 +243,8 @@
                         <p class="text-sm sm:text-base text-gray-700">Digital advertising spend by SMBs is increasing exponentially, indicating a strong willingness to invest in online marketing.</p>
                     </div>
                     <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg">
-                        <h3 class="text-xl sm:text-2xl font-semibold accent-text mb-2">Need for Simplicity</h3>
-                        <p class="text-sm sm:text-base text-gray-700">There's a clear underserved need for tools that are powerful yet incredibly easy to use, without a steep learning curve.</p>
+                        <h3 class="text-xl sm:text-2xl font-semibold accent-text mb-2">Need for Simplicity & Support</h3>
+                        <p class="text-sm sm:text-base text-gray-700">There's a clear underserved need for tools that are powerful yet incredibly easy to use, offering end-to-end social media support.</p>
                     </div>
                 </div>
                 <div class="mt-6 md:mt-0">

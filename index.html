@@ -25,13 +25,29 @@
         .cta-bg { background-color: #FF8C61; } 
         .cta-bg-hover:hover { background-color: #E57247; } 
         .section-title {
-            font-size: 2.25rem; 
+            /* Base size for mobile, scaled up for larger screens */
+            font-size: 1.875rem; /* text-3xl */
+            line-height: 2.25rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: #A0A083; 
         }
+        @media (min-width: 768px) { /* md breakpoint */
+            .section-title {
+                font-size: 2.25rem; /* text-4xl */
+                line-height: 2.5rem;
+            }
+        }
         .nav-link {
             transition: color 0.3s ease;
+            display: block; /* For mobile menu stacking */
+            padding: 0.5rem 0; /* Mobile padding */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .nav-link {
+                display: inline-block; /* Revert for desktop */
+                padding: 0;
+            }
         }
         .nav-link:hover {
             color: #FF8C61; 
@@ -49,10 +65,16 @@
             max-width: 600px; 
             margin-left: auto;
             margin-right: auto;
-            height: 300px; 
-            max-height: 400px; 
+            height: 280px; /* Adjusted for mobile */
+            max-height: 350px; 
         }
-        @media (min-width: 768px) { 
+        @media (min-width: 640px) { /* sm breakpoint */
+             .chart-container {
+                height: 300px;
+                max-height: 400px;
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
             .chart-container {
                 height: 350px;
             }
@@ -60,15 +82,39 @@
         html {
             scroll-behavior: smooth;
         }
+        /* Hamburger menu icon styles */
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #A0A083;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger.open .line2 {
+            opacity: 0;
+        }
+        .hamburger.open .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="antialiased">
 
     <nav class="bg-white/80 backdrop-blur-md shadow-md fixed w-full z-50 top-0">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <a href="#" class="text-xl font-bold accent-text">SaralAds AI</a>
-            <div class="space-x-4">
+            <div class="md:hidden">
+                <button id="menu-btn" class="hamburger focus:outline-none">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </button>
+            </div>
+            <div class="hidden md:flex space-x-4 items-center">
                 <a href="#challenge" class="nav-link text-gray-700">The Problem</a>
                 <a href="#solution" class="nav-link text-gray-700">Our Solution</a>
                 <a href="#opportunity" class="nav-link text-gray-700">Market</a>
@@ -76,166 +122,173 @@
                 <a href="#next-steps" class="px-4 py-2 cta-bg text-white rounded-lg cta-bg-hover transition-colors">Contact Us</a>
             </div>
         </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-2">
+            <a href="#challenge" class="nav-link text-gray-700 px-4">The Problem</a>
+            <a href="#solution" class="nav-link text-gray-700 px-4">Our Solution</a>
+            <a href="#opportunity" class="nav-link text-gray-700 px-4">Market</a>
+            <a href="#vision" class="nav-link text-gray-700 px-4">Vision</a>
+            <a href="#next-steps" class="block w-full text-left px-4 py-2 cta-bg text-white hover:bg-opacity-90 transition-colors">Contact Us</a>
+        </div>
     </nav>
 
-    <header class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20" style="background: linear-gradient(to bottom, #FFF7F0, #FFEAD9);">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-20" style="background: linear-gradient(to bottom, #FFF7F0, #FFEAD9);">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Revolutionizing Marketing for <span class="accent-text">Indian SMBs</span>
         </h1>
-        <p class="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl">
+        <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 sm:mb-10 max-w-md sm:max-w-xl md:max-w-3xl">
             An AI-powered platform to make high-impact video and social media marketing effortless and accessible.
         </p>
-        <p class="text-2xl md:text-3xl font-semibold mb-12">
+        <p class="text-xl sm:text-2xl md:text-3xl font-semibold mb-10 sm:mb-12">
             The <span class="text-[#FF8C61]">Future</span> of SMB Marketing.
         </p>
-        <a href="#solution" class="px-8 py-4 cta-bg text-white text-lg font-semibold rounded-lg shadow-lg cta-bg-hover transition-colors transform hover:scale-105">
+        <a href="#solution" class="px-6 py-3 sm:px-8 sm:py-4 cta-bg text-white text-base sm:text-lg font-semibold rounded-lg shadow-lg cta-bg-hover transition-colors transform hover:scale-105">
             Discover Our Solution
         </a>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
-        <section id="challenge" class="py-16">
+    <main class="container mx-auto px-4 sm:px-6 py-10 sm:py-12">
+        <section id="challenge" class="py-12 sm:py-16">
             <h2 class="section-title text-center">The Problem: Untapped Potential</h2>
-            <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p class="text-center text-base sm:text-lg text-gray-600 mb-10 sm:mb-12 max-w-xl md:max-w-2xl mx-auto">
                 Millions of Indian Small and Medium Businesses are embracing the digital world, but face significant hurdles in creating compelling marketing content. This gap represents a massive opportunity.
             </p>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-6 bg-white p-8 rounded-xl shadow-lg">
+            <div class="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+                <div class="space-y-4 sm:space-y-6 bg-white p-6 sm:p-8 rounded-xl shadow-lg">
                     <div class="flex items-start">
-                        <span class="text-3xl mr-4 text-[#FF8C61]">😟</span>
+                        <span class="text-2xl sm:text-3xl mr-3 sm:mr-4 text-[#FF8C61]">😟</span>
                         <div>
-                            <h3 class="text-xl font-semibold mb-1">Lack of Tech Savviness</h3>
-                            <p class="text-gray-600">Many SMB owners are not equipped with the technical skills to use complex design and video editing tools effectively.</p>
+                            <h3 class="text-lg sm:text-xl font-semibold mb-1">Lack of Tech Savviness</h3>
+                            <p class="text-sm sm:text-base text-gray-600">Many SMB owners are not equipped with the technical skills to use complex design and video editing tools effectively.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <span class="text-3xl mr-4 text-[#FF8C61]">⏳</span>
+                        <span class="text-2xl sm:text-3xl mr-3 sm:mr-4 text-[#FF8C61]">⏳</span>
                         <div>
-                            <h3 class="text-xl font-semibold mb-1">Time Constraints</h3>
-                            <p class="text-gray-600">Running a business is demanding; creating quality marketing content consistently takes time they don't have.</p>
+                            <h3 class="text-lg sm:text-xl font-semibold mb-1">Time Constraints</h3>
+                            <p class="text-sm sm:text-base text-gray-600">Running a business is demanding; creating quality marketing content consistently takes time they don't have.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <span class="text-3xl mr-4 text-[#FF8C61]">💸</span>
+                        <span class="text-2xl sm:text-3xl mr-3 sm:mr-4 text-[#FF8C61]">💸</span>
                         <div>
-                            <h3 class="text-xl font-semibold mb-1">Budget Limitations</h3>
-                            <p class="text-gray-600">Hiring professional agencies or freelancers for video and graphic design can be prohibitively expensive for many SMBs.</p>
+                            <h3 class="text-lg sm:text-xl font-semibold mb-1">Budget Limitations</h3>
+                            <p class="text-sm sm:text-base text-gray-600">Hiring professional agencies or freelancers for video and graphic design can be prohibitively expensive for many SMBs.</p>
                         </div>
                     </div>
                 </div>
-                <div class="text-center md:text-left">
-                    <img src="https://placehold.co/500x350/A0A083/FFF7F0?text=SMBs+Facing+Challenges" alt="Illustration of SMB challenges" class="rounded-lg shadow-xl mx-auto" onerror="this.src='https://placehold.co/500x350/E2E8F0/4A5568?text=Image+Not+Found'">
+                <div class="text-center md:text-left mt-6 md:mt-0">
+                    <img src="https://placehold.co/400x280/A0A083/FFF7F0?text=SMBs+Challenges" alt="Illustration of SMB challenges" class="rounded-lg shadow-xl mx-auto w-full max-w-md" onerror="this.src='https://placehold.co/400x280/E2E8F0/4A5568?text=Image+Not+Found'">
                 </div>
             </div>
-             <p class="text-center text-lg text-gray-700 mt-10 max-w-2xl mx-auto">
+             <p class="text-center text-base sm:text-lg text-gray-700 mt-8 sm:mt-10 max-w-xl md:max-w-2xl mx-auto">
                 As a result, these businesses often miss out on significant growth opportunities in the ever-expanding digital marketplace.
             </p>
         </section>
 
-        <section id="solution" class="py-16 bg-white rounded-xl shadow-xl my-12 p-8 md:p-12">
+        <section id="solution" class="py-12 sm:py-16 bg-white rounded-xl shadow-xl my-10 sm:my-12 p-6 sm:p-8 md:p-12">
             <h2 class="section-title text-center">Our Solution: SaralAds AI</h2>
-            <p class="text-center text-lg text-gray-600 mb-4 max-w-2xl mx-auto">
+            <p class="text-center text-base sm:text-lg text-gray-600 mb-3 sm:mb-4 max-w-xl md:max-w-2xl mx-auto">
                 We are developing an AI-driven platform designed to empower SMBs by making the creation of high-impact marketing videos and social posts simple, fast, and affordable.
             </p>
-            <p class="text-center text-2xl font-semibold accent-text mb-12">Simple Inputs, Powerful Outputs.</p>
+            <p class="text-center text-xl sm:text-2xl font-semibold accent-text mb-10 sm:mb-12">Simple Inputs, Powerful Outputs.</p>
 
-            <h3 class="text-2xl font-semibold text-center mb-2 accent-text">How It Works:</h3>
-            <p class="text-center text-md text-gray-500 mb-10 max-w-xl mx-auto">Our streamlined process enables anyone to generate professional marketing content in minutes.</p>
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="step-card bg-[#FFF7F0] p-6 rounded-lg shadow-md" onclick="selectStep(this)">
-                    <div class="text-4xl mb-4 text-[#FF8C61]">①</div>
-                    <h4 class="text-xl font-semibold mb-2">Answer Simple Questions</h4>
-                    <p class="text-gray-600 text-sm">Businesses provide basic info: their business type, what they want to sell, target audience, and advertising budget.</p>
+            <h3 class="text-xl sm:text-2xl font-semibold text-center mb-2 accent-text">How It Works:</h3>
+            <p class="text-center text-sm sm:text-md text-gray-500 mb-8 sm:mb-10 max-w-lg md:max-w-xl mx-auto">Our streamlined process enables anyone to generate professional marketing content in minutes.</p>
+            <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-center">
+                <div class="step-card bg-[#FFF7F0] p-4 sm:p-6 rounded-lg shadow-md" onclick="selectStep(this)">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-[#FF8C61]">①</div>
+                    <h4 class="text-lg sm:text-xl font-semibold mb-2">Answer Simple Questions</h4>
+                    <p class="text-xs sm:text-sm text-gray-600">Businesses provide basic info: their business type, what they want to sell, target audience, and advertising budget.</p>
                 </div>
-                <div class="step-card bg-[#FFF7F0] p-6 rounded-lg shadow-md" onclick="selectStep(this)">
-                    <div class="text-4xl mb-4 text-[#FF8C61]">②</div>
-                    <h4 class="text-xl font-semibold mb-2">AI Generates Content</h4>
-                    <p class="text-gray-600 text-sm">Our advanced LLMs and image generators use this input and pre-designed templates to create tailored videos and image posts.</p>
+                <div class="step-card bg-[#FFF7F0] p-4 sm:p-6 rounded-lg shadow-md" onclick="selectStep(this)">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-[#FF8C61]">②</div>
+                    <h4 class="text-lg sm:text-xl font-semibold mb-2">AI Generates Content</h4>
+                    <p class="text-xs sm:text-sm text-gray-600">Our advanced LLMs and image generators use this input and pre-designed templates to create tailored videos and image posts.</p>
                 </div>
-                <div class="step-card bg-[#FFF7F0] p-6 rounded-lg shadow-md" onclick="selectStep(this)">
-                    <div class="text-4xl mb-4 text-[#FF8C61]">③</div>
-                    <h4 class="text-xl font-semibold mb-2">Smart Distribution</h4>
-                    <p class="text-gray-600 text-sm">The platform suggests and helps post content on suitable social media (Facebook, Instagram, etc.) aligned with their budget.</p>
+                <div class="step-card bg-[#FFF7F0] p-4 sm:p-6 rounded-lg shadow-md" onclick="selectStep(this)">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-[#FF8C61]">③</div>
+                    <h4 class="text-lg sm:text-xl font-semibold mb-2">Smart Distribution</h4>
+                    <p class="text-xs sm:text-sm text-gray-600">The platform suggests and helps post content on suitable social media (Facebook, Instagram, etc.) aligned with their budget.</p>
                 </div>
             </div>
 
-            <div class="mt-12 text-center">
-                <h3 class="text-2xl font-semibold accent-text mb-3">Our Core Goal:</h3>
-                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+            <div class="mt-10 sm:mt-12 text-center">
+                <h3 class="text-xl sm:text-2xl font-semibold accent-text mb-2 sm:mb-3">Our Core Goal:</h3>
+                <p class="text-base sm:text-xl text-gray-700 max-w-2xl md:max-w-3xl mx-auto">
                     To make professional-grade marketing accessible and affordable for <span class="font-bold text-[#FF8C61]">every</span> Indian SMB, leveling the playing field and fueling their growth in the digital era.
                 </p>
             </div>
         </section>
 
-        <section id="opportunity" class="py-16">
+        <section id="opportunity" class="py-12 sm:py-16">
             <h2 class="section-title text-center">The Market Opportunity</h2>
-            <p class="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p class="text-center text-base sm:text-lg text-gray-600 mb-10 sm:mb-12 max-w-xl md:max-w-2xl mx-auto">
                 The Indian SMB sector is vast and rapidly digitizing, creating an enormous demand for effective and accessible marketing tools. We are positioned to capture a significant share of this burgeoning market.
             </p>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="text-2xl font-semibold accent-text mb-2">Massive SMB Base</h3>
-                        <p class="text-gray-700">India is home to over <span class="font-bold text-[#FF8C61]">60 million</span> MSMEs, with a growing number actively seeking digital solutions.</p>
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <div class="space-y-4 sm:space-y-6">
+                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl sm:text-2xl font-semibold accent-text mb-2">Massive SMB Base</h3>
+                        <p class="text-sm sm:text-base text-gray-700">India is home to over <span class="font-bold text-[#FF8C61]">60 million</span> MSMEs, with a growing number actively seeking digital solutions.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="text-2xl font-semibold accent-text mb-2">Surging Digital Ad Spend</h3>
-                        <p class="text-gray-700">Digital advertising spend by SMBs is increasing exponentially, indicating a strong willingness to invest in online marketing.</p>
+                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl sm:text-2xl font-semibold accent-text mb-2">Surging Digital Ad Spend</h3>
+                        <p class="text-sm sm:text-base text-gray-700">Digital advertising spend by SMBs is increasing exponentially, indicating a strong willingness to invest in online marketing.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="text-2xl font-semibold accent-text mb-2">Need for Simplicity</h3>
-                        <p class="text-gray-700">There's a clear underserved need for tools that are powerful yet incredibly easy to use, without a steep learning curve.</p>
+                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl sm:text-2xl font-semibold accent-text mb-2">Need for Simplicity</h3>
+                        <p class="text-sm sm:text-base text-gray-700">There's a clear underserved need for tools that are powerful yet incredibly easy to use, without a steep learning curve.</p>
                     </div>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-center mb-4 accent-text">Illustrative Growth in Digital Marketing Adoption by SMBs</h3>
-                    <div class="chart-container bg-white p-4 rounded-xl shadow-xl">
+                <div class="mt-6 md:mt-0">
+                    <h3 class="text-lg sm:text-xl font-semibold text-center mb-3 sm:mb-4 accent-text">Illustrative Growth in Digital Marketing Adoption by SMBs</h3>
+                    <div class="chart-container bg-white p-3 sm:p-4 rounded-xl shadow-xl">
                         <canvas id="marketOpportunityChart"></canvas>
                     </div>
-                    <p class="text-sm text-gray-500 mt-2 text-center">Chart illustrates the increasing trend and need for digital marketing solutions among SMBs.</p>
+                    <p class="text-xs sm:text-sm text-gray-500 mt-2 text-center">Chart illustrates the increasing trend and need for digital marketing solutions among SMBs.</p>
                 </div>
             </div>
         </section>
 
-        <section id="vision" class="py-16 bg-gradient-to-r from-[#A0A083] to-[#8d8d6f] text-white rounded-xl shadow-xl my-12 p-8 md:p-12">
+        <section id="vision" class="py-12 sm:py-16 bg-gradient-to-r from-[#A0A083] to-[#8d8d6f] text-white rounded-xl shadow-xl my-10 sm:my-12 p-6 sm:p-8 md:p-12">
             <h2 class="section-title text-center !text-white">Our Vision & The Path Forward</h2>
-            <p class="text-center text-lg text-gray-100 mb-10 max-w-2xl mx-auto">
+            <p class="text-center text-base sm:text-lg text-gray-100 mb-8 sm:mb-10 max-w-xl md:max-w-2xl mx-auto">
                 We aim to be the leading AI-powered marketing partner for SMBs in India, continuously innovating to provide cutting-edge, simple, and effective solutions.
             </p>
-            <div class="bg-white/20 p-8 rounded-lg backdrop-blur-sm text-center space-y-6">
+            <div class="bg-white/20 p-6 sm:p-8 rounded-lg backdrop-blur-sm text-center space-y-4 sm:space-y-6">
                 <div>
-                    <h3 class="text-2xl font-semibold mb-2">Democratizing Marketing</h3>
-                    <p class="text-xl text-gray-50">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-2">Democratizing Marketing</h3>
+                    <p class="text-base sm:text-xl text-gray-50">
                         Our vision is to empower every SMB with the tools to compete and thrive in the digital landscape, regardless of their size or technical expertise.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-semibold mb-2">Future Roadmap</h3>
-                    <p class="text-xl text-gray-50">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-2">Future Roadmap</h3>
+                    <p class="text-base sm:text-xl text-gray-50">
                         We plan to expand our template library, integrate more social platforms, introduce advanced analytics, and explore regional language support to serve a diverse user base.
                     </p>
                 </div>
                  <div>
-                    <h3 class="text-2xl font-semibold mb-2">Join Our Journey</h3>
-                    <p class="text-xl text-gray-50">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-2">Join Our Journey</h3>
+                    <p class="text-base sm:text-xl text-gray-50">
                         We are seeking partners and early adopters who believe in the power of AI to transform SMB marketing. Let's shape the future together.
                     </p>
                 </div>
-                <a href="#next-steps" class="inline-block mt-6 px-8 py-3 bg-[#FF8C61] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#E57247] transition-colors transform hover:scale-105">
+                <a href="#next-steps" class="inline-block mt-4 sm:mt-6 px-6 py-3 sm:px-8 sm:py-3 bg-[#FF8C61] text-white text-base sm:text-lg font-semibold rounded-lg shadow-md hover:bg-[#E57247] transition-colors transform hover:scale-105">
                     Learn More & Get Involved
                 </a>
             </div>
         </section>
 
-        <section id="next-steps" class="py-20 text-center">
+        <section id="next-steps" class="py-16 sm:py-20 text-center">
             <h2 class="section-title">Ready to Learn More?</h2>
-            <p class="text-xl text-gray-700 mb-10 max-w-xl mx-auto">
+            <p class="text-lg sm:text-xl text-gray-700 mb-8 sm:mb-10 max-w-lg md:max-w-xl mx-auto">
                 We are excited about the potential of <span class="font-semibold accent-text">SaralAds AI</span> to transform SMB marketing in India and are eager to discuss opportunities for collaboration, partnership, or investment.
             </p>
-            <button onclick="showContact()" class="px-10 py-5 cta-bg text-white text-xl font-semibold rounded-lg shadow-xl cta-bg-hover transition-colors transform hover:scale-105">
+            <button onclick="showContact()" class="px-8 py-4 sm:px-10 sm:py-5 cta-bg text-white text-lg sm:text-xl font-semibold rounded-lg shadow-xl cta-bg-hover transition-colors transform hover:scale-105">
                 Contact Us
             </button>
-            <div id="contact-info" class="mt-8 text-lg text-gray-600 hidden">
+            <div id="contact-info" class="mt-6 sm:mt-8 text-base sm:text-lg text-gray-600 hidden">
                 <p>Great! We look forward to hearing from you.</p>
                 <p>Please reach out via: <span class="font-semibold accent-text">[Your Company Email Address]</span></p>
                 <p>Or connect with us for more details.</p>
@@ -243,12 +296,30 @@
         </section>
     </main>
 
-    <footer class="text-center py-8 border-t border-gray-200">
-        <p class="text-gray-500">&copy; <span id="currentYear"></span> SaralAds AI (Concept). All Rights Reserved.</p>
+    <footer class="text-center py-6 sm:py-8 border-t border-gray-200">
+        <p class="text-sm sm:text-base text-gray-500">&copy; <span id="currentYear"></span> SaralAds AI (Concept). All Rights Reserved.</p>
     </footer>
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.classList.toggle('open');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuBtn.classList.remove('open');
+            });
+        });
+
 
         function selectStep(element) {
             const steps = document.querySelectorAll('.step-card');
@@ -297,7 +368,10 @@
                             color: 'rgba(0,0,0,0.05)'
                         },
                         ticks: {
-                           color: '#333333'
+                           color: '#333333',
+                           font: {
+                               size: 9 // Smaller font for y-axis ticks on mobile
+                           }
                         }
                     },
                     x: {
@@ -307,17 +381,17 @@
                         ticks: {
                            color: '#333333',
                            font: {
-                               size: 10
+                               size: 9 // Smaller font for x-axis ticks on mobile
                            },
                            callback: function(value, index, values) {
                                 const label = this.getLabelForValue(value);
-                                const maxLength = 15; 
+                                const maxLength = 12; // Adjusted max length for smaller screens
                                 if (label.length > maxLength) {
                                     let line = '';
                                     const words = label.split(' ');
                                     const lines = [];
                                     for(let i=0; i < words.length; i++) {
-                                        if ((line + words[i]).length > maxLength) {
+                                        if ((line + words[i]).length > maxLength && line.length > 0) { // Ensure line is not empty before pushing
                                             lines.push(line.trim());
                                             line = '';
                                         }
@@ -336,13 +410,17 @@
                         display: true,
                         position: 'top',
                         labels: {
-                           color: '#333333'
+                           color: '#333333',
+                           font: {
+                               size: 10 // Smaller legend font
+                           }
                         }
                     },
                     tooltip: {
                         backgroundColor: '#333333',
                         titleColor: '#FFF7F0',
                         bodyColor: '#FFF7F0',
+                        padding: 8,
                         callbacks: {
                             label: function(context) {
                                 let label = context.dataset.label || '';
@@ -362,7 +440,7 @@
 
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+                // e.preventDefault(); // Prevent default only if mobile menu is open and we handle scroll
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
@@ -370,10 +448,30 @@
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
         
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                    // If mobile menu is open, close it before scrolling
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        e.preventDefault(); // Prevent default jump
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.classList.remove('open');
+                         // Delay scroll slightly to allow menu to close visually
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    } else {
+                         // For desktop, or if menu already closed, allow default or smooth scroll directly
+                        if (this.closest('#mobile-menu')) { // if the link is inside mobile menu
+                            e.preventDefault();
+                             window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                        // For desktop links, smooth scroll is already handled by html {scroll-behavior: smooth;}
+                        // and the default href jump is fine.
+                    }
                 }
             });
         });

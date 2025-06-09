@@ -6,9 +6,14 @@
     <title>AdMitra - Automated Advertising for Indian SMBs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Noto Sans', sans-serif;
             scroll-behavior: smooth;
         }
         .hero-bg {
@@ -88,7 +93,7 @@
         <div class="container mx-auto px-4 sm:px-6 py-3">
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center">
-                    <img src="WhatsApp Image 2025-06-01 at 18.27.36.jpeg" alt="AdMitra Logo" class="logo-img mr-2">
+                    <img src="static/images/logo.png" alt="AdMitra Logo" class="logo-img mr-2">
                     <span class="text-xl sm:text-2xl font-bold text-purple-700">AdMitra</span>
                 </a>
                 <div class="hidden md:flex space-x-1 items-center">
@@ -140,17 +145,17 @@
                 </p>
                 <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div class="card text-center">
-                        <img src="https://placehold.co/80x80/667EEA/FFFFFF?text=Time" alt="Time Consuming Icon" class="mx-auto mb-4 rounded-full" onerror="this.src='https://placehold.co/80x80/cccccc/FFFFFF?text=Icon+Error'">
+                        <span class="material-symbols-outlined text-purple-600 text-7xl">schedule</span>
                         <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="problemCard1Title">Time-Consuming & Complex</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="problemCard1Desc">Editing videos or designing posters takes hours, and learning complex software is overwhelming.</p>
                     </div>
                     <div class="card text-center">
-                        <img src="https://placehold.co/80x80/764BA2/FFFFFF?text=Cost" alt="High Cost Icon" class="mx-auto mb-4 rounded-full" onerror="this.src='https://placehold.co/80x80/cccccc/FFFFFF?text=Icon+Error'">
+                        <span class="material-symbols-outlined text-purple-600 text-7xl">currency_rupee_circle</span>
                         <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="problemCard2Title">High Costs</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="problemCard2Desc">Hiring agencies or freelancers for regular ad creation is expensive for small budgets.</p>
                     </div>
                     <div class="card text-center">
-                        <img src="https://placehold.co/80x80/FBBF24/FFFFFF?text=Tech" alt="Tech Savvy Icon" class="mx-auto mb-4 rounded-full" onerror="this.src='https://placehold.co/80x80/cccccc/FFFFFF?text=Icon+Error'">
+                        <span class="material-symbols-outlined text-purple-600 text-7xl">desktop_access_disabled</span>
                         <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="problemCard3Title">Lack of Technical Expertise</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="problemCard3Desc">Many SMB owners aren't tech-savvy enough to navigate modern ad creation tools effectively.</p>
                     </div>
@@ -166,7 +171,7 @@
                 </p>
                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
                     <div class="md:w-1/2">
-                        <img src="https://placehold.co/600x400/A78BFA/FFFFFF?text=AdMitra+App" alt="AdMitra App Interface Mockup" class="rounded-lg shadow-xl w-full" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'" data-translate-alt-key="solutionImageAlt">
+                        <img src="static/images/logo_full.png" alt="AdMitra App Interface Mockup" class="rounded-lg shadow-xl w-full" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'" data-translate-alt-key="solutionImageAlt">
                     </div>
                     <div class="md:w-1/2">
                         <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-purple-600" data-translate-key="solutionHeading">Effortless Ad Creation, Maximum Impact.</h3>
@@ -201,43 +206,77 @@
                          <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="featuresCard1Title">1. Quick & Easy Onboarding via App</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard1Title">1. Quick & Easy Onboarding via App</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard1Desc">Provide basic details in our app about your business, products, target audience, and logo. Don't have a logo? We can help create a simple one to get you started!</p>
                     </div>
                     <div class="card">
                         <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="featuresCard2Title">2. Automated Weekly Content in App</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard2Title">2. Automated Weekly Content</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard2Desc">Receive a fresh batch of short video ads and image posters directly in the AdMitra app every week, perfectly timed for festivals and promotions. Keep your audience engaged effortlessly.</p>
                     </div>
                     <div class="card">
                          <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="featuresCard3Title">3. Create Videos for Specific Products in App</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black-600" data-translate-key="featuresCard3Title">3. Create Videos for Specific Products</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard3Desc">Need to highlight a new product or a special offer? Generate custom videos quickly within the AdMitra app by selecting the product and key messages.</p>
                     </div>
                     <div class="card">
                         <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path></svg>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="featuresCard4Title">4. Easy Multi-Platform Sharing from App</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard4Title">4. Easy Multi-Platform Sharing</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard4Desc">Share your generated ads (videos and images) with pre-written text content directly from the AdMitra app to WhatsApp, Facebook, Instagram, and other popular platforms.</p>
                     </div>
                     <div class="card">
                         <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="featuresCard5Title">Behind Our Video Ads</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard5Title">Behind Our Video Ads</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard5Desc">We use advanced AI to: 1. Generate compelling scripts. 2. Find relevant stock media clips. 3. Stitch them together with a professional voiceover. Result: High-quality video ads without the hassle.</p>
                     </div>
                      <div class="card">
                         <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="featuresCard6Title">Our Business Model</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard6Title">Our Business Model</h3>
                         <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard6Desc">Try AdMitra with a <strong class="font-semibold" data-translate-key="freeTrial">Free Trial</strong> to experience the benefits. Later, choose our <strong class="font-semibold" data-translate-key="freemium">Freemium model</strong> with an option to unlock advanced features through affordable paid plans.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="demo" class="py-12 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="section-title text-purple-700" data-translate-key="demoTitle">See AdMitra in Action</h2>
+                <p class="text-md sm:text-lg text-gray-600 mb-10 text-center max-w-2xl mx-auto" data-translate-key="demoSubtitle">
+                    Check out these sample advertisements created using AdMitra's AI-powered platform
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <div class="card">
+                        <video class="w-full rounded-lg" controls>
+                            <source src="static/videos/StudioBea.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <h3 class="text-lg font-semibold mt-4 mb-2">Architectural Firm's Promotion</h3>
+                        <p class="text-gray-600 text-sm">Highlighting an architect's portfolio of modern home designs and renovation projects with professional visuals and compelling storytelling</p>
+                    </div>
+                    <div class="card">
+                        <video class="w-full rounded-lg" controls>
+                            <source src="static/videos/JindalEnterprises.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <h3 class="text-lg font-semibold mt-4 mb-2">CCTV and Inverters Store Ad</h3>
+                        <p class="text-gray-600 text-sm">Promoting cameras and inverters for a Bikaner electronics shop with Hindi voice-over, demonstrating our ability to create localized ads that resonate with regional audiences</p>
+                    </div>
+                    <div class="card">
+                        <video class="w-full rounded-lg" controls>
+                            <source src="static/videos/StudioBea3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <h3 class="text-lg font-semibold mt-4 mb-2">Architectural Firm's Second Ad</h3>
+                        <p class="text-gray-600 text-sm">A completely different take on architectural promotion - focusing on sustainable design and eco-friendly building practices with a fresh visual approach</p>
                     </div>
                 </div>
             </div>
@@ -246,7 +285,7 @@
         <section id="vision" class="py-12 md:py-20 bg-purple-700 text-white">
             <div class="container mx-auto px-4 sm:px-6 text-center">
                 <h2 class="section-title text-yellow-300" data-translate-key="visionTitle">Our Long-Term Vision: Smarter Advertising</h2>
-                 <img src="https://placehold.co/120x120/FBBF24/FFFFFF?text=Boost" alt="Ad Boost Optimizer Icon" class="mx-auto mb-6 rounded-lg w-24 h-24 sm:w-32 sm:h-32" onerror="this.src='https://placehold.co/120x120/cccccc/FFFFFF?text=Image+Not+Found'">
+                <span class="material-symbols-outlined text-9xl">rocket_launch</span>
                 <p class="text-md sm:text-lg md:text-xl mb-6 max-w-3xl mx-auto" data-translate-key="visionSubtitle">
                     We're not stopping at just ad creation. Our goal is to become your complete advertising solution.
                 </p>
@@ -293,7 +332,7 @@
 
     <footer class="bg-gray-800 text-white py-8 sm:py-10">
         <div class="container mx-auto px-4 sm:px-6 text-center">
-             <img src="WhatsApp Image 2025-06-01 at 18.27.36.jpeg" alt="AdMitra Logo" class="logo-img mx-auto mb-2">
+             <img src="static/images/logo.png" alt="AdMitra Logo" class="logo-img mx-auto mb-2">
             <p class="text-lg sm:text-xl font-bold mb-2">AdMitra</p>
             <p class="mb-4 text-xs sm:text-sm" data-translate-key="footerRights">© <span id="currentYear"></span> AdMitra. All rights reserved. Innovating for Indian SMBs.</p>
             <div class="space-x-2 sm:space-x-4 text-xs sm:text-sm">
@@ -343,13 +382,13 @@
                 solutionListItem3: "<strong class='font-semibold'>On-Demand Ads:</strong> Need a video for a specific product? Create it easily within the AdMitra app.",
                 solutionListItem4: "<strong class='font-semibold'>Easy Sharing:</strong> Post your ads from the app to WhatsApp, Facebook, Instagram, and more with just a few clicks, complete with text content.",
                 featuresTitle: "How AdMitra Works & Key Features",
-                featuresCard1Title: "1. Quick & Easy Onboarding via App",
+                featuresCard1Title: "1. Quick & Easy Onboarding",
                 featuresCard1Desc: "Provide basic details in our app about your business, products, target audience, and logo. Don't have a logo? We can help create a simple one to get you started!",
-                featuresCard2Title: "2. Automated Weekly Content in App",
+                featuresCard2Title: "2. Automated Weekly Content",
                 featuresCard2Desc: "Receive a fresh batch of short video ads and image posters directly in the AdMitra app every week, perfectly timed for festivals and promotions. Keep your audience engaged effortlessly.",
-                featuresCard3Title: "3. Create Videos for Specific Products in App",
+                featuresCard3Title: "3. Create Videos for Specific Products",
                 featuresCard3Desc: "Need to highlight a new product or a special offer? Generate custom videos quickly within the AdMitra app by selecting the product and key messages.",
-                featuresCard4Title: "4. Easy Multi-Platform Sharing from App",
+                featuresCard4Title: "4. Easy Multi-Platform Sharing",
                 featuresCard4Desc: "Share your generated ads (videos and images) with pre-written text content directly from the AdMitra app to WhatsApp, Facebook, Instagram, and other popular platforms.",
                 featuresCard5Title: "Behind Our Video Ads",
                 featuresCard5Desc: "We use advanced AI to: 1. Generate compelling scripts. 2. Find relevant stock media clips. 3. Stitch them together with a professional voiceover. Result: High-quality video ads without the hassle.",
@@ -358,8 +397,8 @@
                 freeTrial: "Free Trial",
                 freemium: "Freemium model",
                 visionTitle: "Our Long-Term Vision: Smarter Advertising",
-                visionSubtitle: "We're not stopping at just ad creation. Our goal is to become your complete advertising solution.",
-                visionOptimizerTitle: "Coming Soon: Ad Boost Optimizer in App",
+                visionSubtitle: "We're not stopping at just ad creation...Our goal is to become your complete advertising solution.",
+                visionOptimizerTitle: "Ad Boost Optimizer",
                 visionOptimizerDesc: "Imagine setting an overall ad budget, and AdMitra intelligently allocates and optimizes it across multiple platforms (Facebook, Google, etc.) based on your target audience and region. One-click boosting, maximum ROI, all managed from the AdMitra app. That's the future with AdMitra.",
                 contactTitle: "Ready to Revolutionize Your Advertising?",
                 contactSubtitle: "Join the AdMitra waitlist to get early access and be among the first to simplify your digital advertising. Let's grow your business together!",
@@ -423,8 +462,8 @@
                 freeTrial: "नि:शुल्क परीक्षण",
                 freemium: "फ्रीमियम मॉडल",
                 visionTitle: "हमारी दीर्घकालिक दृष्टि: स्मार्ट विज्ञापन",
-                visionSubtitle: "हम सिर्फ विज्ञापन निर्माण पर नहीं रुक रहे हैं। हमारा लक्ष्य आपका संपूर्ण विज्ञापन समाधान बनना है।",
-                visionOptimizerTitle: "जल्द आ रहा है: ऐप में विज्ञापन बूस्ट ऑप्टिमाइज़र",
+                visionSubtitle: "हम सिर्फ विज्ञापन निर्माण पर नहीं रुक रहे हैं...हमारा लक्ष्य आपका संपूर्ण विज्ञापन समाधान बनना है।",
+                visionOptimizerTitle: "विज्ञापन बूस्ट ऑप्टिमाइज़र",
                 visionOptimizerDesc: "एक समग्र विज्ञापन बजट निर्धारित करने की कल्पना करें, और AdMitra बुद्धिमानी से इसे आपके लक्षित दर्शकों और क्षेत्र के आधार पर कई प्लेटफार्मों (फेसबुक, गूगल, आदि) में आवंटित और अनुकूलित करता है। एक-क्लिक बूस्टिंग, अधिकतम ROI, सभी AdMitra ऐप से प्रबंधित। वह AdMitra के साथ भविष्य है।",
                 contactTitle: "अपने विज्ञापन में क्रांति लाने के लिए तैयार हैं?",
                 contactSubtitle: "जल्दी पहुँच प्राप्त करने और अपने डिजिटल विज्ञापन को सरल बनाने वालों में सबसे पहले बनने के लिए AdMitra प्रतीक्षा सूची में शामिल हों। आइए मिलकर आपके व्यवसाय को बढ़ाएं!",

@@ -5,547 +5,489 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdMitra - Automated Advertising for Indian SMBs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="icon" type="image/x-icon" href="static/images/logo_nobg.png">
 
     <style>
-        body {
-            font-family: 'Noto Sans', sans-serif;
+        :root {
+            --bg-main: #0f172a;
+            --bg-surface: #1e293b;
+            --bg-card: #334155;
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --secondary: #8b5cf6;
+            --accent: #06d6a0;
+            --accent-warm: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #475569;
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #06d6a0 0%, #3b82f6 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+        
+        html {
             scroll-behavior: smooth;
         }
-        .hero-bg {
-            background: linear-gradient(to right, #667eea, #764ba2);
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .section-title {
-            font-size: 1.875rem; /* 30px for mobile */
-            line-height: 2.25rem; /* 36px for mobile */
-            font-weight: 700;
-            margin-bottom: 1.5rem; /* 24px */
-            text-align: center;
+        
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
         }
-        @media (min-width: 768px) { /* md breakpoint */
-            .section-title {
-                font-size: 2.25rem; /* 36px for desktop */
-                line-height: 2.5rem; /* 40px for desktop */
-            }
+        
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .card {
-            background-color: white;
-            border-radius: 0.75rem; /* 12px */
-            padding: 1.5rem; /* 24px for mobile */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+        
+        .gradient-bg {
+            background: var(--gradient-primary);
         }
-         @media (min-width: 768px) { /* md breakpoint */
-            .card {
-                padding: 2rem; /* 32px for desktop */
-            }
+        
+        .gradient-secondary-bg {
+            background: var(--gradient-secondary);
         }
-        .card:hover {
-            transform: translateY(-5px);
+        
+        .gradient-warm-bg {
+            background: var(--gradient-warm);
         }
-        .cta-button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+        
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+        
+        .card-modern {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card-modern:hover::before {
+            opacity: 1;
+        }
+        
+        .card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
             font-weight: 600;
-            transition: background-color 0.3s ease;
-            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .navbar-sticky {
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(6, 214, 160, 0.4);
+        }
+        
+        .navbar-modern {
             position: sticky;
             top: 0;
             z-index: 50;
-            background-color: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
+        
+        .hero-section {
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%233b82f6" stop-opacity="0.1"/><stop offset="100%" stop-color="%233b82f6" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .section-alt {
+            background: var(--bg-surface);
+        }
+        
+        .icon-wrapper {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .icon-primary {
+            background: var(--gradient-primary);
+        }
+        
+        .icon-secondary {
+            background: var(--gradient-secondary);
+        }
+        
+        .icon-warm {
+            background: var(--gradient-warm);
+        }
+        
         .logo-img {
-            height: 32px;
-            width: auto;
+            height: 40px;
         }
-         @media (min-width: 640px) { /* sm breakpoint */
-            .logo-img {
-                height: 40px;
-            }
+        
+        .video-container {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
         }
-        @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
-        .animate-fadeInDown { animation: fadeInDown 1s ease-out; }
-        @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-        .animate-fadeInUp { animation: fadeInUp 1s ease-out .5s; animation-fill-mode: backwards; }
-        .mobile-menu-button svg { width: 1.5rem; height: 1.5rem; }
-        #mobile-menu a { display: block; padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; }
-        #mobile-menu a:last-child { border-bottom: none; }
-        .lang-switch-button {
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem; /* rounded-md */
-            font-weight: 500; /* medium */
-            font-size: 0.875rem; /* text-sm */
-            margin-left: 0.5rem; /* ml-2 */
-            transition: background-color 0.3s ease;
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="min-h-screen">
 
-    <nav class="navbar-sticky shadow-md">
-        <div class="container mx-auto px-4 sm:px-6 py-3">
+    <nav class="navbar-modern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center">
-                    <img src="static/images/logo.png" alt="AdMitra Logo" class="logo-img mr-2">
-                    <span class="text-xl sm:text-2xl font-bold text-purple-700">AdMitra</span>
+                    <img src="static/images/logo.png" alt="AdMitra Logo" class="logo-img mr-3">
+                    <span class="text-2xl font-bold font-display gradient-text">AdMitra</span>
                 </a>
                 <div class="hidden md:flex space-x-1 items-center">
-                    <a href="#problem" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-translate-key="navProblem">The Problem</a>
-                    <a href="#solution" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-translate-key="navSolution">Our Solution</a>
-                    <a href="#features" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-translate-key="navFeatures">Features</a>
-                    <a href="#vision" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-translate-key="navVision">Future Vision</a>
-                    <a href="#contact" class="bg-purple-600 hover:bg-purple-700 text-white cta-button text-sm" data-translate-key="navContact">Get Early Access</a>
-                    <button id="language-toggle-desktop" class="lang-switch-button bg-gray-200 hover:bg-gray-300 text-gray-700" data-translate-key="langToggle">Switch to Hindi</button>
+                    <a href="#problem" class="text-slate-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">The Problem</a>
+                    <a href="#solution" class="text-slate-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Our Solution</a>
+                    <a href="#features" class="text-slate-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Features</a>
+                    <a href="#vision" class="text-slate-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Future Vision</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYWMhjUXhSC3lEv-1waWju39zE9r1FrOztWfAPmssE13mmQg/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="btn-primary ml-4">Get Early Access</a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="language-toggle-mobile" class="lang-switch-button bg-gray-200 hover:bg-gray-300 text-gray-700 mr-2" data-translate-key="langToggleMobile">हिन्दी</button>
-                    <button id="mobile-menu-button" class="mobile-menu-button text-gray-700 hover:text-purple-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 p-2 rounded-md" aria-expanded="false" aria-controls="mobile-menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+                     <button id="mobile-menu-button" class="text-slate-300 hover:text-white focus:outline-none p-2 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg" aria-hidden="true">
-            <a href="#problem" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100" data-translate-key="navProblemMobile">The Problem</a>
-            <a href="#solution" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100" data-translate-key="navSolutionMobile">Our Solution</a>
-            <a href="#features" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100" data-translate-key="navFeaturesMobile">Features</a>
-            <a href="#vision" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100" data-translate-key="navVisionMobile">Future Vision</a>
-            <a href="#contact" class="bg-purple-600 hover:bg-purple-700 text-white text-center block mx-4 my-2 cta-button" data-translate-key="navContactMobile">Get Early Access</a>
+        <div id="mobile-menu" class="md:hidden hidden glass-effect shadow-lg border-t border-slate-700">
+            <a href="#problem" class="block py-3 px-4 text-base text-slate-300 hover:text-white hover:bg-slate-700/50">The Problem</a>
+            <a href="#solution" class="block py-3 px-4 text-base text-slate-300 hover:text-white hover:bg-slate-700/50">Our Solution</a>
+            <a href="#features" class="block py-3 px-4 text-base text-slate-300 hover:text-white hover:bg-slate-700/50">Features</a>
+            <a href="#vision" class="block py-3 px-4 text-base text-slate-300 hover:text-white hover:bg-slate-700/50">Future Vision</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYWMhjUXhSC3lEv-1waWju39zE9r1FrOztWfAPmssE13mmQg/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="block text-center mx-4 my-3 btn-primary">Get Early Access</a>
         </div>
     </nav>
 
-    <header class="hero-bg text-white">
-        <div class="container mx-auto px-4 sm:px-6 py-16 md:py-24 text-center">
-            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 animate-fadeInDown">
-                <span class="block" data-translate-key="heroTitle1">Stop Worrying About Ads.</span>
-                <span class="block text-yellow-300" data-translate-key="heroTitle2">Start Growing Your Business with AdMitra!</span>
+    <header class="hero-section text-center py-20 md:py-32 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+             <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold mb-8 leading-tight">
+                <span class="block text-white">Stop Worrying About</span>
+                <span class="block gradient-text">Digital Advertising</span>
             </h1>
-            <p class="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto animate-fadeInUp" data-translate-key="heroSubtitle">
-                AdMitra empowers Indian SMBs with automated, high-quality digital ads. Engaging product videos, festive posters, and easy sharing – all in one place. No tech skills needed!
+            <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-slate-300 leading-relaxed">
+                AdMitra empowers Indian SMBs with automated, high-quality digital ads. Professional videos, festive posters, and seamless sharing – all powered by AI.
             </p>
-            <a href="#contact" class="bg-yellow-400 hover:bg-yellow-500 text-purple-700 cta-button text-md sm:text-lg animate-fadeInUp" style="animation-delay: 1s;" data-translate-key="navContact">
-                Join Our Waitlist
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYWMhjUXhSC3lEv-1waWju39zE9r1FrOztWfAPmssE13mmQg/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg">
+                    <span class="material-symbols-outlined">rocket_launch</span>
+                    Join Our Waitlist
+                </a>
+                <a href="#demo" class="btn-secondary text-lg">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    Watch Demo
+                </a>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="problem" class="py-12 md:py-20 bg-white">
-            <div class="container mx-auto px-4 sm:px-6">
-                <h2 class="section-title text-purple-700" data-translate-key="problemTitle">The Challenge Indian SMBs Face</h2>
-                <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto text-sm sm:text-base" data-translate-key="problemSubtitle">
-                    In today's digital world, online presence is key. But for many Indian Small and Medium Businesses, creating engaging ads is a major hurdle.
-                </p>
-                <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                    <div class="card text-center">
-                        <span class="material-symbols-outlined text-purple-600 text-7xl">schedule</span>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="problemCard1Title">Time-Consuming & Complex</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="problemCard1Desc">Editing videos or designing posters takes hours, and learning complex software is overwhelming.</p>
+        <section id="problem" class="py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-white">The Challenge SMBs Face</h2>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">Creating engaging digital content shouldn't be rocket science. Yet for most Indian SMBs, it feels exactly like that.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card-modern text-center">
+                        <div class="icon-wrapper icon-warm mx-auto">
+                            <span class="material-symbols-outlined text-2xl text-white">schedule</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-display text-white">Time Consuming</h3>
+                        <p class="text-slate-300 leading-relaxed">Creating quality ads takes hours of work, learning complex tools, and constant iteration.</p>
                     </div>
-                    <div class="card text-center">
-                        <span class="material-symbols-outlined text-purple-600 text-7xl">currency_rupee_circle</span>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="problemCard2Title">High Costs</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="problemCard2Desc">Hiring agencies or freelancers for regular ad creation is expensive for small budgets.</p>
+                    <div class="card-modern text-center">
+                        <div class="icon-wrapper icon-primary mx-auto">
+                            <span class="material-symbols-outlined text-2xl text-white">currency_rupee</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-display text-white">Expensive</h3>
+                        <p class="text-slate-300 leading-relaxed">Hiring agencies or freelancers for regular content creation burns through small business budgets.</p>
                     </div>
-                    <div class="card text-center">
-                        <span class="material-symbols-outlined text-purple-600 text-7xl">desktop_access_disabled</span>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600" data-translate-key="problemCard3Title">Lack of Technical Expertise</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="problemCard3Desc">Many SMB owners aren't tech-savvy enough to navigate modern ad creation tools effectively.</p>
+                    <div class="card-modern text-center">
+                        <div class="icon-wrapper icon-secondary mx-auto">
+                            <span class="material-symbols-outlined text-2xl text-white">psychology_alt</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-display text-white">Complex</h3>
+                        <p class="text-slate-300 leading-relaxed">Modern advertising tools are built for experts, not busy business owners focused on growth.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="solution" class="py-12 md:py-20 bg-gray-100">
-            <div class="container mx-auto px-4 sm:px-6">
-                <h2 class="section-title text-purple-700" data-translate-key="solutionTitle">Introducing AdMitra: Your Advertising Partner</h2>
-                <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto text-sm sm:text-base" data-translate-key="solutionSubtitle">
-                    AdMitra is designed specifically for you, the Indian business owner. We automate the entire ad creation process, delivering professional, ready-to-use marketing materials directly to you through our intuitive app.
-                </p>
-                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                    <div class="md:w-1/2">
-                        <img src="static/images/logo_full.png" alt="AdMitra App Interface Mockup" class="rounded-lg shadow-xl w-full" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'" data-translate-alt-key="solutionImageAlt">
+        <section id="solution" class="section-alt py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="font-display text-4xl md:text-5xl font-bold mb-8 text-white">
+                            Meet <span class="gradient-text">AdMitra</span><br>
+                            Your AI Advertising Partner
+                        </h2>
+                        <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+                            We've built the advertising solution you've been waiting for. Simple onboarding, automated content creation, and effortless sharing across all platforms.
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-sm text-white">check</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white mb-2">Simple Setup</h4>
+                                    <p class="text-slate-300">Tell us about your business in minutes, not hours.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full gradient-secondary-bg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-sm text-white">check</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white mb-2">Weekly Content</h4>
+                                    <p class="text-slate-300">Fresh videos and posters delivered automatically.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full gradient-warm-bg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-sm text-white">check</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white mb-2">One-Click Sharing</h4>
+                                    <p class="text-slate-300">Post to WhatsApp, Instagram, Facebook instantly.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-purple-600" data-translate-key="solutionHeading">Effortless Ad Creation, Maximum Impact.</h3>
-                        <ul class="space-y-3 text-gray-700 text-sm sm:text-base">
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span data-translate-key="solutionListItem1"><strong class="font-semibold">Simple Onboarding:</strong> Tell us about your business, products, and target audience via our app. We'll even help create a logo if you need one!</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span data-translate-key="solutionListItem2"><strong class="font-semibold">Automated Content:</strong> Receive weekly engaging product videos and festive posters in the AdMitra app, tailored to your brand.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span data-translate-key="solutionListItem3"><strong class="font-semibold">On-Demand Ads:</strong> Need a video for a specific product? Create it easily within the AdMitra app.</span>
-                            </li>
-                             <li class="flex items-start">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span data-translate-key="solutionListItem4"><strong class="font-semibold">Easy Sharing:</strong> Post your ads from the app to WhatsApp, Facebook, Instagram, and more with just a few clicks, complete with text content.</span>
-                            </li>
-                        </ul>
+                    <div class="lg:order-first">
+                        <img src="static/images/logo_full.png" alt="AdMitra Dashboard" class="rounded-2xl shadow-2xl w-full" onerror="this.src='https://placehold.co/600x400/334155/60a5fa?text=AdMitra+Dashboard'">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="py-12 md:py-20 bg-white">
-            <div class="container mx-auto px-4 sm:px-6">
-                <h2 class="section-title text-purple-700" data-translate-key="featuresTitle">How AdMitra Works & Key Features</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    <div class="card">
-                         <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard1Title">1. Quick & Easy Onboarding via App</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard1Desc">Provide basic details in our app about your business, products, target audience, and logo. Don't have a logo? We can help create a simple one to get you started!</p>
-                    </div>
-                    <div class="card">
-                        <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
-                           <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard2Title">2. Automated Weekly Content</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard2Desc">Receive a fresh batch of short video ads and image posters directly in the AdMitra app every week, perfectly timed for festivals and promotions. Keep your audience engaged effortlessly.</p>
-                    </div>
-                    <div class="card">
-                         <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black-600" data-translate-key="featuresCard3Title">3. Create Videos for Specific Products</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard3Desc">Need to highlight a new product or a special offer? Generate custom videos quickly within the AdMitra app by selecting the product and key messages.</p>
-                    </div>
-                    <div class="card">
-                        <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path></svg>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard4Title">4. Easy Multi-Platform Sharing</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard4Desc">Share your generated ads (videos and images) with pre-written text content directly from the AdMitra app to WhatsApp, Facebook, Instagram, and other popular platforms.</p>
-                    </div>
-                    <div class="card">
-                        <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
-                           <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard5Title">Behind Our Video Ads</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard5Desc">We use advanced AI to: 1. Generate compelling scripts. 2. Find relevant stock media clips. 3. Stitch them together with a professional voiceover. Result: High-quality video ads without the hassle.</p>
-                    </div>
-                     <div class="card">
-                        <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 mb-4 rounded-full bg-purple-100 text-purple-600">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-semibold mb-2 text-black" data-translate-key="featuresCard6Title">Our Business Model</h3>
-                        <p class="text-gray-600 text-sm sm:text-base" data-translate-key="featuresCard6Desc">Try AdMitra with a <strong class="font-semibold" data-translate-key="freeTrial">Free Trial</strong> to experience the benefits. Later, choose our <strong class="font-semibold" data-translate-key="freemium">Freemium model</strong> with an option to unlock advanced features through affordable paid plans.</p>
-                    </div>
+        <section id="features" class="py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-white">How It Works</h2>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">Three simple steps to transform your business advertising forever.</p>
                 </div>
-            </div>
-        </section>
-        <section id="demo" class="py-12 md:py-20 bg-gray-50">
-            <div class="container mx-auto px-4 sm:px-6">
-                <h2 class="section-title text-purple-700" data-translate-key="demoTitle">See AdMitra in Action</h2>
-                <p class="text-md sm:text-lg text-gray-600 mb-10 text-center max-w-2xl mx-auto" data-translate-key="demoSubtitle">
-                    Check out these sample advertisements - created by AdMitra's AI using just basic business details and minimal input from the owners
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    <div class="card">
-                        <video class="w-full rounded-lg" controls>
-                            <source src="static/videos/StudioBea.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <h3 class="text-lg font-semibold mt-4 mb-2">Architectural Firm's Promotion</h3>
-                        <p class="text-gray-600 text-sm">Highlighting an architect's portfolio of modern home designs and renovation projects with professional visuals and compelling storytelling</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card-modern">
+                        <div class="icon-wrapper icon-primary mb-6">
+                            <span class="material-symbols-outlined text-2xl text-white">person_add</span>
+                        </div>
+                        <div class="text-2xl font-bold text-primary mb-2">01</div>
+                        <h3 class="text-2xl font-bold mb-4 font-display text-white">Quick Onboarding</h3>
+                        <p class="text-slate-300 leading-relaxed">Share your business details, products, and target audience through our intuitive app. No logo? We'll create one for you!</p>
                     </div>
-                    <div class="card">
-                        <video class="w-full rounded-lg" controls>
-                            <source src="static/videos/JindalEnterprises.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <h3 class="text-lg font-semibold mt-4 mb-2">CCTV and Inverters Store Ad</h3>
-                        <p class="text-gray-600 text-sm">Promoting cameras and inverters for a Bikaner electronics shop with Hindi voice-over, demonstrating our ability to create localized ads that resonate with regional audiences</p>
+                    <div class="card-modern">
+                        <div class="icon-wrapper icon-secondary mb-6">
+                            <span class="material-symbols-outlined text-2xl text-white">auto_awesome</span>
+                        </div>
+                        <div class="text-2xl font-bold text-purple-400 mb-2">02</div>
+                        <h3 class="text-2xl font-bold mb-4 font-display text-white">AI Content Creation</h3>
+                        <p class="text-slate-300 leading-relaxed">Our AI generates professional videos and posters weekly, perfectly timed for festivals, seasons, and special occasions.</p>
                     </div>
-                    <div class="card">
-                        <video class="w-full rounded-lg" controls>
-                            <source src="static/videos/StudioBea2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <h3 class="text-lg font-semibold mt-4 mb-2">Architectural Firm's Second Ad</h3>
-                        <p class="text-gray-600 text-sm">A completely different take on architectural promotion - focusing on sustainable design and eco-friendly building practices with a fresh visual approach</p>
+                    <div class="card-modern">
+                        <div class="icon-wrapper icon-warm mb-6">
+                            <span class="material-symbols-outlined text-2xl text-white">share</span>
+                        </div>
+                        <div class="text-2xl font-bold text-amber-400 mb-2">03</div>
+                        <h3 class="text-2xl font-bold mb-4 font-display text-white">Effortless Sharing</h3>
+                        <p class="text-slate-300 leading-relaxed">One-click posting to all your social platforms. Schedule content or share instantly – your choice, your control.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="vision" class="py-12 md:py-20 bg-purple-700 text-white">
-            <div class="container mx-auto px-4 sm:px-6 text-center">
-                <h2 class="section-title text-yellow-300" data-translate-key="visionTitle">Our Long-Term Vision: Smarter Advertising</h2>
-                <span class="material-symbols-outlined text-9xl">rocket_launch</span>
-                <p class="text-md sm:text-lg md:text-xl mb-6 max-w-3xl mx-auto" data-translate-key="visionSubtitle">
-                    We're not stopping at just ad creation. Our goal is to become your complete advertising solution.
-                </p>
-                <div class="max-w-xl mx-auto bg-white text-gray-800 p-6 sm:p-8 rounded-lg shadow-xl">
-                    <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-purple-600" data-translate-key="visionOptimizerTitle">Coming Soon: Ad Boost Optimizer in App</h3>
-                    <p class="text-gray-600 text-sm sm:text-base" data-translate-key="visionOptimizerDesc">
-                        Imagine setting an overall ad budget, and AdMitra intelligently allocates and optimizes it across multiple platforms (Facebook, Google, etc.) based on your target audience and region.
-                        One-click boosting, maximum ROI, all managed from the AdMitra app. That's the future with AdMitra.
-                    </p>
+        <section id="demo" class="section-alt py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-white">See AdMitra in Action</h2>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">Real ads created by our AI for real businesses. No stock footage, no generic templates – just authentic, engaging content.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="space-y-6">
+                        <div class="video-container">
+                            <video class="w-full" controls>
+                                <source src="static/videos/StudioBea.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold font-display text-white mb-2">Architectural Firm</h3>
+                            <p class="text-slate-400">Modern home designs and renovation showcase</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="video-container">
+                            <video class="w-full" controls>
+                                <source src="static/videos/JindalEnterprises.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold font-display text-white mb-2">Electronics Store</h3>
+                            <p class="text-slate-400">CCTV & Inverters with Hindi voiceover</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="video-container">
+                            <video class="w-full" controls>
+                                <source src="static/videos/StudioBea2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold font-display text-white mb-2">Sustainable Design</h3>
+                            <p class="text-slate-400">Eco-friendly architecture practices</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-12 md:py-20 bg-gray-100">
-            <div class="container mx-auto px-4 sm:px-6 text-center">
-                <h2 class="section-title text-purple-700" data-translate-key="contactTitle">Ready to Revolutionize Your Advertising?</h2>
-                <p class="text-md sm:text-lg text-gray-600 mb-10 max-w-2xl mx-auto" data-translate-key="contactSubtitle">
-                    Join the AdMitra waitlist to get early access and be among the first to simplify your digital advertising.
-                    Let's grow your business together!
-                </p>
-                <div class="max-w-md mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg">
-                    <form id="waitlistForm">
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 text-left" data-translate-key="formLabelName">Full Name</label>
-                            <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" placeholder="Your Name">
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700 text-left" data-translate-key="formLabelEmail">Email Address</label>
-                            <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" placeholder="you@example.com">
-                        </div>
-                        <div class="mb-6">
-                            <label for="businessName" class="block text-sm font-medium text-gray-700 text-left" data-translate-key="formLabelBusiness">Business Name (Optional)</label>
-                            <input type="text" name="businessName" id="businessName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" placeholder="Your Business Name">
-                        </div>
-                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white cta-button" data-translate-key="formButton">
-                            Join Waitlist
-                        </button>
-                    </form>
-                    <p id="formMessage" class="mt-4 text-sm"></p>
+        <section id="vision" class="py-20 md:py-32">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+                <div class="w-20 h-20 rounded-full gradient-bg flex items-center justify-center mx-auto mb-8">
+                    <span class="material-symbols-outlined text-3xl text-white">rocket_launch</span>
                 </div>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-8 text-white">The Future is Automated</h2>
+                <p class="text-xl text-slate-300 mb-12 leading-relaxed max-w-4xl mx-auto">
+                    We're building more than just content creation. Imagine setting your advertising budget and letting AdMitra automatically optimize campaigns across all platforms for maximum ROI. That's where we're headed.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <div class="stats-number font-display">24/7</div>
+                        <p class="text-slate-300 text-lg">Automated Optimization</p>
+                    </div>
+                    <div>
+                        <div class="stats-number font-display">10x</div>
+                        <p class="text-slate-300 text-lg">Faster Content Creation</p>
+                    </div>
+                    <div>
+                        <div class="stats-number font-display">∞</div>
+                        <p class="text-slate-300 text-lg">Creative Possibilities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-alt py-20 md:py-32">
+             <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-8 text-white">Ready to Transform Your Advertising?</h2>
+                <p class="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+                    Join thousands of Indian SMBs who are already on the waitlist. Be among the first to experience the future of automated advertising.
+                </p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYWMhjUXhSC3lEv-1waWju39zE9r1FrOztWfAPmssE13mmQg/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="btn-primary text-xl">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                    Get Early Access Now
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 sm:py-10">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
-             <img src="static/images/logo.png" alt="AdMitra Logo" class="logo-img mx-auto mb-2">
-            <p class="text-lg sm:text-xl font-bold mb-2">AdMitra</p>
-            <p class="mb-4 text-xs sm:text-sm" data-translate-key="footerRights">© <span id="currentYear"></span> AdMitra. All rights reserved. Innovating for Indian SMBs.</p>
-            <div class="space-x-2 sm:space-x-4 text-xs sm:text-sm">
-                <a href="#" class="hover:text-yellow-300" data-translate-key="footerPrivacy">Privacy Policy</a>
-                <a href="#" class="hover:text-yellow-300" data-translate-key="footerTerms">Terms of Service</a>
+    <footer class="border-t border-slate-700 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <div class="flex justify-center items-center mb-6">
+                <img src="static/images/logo.png" alt="AdMitra Logo" class="logo-img mr-3">
+                <span class="text-2xl font-bold font-display gradient-text">AdMitra</span>
+            </div>
+            <p class="text-slate-400 mb-6">&copy; <span id="currentYear"></span> AdMitra. All rights reserved.</p>
+            <div class="flex justify-center space-x-8">
+                <a href="#" class="text-slate-400 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors">Contact Us</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Language Translation
-        const translations = {
-            en: {
-                navProblem: "The Problem",
-                navSolution: "Our Solution",
-                navFeatures: "Features",
-                navVision: "Future Vision",
-                navContact: "Get Early Access",
-                langToggle: "Switch to Hindi",
-                langToggleMobile: "हिन्दी",
-                navProblemMobile: "The Problem",
-                navSolutionMobile: "Our Solution",
-                navFeaturesMobile: "Features",
-                navVisionMobile: "Future Vision",
-                navContactMobile: "Get Early Access",
-                heroTitle1: "Stop Worrying About Ads.",
-                heroTitle2: "Start Growing Your Business with AdMitra!",
-                heroSubtitle: "AdMitra empowers Indian SMBs with automated, high-quality digital ads. Engaging product videos, festive posters, and easy sharing – all in one place. No tech skills needed!",
-                heroCTA: "Join Our Waitlist",
-                problemTitle: "The Challenge Indian SMBs Face",
-                problemSubtitle: "In today's digital world, online presence is key. But for many Indian Small and Medium Businesses, creating engaging ads is a major hurdle.",
-                problemCard1Title: "Time-Consuming & Complex",
-                problemCard1Desc: "Editing videos or designing posters takes hours, and learning complex software is overwhelming.",
-                problemCard2Title: "High Costs",
-                problemCard2Desc: "Hiring agencies or freelancers for regular ad creation is expensive for small budgets.",
-                problemCard3Title: "Lack of Technical Expertise",
-                problemCard3Desc: "Many SMB owners aren't tech-savvy enough to navigate modern ad creation tools effectively.",
-                solutionTitle: "Introducing AdMitra: Your Advertising Partner",
-                solutionSubtitle: "AdMitra is designed specifically for you, the Indian business owner. We automate the entire ad creation process, delivering professional, ready-to-use marketing materials directly to you through our intuitive app.",
-                solutionImageAlt: "AdMitra App Interface Mockup",
-                solutionHeading: "Effortless Ad Creation, Maximum Impact.",
-                solutionListItem1: "<strong class='font-semibold'>Simple Onboarding:</strong> Tell us about your business, products, and target audience via our app. We'll even help create a logo if you need one!",
-                solutionListItem2: "<strong class='font-semibold'>Automated Content:</strong> Receive weekly engaging product videos and festive posters in the AdMitra app, tailored to your brand.",
-                solutionListItem3: "<strong class='font-semibold'>On-Demand Ads:</strong> Need a video for a specific product? Create it easily within the AdMitra app.",
-                solutionListItem4: "<strong class='font-semibold'>Easy Sharing:</strong> Post your ads from the app to WhatsApp, Facebook, Instagram, and more with just a few clicks, complete with text content.",
-                featuresTitle: "How AdMitra Works & Key Features",
-                featuresCard1Title: "1. Quick & Easy Onboarding",
-                featuresCard1Desc: "Provide basic details in our app about your business, products, target audience, and logo. Don't have a logo? We can help create a simple one to get you started!",
-                featuresCard2Title: "2. Automated Weekly Content",
-                featuresCard2Desc: "Receive a fresh batch of short video ads and image posters directly in the AdMitra app every week, perfectly timed for festivals and promotions. Keep your audience engaged effortlessly.",
-                featuresCard3Title: "3. Create Videos for Specific Products",
-                featuresCard3Desc: "Need to highlight a new product or a special offer? Generate custom videos quickly within the AdMitra app by selecting the product and key messages.",
-                featuresCard4Title: "4. Easy Multi-Platform Sharing",
-                featuresCard4Desc: "Share your generated ads (videos and images) with pre-written text content directly from the AdMitra app to WhatsApp, Facebook, Instagram, and other popular platforms.",
-                featuresCard5Title: "Behind Our Video Ads",
-                featuresCard5Desc: "We use advanced AI to: 1. Generate compelling scripts. 2. Find relevant stock media clips. 3. Stitch them together with a professional voiceover. Result: High-quality video ads without the hassle.",
-                featuresCard6Title: "Our Business Model",
-                featuresCard6Desc: "Try AdMitra with a <strong class='font-semibold'>Free Trial</strong> to experience the benefits. Later, choose our <strong class='font-semibold'>Freemium model</strong> with an option to unlock advanced features through affordable paid plans.",
-                freeTrial: "Free Trial",
-                freemium: "Freemium model",
-                visionTitle: "Our Long-Term Vision: Smarter Advertising",
-                visionSubtitle: "We're not stopping at just ad creation...Our goal is to become your complete advertising solution.",
-                visionOptimizerTitle: "Ad Boost Optimizer",
-                visionOptimizerDesc: "Imagine setting an overall ad budget, and AdMitra intelligently allocates and optimizes it across multiple platforms (Facebook, Google, etc.) based on your target audience and region. One-click boosting, maximum ROI, all managed from the AdMitra app. That's the future with AdMitra.",
-                contactTitle: "Ready to Revolutionize Your Advertising?",
-                contactSubtitle: "Join the AdMitra waitlist to get early access and be among the first to simplify your digital advertising. Let's grow your business together!",
-                formLabelName: "Full Name",
-                formLabelEmail: "Email Address",
-                formLabelBusiness: "Business Name (Optional)",
-                formButton: "Join Waitlist",
-                footerRights: `© ${new Date().getFullYear()} AdMitra. All rights reserved. Innovating for Indian SMBs.`,
-                footerPrivacy: "Privacy Policy",
-                footerTerms: "Terms of Service",
-                formPlaceholderName: "Your Name",
-                formPlaceholderEmail: "you@example.com",
-                formPlaceholderBusiness: "Your Business Name"
-            },
-            hi: {
-                navProblem: "समस्या",
-                navSolution: "हमारा समाधान",
-                navFeatures: "विशेषताएँ",
-                navVision: "भविष्य की दृष्टि",
-                navContact: "जल्दी पहुँच प्राप्त करें",
-                langToggle: "अंग्रेजी में बदलें",
-                langToggleMobile: "EN",
-                navProblemMobile: "समस्या",
-                navSolutionMobile: "हमारा समाधान",
-                navFeaturesMobile: "विशेषताएँ",
-                navVisionMobile: "भविष्य की दृष्टि",
-                navContactMobile: "जल्दी पहुँच प्राप्त करें",
-                heroTitle1: "विज्ञापनों की चिंता करना बंद करें।",
-                heroTitle2: "AdMitra के साथ अपना व्यवसाय बढ़ाना शुरू करें!",
-                heroSubtitle: "AdMitra भारतीय SMBs को स्वचालित, उच्च-गुणवत्ता वाले डिजिटल विज्ञापनों के साथ सशक्त बनाता है। आकर्षक उत्पाद वीडियो, त्योहारी पोस्टर, और आसान साझाकरण - सब एक ही स्थान पर। कोई तकनीकी कौशल की आवश्यकता नहीं!",
-                heroCTA: "हमारी प्रतीक्षा सूची में शामिल हों",
-                problemTitle: "भारतीय SMBs के सामने चुनौती",
-                problemSubtitle: "आज की डिजिटल दुनिया में, ऑनलाइन उपस्थिति महत्वपूर्ण है। लेकिन कई भारतीय लघु और मध्यम व्यवसायों के लिए, आकर्षक विज्ञापन बनाना एक बड़ी बाधा है।",
-                problemCard1Title: "समय लेने वाला और जटिल",
-                problemCard1Desc: "वीडियो संपादित करने या पोस्टर डिजाइन करने में घंटों लगते हैं, और जटिल सॉफ्टवेयर सीखना भारी पड़ता है।",
-                problemCard2Title: "उच्च लागत",
-                problemCard2Desc: "नियमित विज्ञापन निर्माण के लिए एजेंसियों या फ्रीलांसरों को काम पर रखना छोटे बजट के लिए महंगा है।",
-                problemCard3Title: "तकनीकी विशेषज्ञता का अभाव",
-                problemCard3Desc: "कई SMB मालिक आधुनिक विज्ञापन निर्माण उपकरणों को प्रभावी ढंग से नेविगेट करने के लिए पर्याप्त तकनीकी जानकार नहीं हैं।",
-                solutionTitle: "पेश है AdMitra: आपका विज्ञापन भागीदार",
-                solutionSubtitle: "AdMitra विशेष रूप से आपके लिए, भारतीय व्यवसाय के स्वामी के लिए डिज़ाइन किया गया है। हम पूरी विज्ञापन निर्माण प्रक्रिया को स्वचालित करते हैं, पेशेवर, उपयोग के लिए तैयार विपणन सामग्री सीधे आप तक हमारे सहज ऐप के माध्यम से पहुंचाते हैं।",
-                solutionImageAlt: "AdMitra ऐप इंटरफ़ेस मॉकअप",
-                solutionHeading: "सरल विज्ञापन निर्माण, अधिकतम प्रभाव।",
-                solutionListItem1: "<strong class='font-semibold'>सरल ऑनबोर्डिंग:</strong> हमारे ऐप के माध्यम से हमें अपने व्यवसाय, उत्पादों और लक्षित दर्शकों के बारे में बताएं। यदि आपको लोगो की आवश्यकता है तो हम एक बनाने में भी मदद करेंगे!",
-                solutionListItem2: "<strong class='font-semibold'>स्वचालित सामग्री:</strong> अपने ब्रांड के अनुरूप, AdMitra ऐप में साप्ताहिक आकर्षक उत्पाद वीडियो और त्योहारी पोस्टर प्राप्त करें।",
-                solutionListItem3: "<strong class='font-semibold'>ऑन-डिमांड विज्ञापन:</strong> किसी विशिष्ट उत्पाद के लिए वीडियो चाहिए? AdMitra ऐप के भीतर इसे आसानी से बनाएं।",
-                solutionListItem4: "<strong class='font-semibold'>आसान साझाकरण:</strong> अपने विज्ञापनों को ऐप से व्हाट्सएप, फेसबुक, इंस्टाग्राम और अन्य पर कुछ ही क्लिक में टेक्स्ट सामग्री के साथ पोस्ट करें।",
-                featuresTitle: "AdMitra कैसे काम करता है और मुख्य विशेषताएँ",
-                featuresCard1Title: "१. ऐप के माध्यम से त्वरित और आसान ऑनबोर्डिंग",
-                featuresCard1Desc: "हमारे ऐप में अपने व्यवसाय, उत्पादों, लक्षित दर्शकों और लोगो के बारे में बुनियादी विवरण प्रदान करें। लोगो नहीं है? हम आपको आरंभ करने के लिए एक सरल बनाने में मदद कर सकते हैं!",
-                featuresCard2Title: "२. ऐप में स्वचालित साप्ताहिक सामग्री",
-                featuresCard2Desc: "त्योहारों और प्रचारों के लिए पूरी तरह से समय पर, हर हफ्ते AdMitra ऐप में सीधे लघु वीडियो विज्ञापन और छवि पोस्टर का एक नया बैच प्राप्त करें। अपने दर्शकों को सहजता से जोड़े रखें।",
-                featuresCard3Title: "३. ऐप में विशिष्ट उत्पादों के लिए वीडियो बनाएं",
-                featuresCard3Desc: "किसी नए उत्पाद या विशेष ऑफ़र को उजागर करने की आवश्यकता है? AdMitra ऐप के भीतर उत्पाद और मुख्य संदेशों का चयन करके जल्दी से कस्टम वीडियो उत्पन्न करें।",
-                featuresCard4Title: "४. ऐप से आसान मल्टी-प्लेटफ़ॉर्म साझाकरण",
-                featuresCard4Desc: "अपने उत्पन्न विज्ञापनों (वीडियो और छवियों) को पूर्व-लिखित पाठ सामग्री के साथ सीधे AdMitra ऐप से व्हाट्सएप, फेसबुक, इंस्टाग्राम और अन्य लोकप्रिय प्लेटफार्मों पर साझा करें।",
-                featuresCard5Title: "हमारे वीडियो विज्ञापनों के पीछे",
-                featuresCard5Desc: "हम उन्नत AI का उपयोग करते हैं: १. आकर्षक स्क्रिप्ट उत्पन्न करने के लिए। २. प्रासंगिक स्टॉक मीडिया क्लिप खोजने के लिए। ३. उन्हें एक पेशेवर वॉयसओवर के साथ एक साथ सिलने के लिए। परिणाम: बिना किसी परेशानी के उच्च-गुणवत्ता वाले वीडियो विज्ञापन।",
-                featuresCard6Title: "हमारा व्यवसाय मॉडल",
-                featuresCard6Desc: "लाभों का अनुभव करने के लिए <strong class='font-semibold'>नि:शुल्क परीक्षण</strong> के साथ AdMitra आज़माएँ। बाद में, किफायती भुगतान योजनाओं के माध्यम से उन्नत सुविधाओं को अनलॉक करने के विकल्प के साथ हमारा <strong class='font-semibold'>फ्रीमियम मॉडल</strong> चुनें।",
-                freeTrial: "नि:शुल्क परीक्षण",
-                freemium: "फ्रीमियम मॉडल",
-                visionTitle: "हमारी दीर्घकालिक दृष्टि: स्मार्ट विज्ञापन",
-                visionSubtitle: "हम सिर्फ विज्ञापन निर्माण पर नहीं रुक रहे हैं...हमारा लक्ष्य आपका संपूर्ण विज्ञापन समाधान बनना है।",
-                visionOptimizerTitle: "विज्ञापन बूस्ट ऑप्टिमाइज़र",
-                visionOptimizerDesc: "एक समग्र विज्ञापन बजट निर्धारित करने की कल्पना करें, और AdMitra बुद्धिमानी से इसे आपके लक्षित दर्शकों और क्षेत्र के आधार पर कई प्लेटफार्मों (फेसबुक, गूगल, आदि) में आवंटित और अनुकूलित करता है। एक-क्लिक बूस्टिंग, अधिकतम ROI, सभी AdMitra ऐप से प्रबंधित। वह AdMitra के साथ भविष्य है।",
-                contactTitle: "अपने विज्ञापन में क्रांति लाने के लिए तैयार हैं?",
-                contactSubtitle: "जल्दी पहुँच प्राप्त करने और अपने डिजिटल विज्ञापन को सरल बनाने वालों में सबसे पहले बनने के लिए AdMitra प्रतीक्षा सूची में शामिल हों। आइए मिलकर आपके व्यवसाय को बढ़ाएं!",
-                formLabelName: "पूरा नाम",
-                formLabelEmail: "ईमेल पता",
-                formLabelBusiness: "व्यवसाय का नाम (वैकल्पिक)",
-                formButton: "प्रतीक्षा सूची में शामिल हों",
-                footerRights: `© ${new Date().getFullYear()} AdMitra. सर्वाधिकार सुरक्षित। भारतीय SMBs के लिए नवाचार।`,
-                footerPrivacy: "गोपनीयता नीति",
-                footerTerms: "सेवा की शर्तें",
-                formPlaceholderName: "आपका नाम",
-                formPlaceholderEmail: "you@example.com",
-                formPlaceholderBusiness: "आपके व्यवसाय का नाम"
-            }
-        };
-
-        let currentLanguage = 'en'; // Default language
-
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            document.documentElement.lang = lang; 
-
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.getAttribute('data-translate-key');
-                if (translations[lang] && translations[lang][key]) {
-                    if (translations[lang][key].includes('<strong')) {
-                         element.innerHTML = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
-                }
-            });
-            
-            document.querySelectorAll('img[data-translate-alt-key]').forEach(imgElement => {
-                const altKey = imgElement.getAttribute('data-translate-alt-key');
-                if(translations[lang] && translations[lang][altKey]) {
-                    imgElement.alt = translations[lang][altKey];
-                }
-            });
-
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const businessNameInput = document.getElementById('businessName');
-
-            if (nameInput) nameInput.placeholder = translations[lang].formPlaceholderName || 'Your Name';
-            if (emailInput) emailInput.placeholder = translations[lang].formPlaceholderEmail || 'you@example.com';
-            if (businessNameInput) businessNameInput.placeholder = translations[lang].formPlaceholderBusiness || 'Your Business Name';
-
-            const desktopToggle = document.getElementById('language-toggle-desktop');
-            const mobileToggle = document.getElementById('language-toggle-mobile');
-            if (lang === 'hi') {
-                if (desktopToggle) desktopToggle.textContent = translations.hi.langToggle;
-                if (mobileToggle) mobileToggle.textContent = translations.hi.langToggleMobile;
-            } else {
-                if (desktopToggle) desktopToggle.textContent = translations.en.langToggle;
-                if (mobileToggle) mobileToggle.textContent = translations.en.langToggleMobile;
-            }
-        }
-
-        const langToggleDesktop = document.getElementById('language-toggle-desktop');
-        const langToggleMobile = document.getElementById('language-toggle-mobile');
-
-        if (langToggleDesktop) {
-            langToggleDesktop.addEventListener('click', () => {
-                setLanguage(currentLanguage === 'en' ? 'hi' : 'en');
-            });
-        }
-        if (langToggleMobile) {
-            langToggleMobile.addEventListener('click', () => {
-                setLanguage(currentLanguage === 'en' ? 'hi' : 'en');
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                    document.getElementById('mobile-menu-button').setAttribute('aria-expanded', 'false');
-                    mobileMenu.setAttribute('aria-hidden', 'true');
-                }
-            });
-        }
-
-        setLanguage(currentLanguage);
-
+        
+        // Mobile Menu Logic
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinksMobile = mobileMenu.querySelectorAll('a');
@@ -563,7 +505,8 @@
                 mobileMenu.setAttribute('aria-hidden', 'true');
             });
         });
-
+        
+        // Smooth scroll for nav links
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -571,7 +514,7 @@
                 if (targetId.length > 1) {
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        const headerOffset = document.querySelector('nav.navbar-sticky').offsetHeight;
+                        const headerOffset = document.querySelector('nav.navbar-modern').offsetHeight;
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -582,65 +525,14 @@
             });
         });
 
-        // Waitlist Form Submission
-        const waitlistForm = document.getElementById('waitlistForm');
-        const formMessage = document.getElementById('formMessage');
-
-        waitlistForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const businessName = document.getElementById('businessName').value;
-            
-            if (name.trim() === '' || email.trim() === '') {
-                formMessage.textContent = currentLanguage === 'hi' ? 'कृपया अपना नाम और ईमेल भरें।' : 'Please fill in your name and email.';
-                formMessage.className = 'mt-4 text-sm text-red-600';
-                return;
-            }
-            
-            // Display success message (client-side)
-            formMessage.textContent = currentLanguage === 'hi' ? 'हमारी प्रतीक्षा सूची में शामिल होने के लिए धन्यवाद! हम जल्द ही संपर्क में रहेंगे।' : 'Thank you for joining our waitlist! We will be in touch soon.';
-            formMessage.className = 'mt-4 text-sm text-green-600';
-            
-            // Here you would typically send the data to a server.
-            // This is a placeholder for your backend integration.
-            // Replace '/api/waitlist' with your actual backend endpoint.
-            /*
-            fetch('/api/waitlist', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    name: name, 
-                    email: email, 
-                    businessName: businessName 
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    // If server returns an error, show a generic error message or parse error from response
-                    formMessage.textContent = currentLanguage === 'hi' ? 'कुछ गड़बड़ हुई। कृपया बाद में पुनः प्रयास करें।' : 'Something went wrong. Please try again later.';
-                    formMessage.className = 'mt-4 text-sm text-red-600';
-                    throw new Error('Network response was not ok');
-                }
-                return response.json(); // Or response.text() if your backend sends plain text
-            })
-            .then(data => {
-                // On successful submission to backend:
-                formMessage.textContent = currentLanguage === 'hi' ? 'हमारी प्रतीक्षा सूची में शामिल होने के लिए धन्यवाद! हम जल्द ही संपर्क में रहेंगे।' : 'Thank you for joining our waitlist! We will be in touch soon.';
-                formMessage.className = 'mt-4 text-sm text-green-600';
-                waitlistForm.reset();
-            })
-            .catch(error => {
-                console.error('Form submission error:', error);
-                // Keep the client-side success message for now if fetch fails, or update to an error
-                // If you want to show error on fetch failure:
-                // formMessage.textContent = currentLanguage === 'hi' ? 'डेटा भेजने में विफल। कृपया अपनी कनेक्टिविटी जांचें और पुनः प्रयास करें।' : 'Failed to send data. Please check your connection and try again.';
-                // formMessage.className = 'mt-4 text-sm text-red-600';
+        // Add some interactive elements
+        document.querySelectorAll('.card-modern').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
             });
-            */
-
-            // For now, even if the fetch is commented out, we reset the form after showing the client-side success message.
-             waitlistForm.reset();
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
         });
     </script>
 

@@ -193,21 +193,239 @@
         
         .workflow-step {
             position: relative;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .workflow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.9);
         }
         
         .workflow-step::after {
             content: '';
             position: absolute;
-            top: 24px;
+            top: 40px;
             right: -50%;
             width: 100%;
-            height: 2px;
-            background: var(--border-light);
+            height: 3px;
+            background: linear-gradient(90deg, 
+                rgba(59, 130, 246, 0.6) 0%, 
+                rgba(139, 92, 246, 0.4) 100%);
             z-index: -1;
+            opacity: 0;
+            animation: flowLine 2s ease-in-out forwards;
+            animation-delay: var(--step-delay, 0s);
         }
+        
+        @keyframes flowLine {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .workflow-step:nth-child(1) { --step-delay: 0.3s; }
+        .workflow-step:nth-child(2) { --step-delay: 0.6s; }
+        .workflow-step:nth-child(3) { --step-delay: 0.9s; }
         
         .workflow-step:last-child::after {
             display: none;
+        }
+        
+        .workflow-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-400) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .workflow-number::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, var(--primary-400) 0%, var(--accent-300) 100%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes progressBar {
+            to {
+                width: 100%;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(10px) translateX(-10px);
+            }
+            75% {
+                transform: translateY(-10px) translateX(20px);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .workflow-step:hover .workflow-number {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .workflow-icon {
+            font-size: 2rem;
+            color: white;
+            font-weight: 300;
+        }
+        
+        .workflow-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gray-800) 0%, var(--primary-500) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .workflow-description {
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 1024px) {
+            .workflow-step::after {
+                display: none;
+            }
+            
+            .workflow-step {
+                padding: 1.5rem;
+            }
+            
+            .workflow-number {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 1rem;
+            }
+            
+            .workflow-icon {
+                font-size: 1.5rem;
+            }
+            
+            .workflow-title {
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .workflow-step {
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+                /* Reduce backdrop blur on mobile for better performance */
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+            }
+            
+            .workflow-number {
+                width: 50px;
+                height: 50px;
+                box-shadow: 0 5px 20px rgba(59, 130, 246, 0.2);
+            }
+            
+            .workflow-icon {
+                font-size: 1.25rem;
+            }
+            
+            .workflow-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .workflow-description {
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
+            
+            /* Hide floating dots on mobile for better performance */
+            .animate-float {
+                display: none;
+            }
+            
+            /* Mobile vertical connector */
+            .workflow-step:not(:last-child)::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: -2rem;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 2rem;
+                background: linear-gradient(180deg, 
+                    rgba(59, 130, 246, 0.4) 0%, 
+                    rgba(139, 92, 246, 0.2) 100%);
+                opacity: 0.5;
+            }
+        }
+        
+        /* Add subtle mobile animation */
+        @media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
+            .workflow-step {
+                animation: fadeInUp 0.6s ease-out forwards;
+            }
         }
         
         .stat-card {
@@ -215,7 +433,7 @@
             border-radius: 12px;
             padding: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid #f3f4f6;
+            border: 1px solid var(--border-light);
         }
         
         @media (min-width: 640px) {
@@ -230,7 +448,7 @@
             border-radius: 16px;
             padding: 32px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid #f3f4f6;
+            border: 1px solid var(--border-light);
             position: relative;
         }
         
@@ -240,7 +458,7 @@
             top: 16px;
             left: 24px;
             font-size: 64px;
-            color: #e5e7eb;
+            color: var(--gray-200);
             font-weight: 900;
         }
         
@@ -557,6 +775,14 @@
         .to-accent-50 { --tw-gradient-to: var(--accent-50) !important; }
         .to-accent-100 { --tw-gradient-to: var(--accent-100) !important; }
         
+        /* Additional gradient classes for consistency */
+        .from-primary-50 { --tw-gradient-from: var(--primary-50) !important; }
+        .from-primary-100 { --tw-gradient-from: var(--primary-100) !important; }
+        .to-primary-100 { --tw-gradient-to: var(--primary-100) !important; }
+        .to-primary-200 { --tw-gradient-to: var(--primary-200) !important; }
+        .from-secondary-100 { --tw-gradient-from: var(--secondary-100) !important; }
+        .to-secondary-100 { --tw-gradient-to: var(--secondary-100) !important; }
+        
         /* Hover states */
         .hover\\:bg-primary-50:hover { background-color: var(--primary-50) !important; }
         .hover\\:bg-primary-100:hover { background-color: var(--primary-100) !important; }
@@ -797,6 +1023,124 @@
             }
         }
         
+        /* Mobile-specific Hero Timeline Styles */
+        @media (max-width: 640px) {
+            .hero-timeline-container {
+                padding: 1.5rem 0;
+                background: linear-gradient(180deg, rgba(59, 130, 246, 0.02) 0%, transparent 100%);
+            }
+            
+            .hero-timeline-item {
+                margin-bottom: 2rem !important;
+            }
+            
+            .hero-timeline-item:last-child {
+                margin-bottom: 0 !important;
+            }
+            
+            /* Simplified node for mobile */
+            .hero-node {
+                position: absolute !important;
+                left: 20px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 20;
+            }
+            
+            .hero-node > div {
+                width: 48px !important;
+                height: 48px !important;
+                box-shadow: 0 2px 10px rgba(59, 130, 246, 0.2) !important;
+            }
+            
+            .hero-node span {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Mobile content card styling */
+            .hero-content-left,
+            .hero-content-right {
+                width: 100% !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .hero-content-left .bg-white,
+            .hero-content-right .bg-white {
+                padding: 1rem !important;
+                margin-bottom: 0.75rem;
+                border-radius: 12px !important;
+                background: rgba(255, 255, 255, 0.98) !important;
+                backdrop-filter: blur(8px) !important;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05) !important;
+            }
+            
+            /* Mobile image wrapper */
+            .hero-image-wrapper {
+                border-radius: 12px !important;
+                overflow: hidden;
+                height: 150px !important;
+                background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%) !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 60px !important;
+                box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08) !important;
+                position: relative;
+            }
+            
+            .hero-image-wrapper::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(59, 130, 246, 0.03) 10px,
+                    rgba(59, 130, 246, 0.03) 20px
+                );
+            }
+            
+            /* Mobile vertical line */
+            .hero-timeline-item::before {
+                content: '';
+                position: absolute;
+                left: 44px;
+                top: 60px;
+                bottom: -2rem;
+                width: 2px;
+                background: linear-gradient(180deg, rgba(59, 130, 246, 0.3) 0%, transparent 100%);
+            }
+            
+            .hero-timeline-item:last-child::before {
+                display: none;
+            }
+            
+            /* Mobile-specific tags */
+            .hero-timeline-item .flex.gap-2 {
+                justify-content: flex-start !important;
+                margin-top: 0.5rem;
+            }
+            
+            .hero-timeline-item h4 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .hero-timeline-item p {
+                font-size: 0.875rem !important;
+                line-height: 1.4 !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* Hide desktop-only elements */
+            .hero-node::before {
+                display: none !important;
+            }
+        }
+        
         /* Split Path Timeline Styles */
         .split-path-container {
             position: relative;
@@ -920,8 +1264,8 @@
                 width: 1px;
                 background: linear-gradient(to bottom, 
                     transparent 0%, 
-                    #e5e7eb 20%, 
-                    #e5e7eb 80%, 
+                    var(--gray-200) 20%, 
+                    var(--gray-200) 80%, 
                     transparent 100%);
                 transform: translateX(-50%);
             }
@@ -1045,9 +1389,10 @@
                 
                 <div class="hidden lg:flex items-center space-x-1">
                     <a href="#product" class="nav-item text-gray-700 hover:text-gray-900">Product</a>
+                    <a href="#flexibility" class="nav-item text-gray-700 hover:text-gray-900">Workflows</a>
+                    <a href="#workflow" class="nav-item text-gray-700 hover:text-gray-900">Dealer Portal</a>
+                    <a href="#platform" class="nav-item text-gray-700 hover:text-gray-900">Platform</a>
                     <a href="#features" class="nav-item text-gray-700 hover:text-gray-900">Features</a>
-                    <a href="#flexibility" class="nav-item text-gray-700 hover:text-gray-900">Platform Options</a>
-                    <a href="#workflow" class="nav-item text-gray-700 hover:text-gray-900">How it Works</a>
                     <a href="#pricing" class="nav-item text-gray-700 hover:text-gray-900">Pricing</a>
                     <a href="index.html" class="nav-item text-gray-700 hover:text-gray-900">For SMBs</a>
                 </div>
@@ -1068,9 +1413,10 @@
             <div id="mobile-menu" class="lg:hidden hidden absolute top-full left-0 right-0 w-full bg-white border-t border-gray-100 shadow-lg" style="max-width: 100vw; overflow-x: hidden;">
                 <div class="px-4 py-2 space-y-1">
                     <a href="#product" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Product</a>
+                    <a href="#flexibility" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Workflows</a>
+                    <a href="#workflow" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Dealer Portal</a>
+                    <a href="#platform" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Platform</a>
                     <a href="#features" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Features</a>
-                    <a href="#flexibility" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Platform Options</a>
-                    <a href="#workflow" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">How it Works</a>
                     <a href="#pricing" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Pricing</a>
                     <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">For SMBs</a>
                     <div class="border-t border-gray-100 my-2"></div>
@@ -1081,11 +1427,11 @@
     </nav>
     
     <!-- Hero Section -->
-    <section class="hero-gradient pt-28 sm:pt-32 pb-12 sm:pb-20" style="overflow-x: hidden;">
+    <section id="product" class="hero-gradient pt-28 sm:pt-32 pb-12 sm:pb-20" style="overflow-x: hidden;">
         <div class="w-full max-w-7xl mx-auto px-4 sm:px-6" style="overflow-x: hidden;">
             
             <div class="text-center max-w-5xl mx-auto">
-                <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-success-500 to-success-600 text-white rounded-full text-sm font-medium mb-6">
+                <div class="inline-flex items-center px-4 py-2 text-white rounded-full text-sm font-medium mb-6 shadow-lg" style="background: linear-gradient(135deg, var(--success-500) 0%, var(--success-600) 100%);">
                     <span class="material-symbols-outlined text-sm mr-1">rocket_launch</span>
                     Now Piloting with Select Brands
                 </div>
@@ -1153,8 +1499,15 @@
                             <div class="hero-content-right lg:w-1/2 lg:pl-8">
                                 <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
                                     <!-- Replace with: <img src="path/to/campaign-setup.gif" alt="Campaign Setup" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-5xl text-primary-300">campaign</span>
+                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50"></div>
+                                        <div class="relative flex flex-col items-center justify-center">
+                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
+                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">campaign</span>
+                                            </div>
+                                            <p class="text-xs lg:text-sm font-medium text-gray-600">Campaign Setup Demo</p>
+                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1187,8 +1540,15 @@
                             <div class="hero-content-left lg:w-1/2 lg:pr-8">
                                 <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
                                     <!-- Replace with: <img src="path/to/scene-library.gif" alt="Scene Library" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-5xl text-primary-300">auto_awesome</span>
+                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50"></div>
+                                        <div class="relative flex flex-col items-center justify-center">
+                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
+                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">auto_awesome</span>
+                                            </div>
+                                            <p class="text-xs lg:text-sm font-medium text-gray-600">AI Scene Library</p>
+                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1221,8 +1581,15 @@
                             <div class="hero-content-right lg:w-1/2 lg:pl-8">
                                 <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
                                     <!-- Replace with: <img src="path/to/dealer-onboard.gif" alt="Dealer Onboarding" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-5xl text-primary-300">group_add</span>
+                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-blue-50"></div>
+                                        <div class="relative flex flex-col items-center justify-center">
+                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-400 to-blue-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
+                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">group_add</span>
+                                            </div>
+                                            <p class="text-xs lg:text-sm font-medium text-gray-600">Dealer Onboarding</p>
+                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1255,8 +1622,15 @@
                             <div class="hero-content-left lg:w-1/2 lg:pr-8">
                                 <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
                                     <!-- Replace with: <img src="path/to/generate-ads.gif" alt="Generate Ads" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-5xl text-primary-300">rocket_launch</span>
+                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-red-50"></div>
+                                        <div class="relative flex flex-col items-center justify-center">
+                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
+                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">rocket_launch</span>
+                                            </div>
+                                            <p class="text-xs lg:text-sm font-medium text-gray-600">Generate Ads</p>
+                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1286,106 +1660,6 @@
                 <div class="stat-card text-center">
                     <h3 class="text-3xl sm:text-4xl font-bold gradient-text mb-2">24/7</h3>
                     <p class="text-sm sm:text-base text-gray-600">Customer Support Availability</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Product Section -->
-    <section id="product" class="py-12 sm:py-20 bg-gray-50">
-        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                    Transform Your Dealer Marketing
-                </h2>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    One platform to create, manage, and distribute thousands of personalized co-branded ads across your entire dealer network.
-                </p>
-            </div>
-            
-            <div class="grid lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl p-6 sm:p-8 card-hover">
-                    <div class="feature-icon mb-6">
-                        <span class="material-symbols-outlined">campaign</span>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4">Campaign Creation</h3>
-                    <p class="text-gray-600 mb-4">
-                        Define comprehensive guidelines including festive themes, product highlights, target regions, and narrative frameworks. Maintain absolute brand consistency with detailed rules for visual identity and messaging.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Festival & seasonal themes
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Target region selection
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Brand colors & logo placement
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Tone of voice & messaging
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Visual style guidelines
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 sm:p-8 card-hover">
-                    <div class="feature-icon mb-6">
-                        <span class="material-symbols-outlined">auto_awesome</span>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4">AI Scene Generation</h3>
-                    <p class="text-gray-600 mb-4">
-                        Upload your brand assets or let AI create voiceless scenes based on your guidelines. Our intelligent system seamlessly blends your media with generated content for optimal campaigns.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Brand media upload support
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Smart scene suggestions
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Intelligent media blending
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Quick approval workflow
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 sm:p-8 card-hover">
-                    <div class="feature-icon mb-6">
-                        <span class="material-symbols-outlined">storefront</span>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4">Dealer App & Personalization</h3>
-                    <p class="text-gray-600 mb-4">
-                        Dealers use the AdMitra mobile app to select campaigns and create personalized videos and posters with their store details and local content.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Mobile app for easy access
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Video & poster generation
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
-                            Local language & content
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -1646,7 +1920,7 @@
             
             <!-- Bottom Summary -->
             <div class="mt-12 text-center">
-                <div class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-100 to-sky-100 rounded-full">
+                <div class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full">
                     <span class="material-symbols-outlined text-primary-600">auto_awesome</span>
                     <p class="font-semibold text-primary-800">
                         One platform, two approaches - choose what works best for your business
@@ -1657,58 +1931,36 @@
     </section>
 
     <!-- How It Works -->
-    <section id="workflow" class="py-12 sm:py-20 bg-white">
-        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="workflow" class="py-12 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-400 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <!-- Floating dots pattern - hidden on mobile for performance -->
+        <div class="absolute inset-0 overflow-hidden hidden sm:block">
+            <div class="absolute top-10 left-10 w-2 h-2 bg-blue-300 rounded-full opacity-20 animate-float" style="animation-delay: 0s;"></div>
+            <div class="absolute top-40 right-20 w-3 h-3 bg-purple-300 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-20 left-1/4 w-2 h-2 bg-blue-300 rounded-full opacity-20 animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/3 right-1/3 w-4 h-4 bg-purple-200 rounded-full opacity-20 animate-float" style="animation-delay: 1.5s;"></div>
+            <div class="absolute bottom-40 right-10 w-2 h-2 bg-blue-300 rounded-full opacity-20 animate-float" style="animation-delay: 0.5s;"></div>
+        </div>
+        
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
             <div class="text-center mb-12 sm:mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full mb-4">
+                    <span class="material-symbols-outlined text-blue-600 text-lg">store</span>
+                    <span class="text-sm font-semibold text-blue-700">Dealer Experience</span>
+                </div>
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                    How AdMitra Works
+                    Dealer Portal Features
                 </h2>
                 <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    From campaign creation to personalized ads in 4 simple steps
+                    Powerful tools that enable your dealers to create personalized, brand-compliant ads effortlessly
                 </p>
             </div>
             
-            <div class="grid lg:grid-cols-4 gap-8 relative">
-                <div class="workflow-step">
-                    <div class="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                        <span class="text-2xl font-bold text-primary-600">1</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Create Campaign</h3>
-                    <p class="text-gray-600 text-center">
-                        Set guidelines for themes, products, target regions, narrative style, and brand consistency rules including color schemes, tone of voice, and visual elements
-                    </p>
-                </div>
-                
-                <div class="workflow-step">
-                    <div class="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                        <span class="text-2xl font-bold text-primary-600">2</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-center">AI Scene Library</h3>
-                    <p class="text-gray-600 text-center">
-                        Upload brand media & review AI-generated scenes intelligently curated for your campaign
-                    </p>
-                </div>
-                
-                <div class="workflow-step">
-                    <div class="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                        <span class="text-2xl font-bold text-primary-600">3</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Dealer App Onboarding</h3>
-                    <p class="text-gray-600 text-center">
-                        Send personalized invitations or share universal onboarding links for seamless dealer enrollment
-                    </p>
-                </div>
-                
-                <div class="workflow-step">
-                    <div class="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                        <span class="text-2xl font-bold text-primary-600">4</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Generate & Deploy</h3>
-                    <p class="text-gray-600 text-center">
-                        Dealers create personalized videos & posters based on campaign settings
-                    </p>
-                </div>
-            </div>
             
             <!-- Dealer App Feature -->
             <div class="mt-16 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8">
@@ -1732,6 +1984,10 @@
                                 <li class="flex items-start gap-2">
                                     <span class="material-symbols-outlined text-primary-600 text-sm mt-0.5">store</span>
                                     <span class="text-gray-700">Add business details & upload store media</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="material-symbols-outlined text-primary-600 text-sm mt-0.5">smartphone</span>
+                                    <span class="text-gray-700">Mobile-first design for on-the-go access</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="material-symbols-outlined text-primary-600 text-sm mt-0.5">auto_awesome</span>
@@ -1811,6 +2067,106 @@
                     <div class="bg-white rounded-xl p-2 shadow-lg">
                         <img src="https://placehold.co/600x400/f3f4f6/667eea?text=Campaign+to+Ads+Demo" alt="Demo" class="rounded-lg w-full">
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Platform Section -->
+    <section id="platform" class="py-12 sm:py-20 bg-gray-50">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                    Transform Your Dealer Marketing
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    One platform to create, manage, and distribute thousands of personalized co-branded ads across your entire dealer network.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-6 sm:p-8 card-hover">
+                    <div class="feature-icon mb-6">
+                        <span class="material-symbols-outlined">campaign</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4">Campaign Creation</h3>
+                    <p class="text-gray-600 mb-4">
+                        Define comprehensive guidelines including festive themes, product highlights, target regions, and narrative frameworks. Maintain absolute brand consistency with detailed rules for visual identity and messaging.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Festival & seasonal themes
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Target region selection
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Brand colors & logo placement
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Tone of voice & messaging
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Visual style guidelines
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 sm:p-8 card-hover">
+                    <div class="feature-icon mb-6">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4">AI Scene Generation</h3>
+                    <p class="text-gray-600 mb-4">
+                        Upload your brand assets or let AI create voiceless scenes based on your guidelines. Our intelligent system seamlessly blends your media with generated content for optimal campaigns.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Brand media upload support
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Smart scene suggestions
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Intelligent media blending
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Quick approval workflow
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 sm:p-8 card-hover">
+                    <div class="feature-icon mb-6">
+                        <span class="material-symbols-outlined">storefront</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4">Dealer App & Personalization</h3>
+                    <p class="text-gray-600 mb-4">
+                        Dealers use the AdMitra mobile app to select campaigns and create personalized videos and posters with their store details and local content.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Mobile app for easy access
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Video & poster generation
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm mt-1">check</span>
+                            Local language & content
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

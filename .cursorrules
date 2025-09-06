@@ -1,0 +1,140 @@
+# AdMitra Website Development Rules
+
+## Color System Guidelines
+
+### 1. Always Use CSS Variables
+- **NEVER** use hardcoded hex colors (e.g., `#3b82f6`) in HTML or CSS
+- **ALWAYS** use the predefined CSS variables from `:root`
+- Example: Use `var(--primary-500)` instead of `#3b82f6`
+
+### 2. Color Palette Structure
+```css
+/* Primary Colors - Subtle Modern Blue */
+--primary-50 to --primary-900
+
+/* Secondary Colors - Complementary Cyan */
+--secondary-50 to --secondary-900
+
+/* Accent Colors - Warm Coral */
+--accent-50 to --accent-900
+
+/* Neutral Colors */
+--gray-50 to --gray-900
+
+/* Semantic Colors */
+--success-500, --success-600
+--warning-500, --warning-600
+--error-500, --error-600
+```
+
+### 3. Semantic Color Usage
+- **Primary**: Main brand colors, CTAs, navigation highlights
+- **Secondary**: Supporting elements, subtle backgrounds
+- **Accent**: Highlights, special elements, hover states
+- **Gray**: Text, borders, backgrounds
+- **Success**: Success states, positive feedback (NOT for branding)
+- **Warning**: Caution states, pending actions
+- **Error**: Error states, destructive actions
+
+### 4. Gradient Guidelines
+- Use predefined gradient classes: `from-primary-500`, `to-primary-600`
+- For custom gradients, use CSS variables: `linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%)`
+- **NEVER** use hardcoded Tailwind colors like `from-blue-100 to-sky-100`
+
+### 5. Text Color Guidelines
+- Primary text: `var(--text-primary)` or `text-gray-900`
+- Secondary text: `var(--text-secondary)` or `text-gray-700`
+- Tertiary text: `var(--text-tertiary)` or `text-gray-600`
+- Muted text: `var(--text-muted)` or `text-gray-500`
+- Inverse text: `var(--text-inverse)` or `text-white`
+
+### 6. Background Color Guidelines
+- Primary background: `var(--bg-primary)` or `bg-white`
+- Secondary background: `var(--bg-secondary)` or `bg-gray-50`
+- Tertiary background: `var(--bg-tertiary)` or `bg-gray-100`
+
+### 7. Border Color Guidelines
+- Light borders: `var(--border-light)` or `border-gray-200`
+- Default borders: `var(--border-default)` or `border-gray-300`
+- Dark borders: `var(--border-dark)` or `border-gray-400`
+
+## Component-Specific Rules
+
+### 8. Badge/Pill Components
+- Use primary colors for brand-related badges
+- Use success colors ONLY for actual success states
+- Example: "Now Piloting" badge should use `from-primary-500 to-primary-600`
+
+### 9. Navigation
+- Use gray colors for navigation text
+- Use primary colors for active/hover states
+- Maintain consistent hover effects
+
+### 10. Cards and Containers
+- Use subtle backgrounds: `var(--bg-secondary)` or `var(--bg-tertiary)`
+- Use light borders: `var(--border-light)`
+- Maintain consistent shadow styles using CSS variables
+
+## Development Best Practices
+
+### 11. Before Adding New Colors
+1. Check if existing CSS variables can be used
+2. If new colors are needed, add them to the `:root` section
+3. Create corresponding Tailwind utility classes if needed
+4. Update this rules file with new color usage guidelines
+
+### 12. Code Review Checklist
+- [ ] No hardcoded hex colors in HTML/CSS
+- [ ] All colors use predefined CSS variables
+- [ ] Gradient classes use consistent variable-based approach
+- [ ] Color choices align with semantic meaning
+- [ ] Accessibility contrast ratios are maintained
+
+### 13. Maintenance
+- Regularly audit codebase for hardcoded colors
+- Update CSS variables when brand colors change
+- Ensure all team members follow these guidelines
+- Test color changes across all components
+
+## Common Mistakes to Avoid
+
+### 14. Don't Do This:
+```css
+/* BAD */
+background: #3b82f6;
+color: #64748b;
+border: 1px solid #f3f4f6;
+background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+```
+
+```html
+<!-- BAD -->
+<div class="bg-gradient-to-r from-blue-100 to-sky-100">
+<div class="bg-gradient-to-r from-success-500 to-success-600"> <!-- for branding -->
+```
+
+### 15. Do This Instead:
+```css
+/* GOOD */
+background: var(--primary-500);
+color: var(--text-tertiary);
+border: 1px solid var(--border-light);
+background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-400) 100%);
+```
+
+```html
+<!-- GOOD -->
+<div class="bg-gradient-to-r from-primary-100 to-secondary-100">
+<div class="bg-gradient-to-r from-primary-500 to-primary-600"> <!-- for branding -->
+```
+
+## Emergency Override
+If you absolutely must use a hardcoded color for a specific reason:
+1. Document the reason in a comment
+2. Add a TODO to replace it with a CSS variable
+3. Get approval from the team lead
+4. Plan to refactor it in the next sprint
+
+---
+
+**Remember**: Consistency in color usage creates a cohesive brand experience and makes maintenance much easier. When in doubt, ask the team or refer to the design system.

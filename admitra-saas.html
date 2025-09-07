@@ -539,6 +539,10 @@
             letter-spacing: 0.5px;
         }
         
+        .badge-success {
+            background: linear-gradient(135deg, var(--success-500) 0%, var(--success-600) 100%);
+        }
+        
         @media (min-width: 640px) {
             .badge {
                 font-size: 12px;
@@ -1024,120 +1028,88 @@
         }
         
         /* Mobile-specific Hero Timeline Styles */
-        @media (max-width: 640px) {
+        @media (max-width: 1024px) {
             .hero-timeline-container {
-                padding: 1.5rem 0;
+                padding: 2rem 0;
                 background: linear-gradient(180deg, rgba(59, 130, 246, 0.02) 0%, transparent 100%);
             }
             
             .hero-timeline-item {
-                margin-bottom: 2rem !important;
+                margin-bottom: 3rem !important;
             }
             
             .hero-timeline-item:last-child {
-                margin-bottom: 0 !important;
+                margin-bottom: 1rem !important;
             }
             
-            /* Simplified node for mobile */
-            .hero-node {
-                position: absolute !important;
-                left: 20px !important;
-                top: 50% !important;
-                transform: translateY(-50%) !important;
-                z-index: 20;
+            /* Stack layout on mobile/tablet */
+            .hero-timeline-item .flex {
+                flex-direction: column !important;
+                gap: 1.5rem !important;
             }
             
-            .hero-node > div {
-                width: 48px !important;
-                height: 48px !important;
-                box-shadow: 0 2px 10px rgba(59, 130, 246, 0.2) !important;
-            }
-            
-            .hero-node span {
-                font-size: 1.25rem !important;
-            }
-            
-            /* Mobile content card styling */
             .hero-content-left,
             .hero-content-right {
                 width: 100% !important;
-                padding-left: 60px !important;
-                padding-right: 0 !important;
-                text-align: left !important;
+                order: 2 !important;
+                padding: 0 !important;
             }
             
-            .hero-content-left .bg-white,
-            .hero-content-right .bg-white {
-                padding: 1rem !important;
-                margin-bottom: 0.75rem;
-                border-radius: 12px !important;
-                background: rgba(255, 255, 255, 0.98) !important;
-                backdrop-filter: blur(8px) !important;
-                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05) !important;
+            .hero-content-left .bg-white-90,
+            .hero-content-right .bg-white-90 {
+                padding: 1.25rem !important;
+                margin-bottom: 0;
             }
             
-            /* Mobile image wrapper */
+            /* Mobile image wrapper - full width, prominent */
             .hero-image-wrapper {
-                border-radius: 12px !important;
-                overflow: hidden;
-                height: 150px !important;
-                background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%) !important;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-left: 60px !important;
-                box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08) !important;
-                position: relative;
+                border-radius: 1rem !important;
+                padding: 0.5rem !important;
+                order: 1 !important;
+                width: 100% !important;
             }
             
-            .hero-image-wrapper::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 10px,
-                    rgba(59, 130, 246, 0.03) 10px,
-                    rgba(59, 130, 246, 0.03) 20px
-                );
+            .hero-image-wrapper img,
+            .hero-image-wrapper > div {
+                border-radius: 0.75rem !important;
+                min-height: 200px;
             }
             
-            /* Mobile vertical line */
-            .hero-timeline-item::before {
-                content: '';
-                position: absolute;
-                left: 44px;
-                top: 60px;
-                bottom: -2rem;
-                width: 2px;
-                background: linear-gradient(180deg, rgba(59, 130, 246, 0.3) 0%, transparent 100%);
+            /* Remove desktop timeline line */
+            .hero-timeline-container > div:first-child {
+                display: none !important;
             }
             
-            .hero-timeline-item:last-child::before {
-                display: none;
+            /* Mobile step indicators */
+            .hero-timeline-item .bg-gradient-primary {
+                width: 2rem !important;
+                height: 2rem !important;
             }
             
-            /* Mobile-specific tags */
-            .hero-timeline-item .flex.gap-2 {
-                justify-content: flex-start !important;
-                margin-top: 0.5rem;
+            .hero-timeline-item .bg-gradient-primary span {
+                font-size: 0.875rem !important;
             }
             
+            /* Better mobile typography */
             .hero-timeline-item h4 {
-                font-size: 1.1rem !important;
+                font-size: 1rem !important;
                 margin-bottom: 0.5rem !important;
             }
             
             .hero-timeline-item p {
                 font-size: 0.875rem !important;
-                line-height: 1.4 !important;
-                margin-bottom: 0.5rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 0.75rem !important;
             }
             
-            /* Hide desktop-only elements */
-            .hero-node::before {
-                display: none !important;
+            /* Mobile tags */
+            .hero-timeline-item .flex.gap-1_5 {
+                gap: 0.375rem !important;
+            }
+            
+            .hero-timeline-item .rounded-full {
+                padding: 0.25rem 0.5rem !important;
+                font-size: 0.75rem !important;
             }
         }
         
@@ -1228,24 +1200,14 @@
             transform: translateY(-2px);
         }
         
-        /* Path Step with Image */
-        .path-step-with-image .bg-white {
+        /* Path Step Cards */
+        .path-step .bg-white {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .path-step-with-image:hover .bg-white {
+        .path-step:hover .bg-white {
             transform: translateY(-2px);
-        }
-        
-        /* Responsive adjustments for step images */
-        @media (max-width: 768px) {
-            .path-step-with-image .grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .path-step-with-image .aspect-video {
-                max-height: 150px;
-            }
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         
         /* Split paths container */
@@ -1322,6 +1284,14 @@
                 margin-bottom: 1.5rem;
             }
             
+            .path-step {
+                margin-bottom: 1rem;
+            }
+            
+            .path-step .bg-white {
+                padding: 1rem;
+            }
+            
             /* Stack path labels vertically on mobile */
             .path-header {
                 margin-bottom: 1rem !important;
@@ -1384,7 +1354,7 @@
                 <div class="flex items-center space-x-2">
                     <img src="static/images/logo_nobg.png" alt="AdMitra" class="h-8 w-8 sm:h-10 sm:w-10">
                     <span class="text-xl sm:text-2xl font-bold gradient-text">AdMitra</span>
-                    <span class="badge ml-2 hidden sm:inline-block">Enterprise</span>
+                    <span class="badge badge-success ml-2 hidden sm:inline-block">Enterprise</span>
                 </div>
                 
                 <div class="hidden lg:flex items-center space-x-1">
@@ -1441,7 +1411,7 @@
                 </h1>
                 
                 <p class="text-base sm:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-3xl mx-auto px-2 sm:px-0">
-                    Create personalized ads for thousands of dealers in minutes. Set campaign guidelines, build scene libraries from your brand assets and AI-generated content, and let dealers create localized content at scale.
+                    Create personalized unique ads for thousands of dealers in minutes.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1467,46 +1437,191 @@
                 </div>
             </div>
             
-            <!-- Hero Visual - Simple 4-Step Timeline -->
-            <div class="mt-10 sm:mt-16 max-w-6xl mx-auto px-0 sm:px-4" style="overflow: hidden; max-width: 100vw; contain: layout;">
-                <div class="hero-timeline-container relative px-4 py-8">
-                    <!-- Central Timeline Line (Desktop Only) -->
-                    <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200"></div>
+            <!-- Hero Visual - Simplified Product Workflow -->
+            <div class="mt-10 sm:mt-16 max-w-7xl mx-auto px-4" style="overflow: hidden;">
+                <div class="space-y-6 lg:space-y-8">
                     
-                    <!-- Step 1: Campaign Setup (Left) -->
-                    <div class="hero-timeline-item odd mb-16 lg:mb-20 relative">
-                        <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
-                            <div class="hero-content-left lg:w-1/2 lg:pr-8 lg:text-right">
-                                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                                    <h4 class="text-xl font-bold mb-3 text-gray-900">Set Campaign Guidelines</h4>
-                                    <p class="text-gray-600 text-sm mb-4">
-                                        Define themes, products, regions & brand rules for your campaign
+                    <!-- Step 1: Campaign Setup -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden opacity-0 animate-fadeInUp" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
+                        <div class="grid lg:grid-cols-3 gap-0">
+                            <!-- GIF Section - Takes 2 columns -->
+                            <div class="lg:col-span-2 bg-gradient-to-br from-primary-50 to-secondary-50 relative overflow-hidden p-2 lg:p-4">
+                                <div class="relative w-full h-full rounded-xl overflow-hidden shadow-2xl ring-2 ring-primary-400 ring-offset-2 ring-offset-primary-50">
+                                    <img src="static/gifs/create_campaign.gif" alt="Campaign Setup Demo" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            
+                            <!-- Content Section - Takes 1 column -->
+                            <div class="p-6 lg:p-8 flex flex-col justify-center bg-gray-50">
+                                <div class="max-w-sm">
+                                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-semibold mb-3">
+                                        <span class="w-5 h-5 bg-gradient-primary rounded-full flex items-center justify-center text-white text-xs font-bold">1</span>
+                                        <span>Campaign Setup</span>
+                                    </div>
+                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
+                                        Set Campaign Guidelines
+                                    </h3>
+                                    <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                                        Define themes, products, regions & brand rules for your campaign.
                                     </p>
-                                    <div class="flex flex-wrap gap-2 justify-center lg:justify-end">
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">Themes</span>
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">Guidelines</span>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">celebration</span>
+                                            Themes
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">location_on</span>
+                                            Regions
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">palette</span>
+                                            Brand
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Build Scene Library -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
+                        <div class="grid lg:grid-cols-3 gap-0">
+                            <!-- Content Section - Takes 1 column -->
+                            <div class="p-6 lg:p-8 flex flex-col justify-center bg-gray-50 order-2 lg:order-1">
+                                <div class="max-w-sm mx-auto lg:mx-0">
+                                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-semibold mb-3">
+                                        <span class="w-5 h-5 bg-gradient-primary rounded-full flex items-center justify-center text-white text-xs font-bold">2</span>
+                                        <span>Scene Creation</span>
+                                    </div>
+                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
+                                        Build AI Scene Library
+                                    </h3>
+                                    <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                                        Upload assets or let AI generate scenes that align with your guidelines.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">auto_awesome</span>
+                                            AI Gen
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">cloud_upload</span>
+                                            Upload
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">smart_display</span>
+                                            Scenes
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Timeline Node -->
-                            <div class="hero-node absolute left-1/2 transform -translate-x-1/2 z-10 lg:relative lg:left-auto lg:transform-none">
-                                <div class="bg-gradient-primary rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl font-bold text-white">1</span>
+                            <!-- GIF Section - Takes 2 columns -->
+                            <div class="lg:col-span-2 bg-gradient-to-br from-primary-50 to-secondary-50 relative overflow-hidden order-1 lg:order-2 p-2 lg:p-4">
+                                <div class="relative w-full h-full rounded-xl overflow-hidden shadow-2xl ring-2 ring-primary-400 ring-offset-2 ring-offset-primary-50">
+                                    <img src="static/gifs/scene_library.gif" alt="Scene Library Demo" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Onboard Dealers -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden opacity-0 animate-fadeInUp" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+                        <div class="grid lg:grid-cols-3 gap-0">
+                            <!-- GIF Section - Takes 2 columns -->
+                            <div class="lg:col-span-2 bg-gradient-to-br from-primary-50 to-secondary-50 relative overflow-hidden p-2 lg:p-4">
+                                <div class="relative w-full h-full rounded-xl overflow-hidden shadow-2xl ring-2 ring-primary-400 ring-offset-2 ring-offset-primary-50">
+                                    <img src="static/gifs/onboard_business.gif" alt="Dealer Onboarding Demo" class="w-full h-full object-cover">
                                 </div>
                             </div>
                             
-                            <div class="hero-content-right lg:w-1/2 lg:pl-8">
-                                <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
-                                    <!-- Replace with: <img src="path/to/campaign-setup.gif" alt="Campaign Setup" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50"></div>
-                                        <div class="relative flex flex-col items-center justify-center">
-                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
-                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">campaign</span>
-                                            </div>
-                                            <p class="text-xs lg:text-sm font-medium text-gray-600">Campaign Setup Demo</p>
-                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
+                            <!-- Content Section - Takes 1 column -->
+                            <div class="p-6 lg:p-8 flex flex-col justify-center bg-gray-50">
+                                <div class="max-w-sm">
+                                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-semibold mb-3">
+                                        <span class="w-5 h-5 bg-gradient-primary rounded-full flex items-center justify-center text-white text-xs font-bold">3</span>
+                                        <span>Network Setup</span>
+                                    </div>
+                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
+                                        Onboard Your Dealers
+                                    </h3>
+                                    <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                                        Invite dealers via email or bulk import your entire network instantly.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">upload_file</span>
+                                            Bulk
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">mail</span>
+                                            Invite
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">link</span>
+                                            Links
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Generate Ads -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden opacity-0 animate-fadeInUp" style="animation-delay: 0.7s; animation-fill-mode: forwards;">
+                        <div class="grid lg:grid-cols-3 gap-0">
+                            <!-- Content Section - Takes 1 column -->
+                            <div class="p-6 lg:p-8 flex flex-col justify-center bg-gray-50 order-2 lg:order-1">
+                                <div class="max-w-sm mx-auto lg:mx-0">
+                                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-semibold mb-3">
+                                        <span class="w-5 h-5 bg-gradient-primary rounded-full flex items-center justify-center text-white text-xs font-bold">4</span>
+                                        <span>Ad Generation</span>
+                                    </div>
+                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
+                                        Generate Anywhere, Anytime
+                                    </h3>
+                                    <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                                        Brands create bulk ads from dashboard. Dealers generate on-demand via mobile app. Same quality, total flexibility.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">computer</span>
+                                            Brand Portal
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">smartphone</span>
+                                            Dealer App
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-white text-gray-700 rounded text-xs border border-gray-200">
+                                            <span class="material-symbols-outlined text-xs">speed</span>
+                                            60s Gen
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- GIF Section - Takes 2 columns -->
+                            <div class="lg:col-span-2 bg-gradient-to-br from-primary-50 to-secondary-50 relative overflow-hidden order-1 lg:order-2 p-2 lg:p-4">
+                                <div class="flex flex-col lg:flex-row items-center justify-center gap-6 h-full">
+                                    <!-- Desktop/Brand GIF -->
+                                    <div class="flex-1 lg:max-w-2xl w-full flex flex-col items-center">
+                                        <div class="rounded-xl overflow-hidden shadow-2xl ring-2 ring-primary-400 ring-offset-2 ring-offset-primary-50 mb-3 w-full">
+                                            <img src="static/gifs/generate_2.gif" alt="Brand Dashboard Generation" class="w-full h-auto object-cover">
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="text-sm font-bold text-gray-900">Brand Dashboard</p>
+                                            <p class="text-xs text-gray-600 mt-0.5">Bulk generation for entire dealer network</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mobile/Dealer GIF -->
+                                    <div class="flex flex-col items-center mx-auto" style="max-width: 180px;">
+                                        <div class="rounded-xl overflow-hidden shadow-2xl ring-2 ring-secondary-400 ring-offset-2 ring-offset-secondary-50 mb-3 w-full">
+                                            <img src="static/gifs/generate_1.gif" alt="Dealer App Generation" class="w-full h-auto object-cover" style="max-height: 350px;">
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="text-sm font-bold text-gray-900">Dealer App</p>
+                                            <p class="text-xs text-gray-600 mt-0.5">On-demand creation</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1514,127 +1629,13 @@
                         </div>
                     </div>
                     
-                    <!-- Step 2: Build Scene Library (Right) -->
-                    <div class="hero-timeline-item mb-16 lg:mb-20 relative">
-                        <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-8">
-                            <div class="hero-content-right lg:w-1/2 lg:pl-8">
-                                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                                    <h4 class="text-xl font-bold mb-3 text-gray-900">Build Scene Library</h4>
-                                    <p class="text-gray-600 text-sm mb-4">
-                                        Upload media & AI generates scene variations
-                                    </p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">AI Scenes</span>
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">Media Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Timeline Node -->
-                            <div class="hero-node absolute left-1/2 transform -translate-x-1/2 z-10 lg:relative lg:left-auto lg:transform-none">
-                                <div class="bg-gradient-primary rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl font-bold text-white">2</span>
-                                </div>
-                            </div>
-                            
-                            <div class="hero-content-left lg:w-1/2 lg:pr-8">
-                                <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
-                                    <!-- Replace with: <img src="path/to/scene-library.gif" alt="Scene Library" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50"></div>
-                                        <div class="relative flex flex-col items-center justify-center">
-                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
-                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">auto_awesome</span>
-                                            </div>
-                                            <p class="text-xs lg:text-sm font-medium text-gray-600">AI Scene Library</p>
-                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 3: Onboard Dealers (Left) -->
-                    <div class="hero-timeline-item odd mb-16 lg:mb-20 relative">
-                        <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
-                            <div class="hero-content-left lg:w-1/2 lg:pr-8 lg:text-right">
-                                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                                    <h4 class="text-xl font-bold mb-3 text-gray-900">Onboard Dealer Network</h4>
-                                    <p class="text-gray-600 text-sm mb-4">
-                                        Invite dealers or create accounts for your network
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 justify-center lg:justify-end">
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">Bulk Import</span>
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">Send Invites</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Timeline Node -->
-                            <div class="hero-node absolute left-1/2 transform -translate-x-1/2 z-10 lg:relative lg:left-auto lg:transform-none">
-                                <div class="bg-gradient-primary rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl font-bold text-white">3</span>
-                                </div>
-                            </div>
-                            
-                            <div class="hero-content-right lg:w-1/2 lg:pl-8">
-                                <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
-                                    <!-- Replace with: <img src="path/to/dealer-onboard.gif" alt="Dealer Onboarding" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-blue-50"></div>
-                                        <div class="relative flex flex-col items-center justify-center">
-                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-400 to-blue-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
-                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">group_add</span>
-                                            </div>
-                                            <p class="text-xs lg:text-sm font-medium text-gray-600">Dealer Onboarding</p>
-                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 4: Generate Ads (Right) -->
-                    <div class="hero-timeline-item mb-8 relative">
-                        <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-8">
-                            <div class="hero-content-right lg:w-1/2 lg:pl-8">
-                                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                                    <h4 class="text-xl font-bold mb-3 text-gray-900">Generate Personalized Ads</h4>
-                                    <p class="text-gray-600 text-sm mb-4">
-                                        Create thousands of co-branded ads instantly
-                                    </p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">Videos</span>
-                                        <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs">Posters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Timeline Node -->
-                            <div class="hero-node absolute left-1/2 transform -translate-x-1/2 z-10 lg:relative lg:left-auto lg:transform-none">
-                                <div class="bg-gradient-primary rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl font-bold text-white">4</span>
-                                </div>
-                            </div>
-                            
-                            <div class="hero-content-left lg:w-1/2 lg:pr-8">
-                                <div class="hero-image-wrapper bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-md">
-                                    <!-- Replace with: <img src="path/to/generate-ads.gif" alt="Generate Ads" class="w-full h-auto rounded-lg"> -->
-                                    <div class="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-red-50"></div>
-                                        <div class="relative flex flex-col items-center justify-center">
-                                            <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl flex items-center justify-center mb-2 animate-pulse shadow-lg">
-                                                <span class="material-symbols-outlined text-3xl lg:text-4xl text-white">rocket_launch</span>
-                                            </div>
-                                            <p class="text-xs lg:text-sm font-medium text-gray-600">Generate Ads</p>
-                                            <p class="text-xs text-gray-400 mt-1">GIF Placeholder</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Call to Action -->
+                    <div class="text-center mt-8 opacity-0 animate-fadeInUp" style="animation-delay: 0.9s; animation-fill-mode: forwards;">
+                        <p class="text-lg text-gray-600 mb-6">Experience the power of AI-driven dealer marketing</p>
+                        <button class="bg-gradient-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-all inline-flex items-center gap-2 shadow-lg">
+                            See Live Demo
+                            <span class="material-symbols-outlined">play_circle</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1691,28 +1692,29 @@
                     
                     <div class="space-y-6">
                         <!-- Step A1 -->
-                        <div class="path-step-with-image">
-                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all overflow-hidden">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div class="p-4">
-                                        <div class="flex items-start gap-3">
-                                            <div class="bg-primary-100 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                                <span class="text-primary-600 font-bold">1</span>
-                                            </div>
-                                            <div>
-                                                <h5 class="font-semibold text-gray-900 mb-1">Create Dealer Accounts</h5>
-                                                <p class="text-sm text-gray-600">Import all dealer data in bulk</p>
-                                            </div>
-                                        </div>
+                        <div class="path-step">
+                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all p-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-primary-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <span class="text-primary-600 font-bold text-lg">1</span>
                                     </div>
-                                    <!-- Image Placeholder -->
-                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-3">
-                                        <!-- Replace with: <img src="path/to/dealer-accounts.gif" alt="Create Dealer Accounts" class="w-full h-full object-cover rounded"> -->
-                                        <div class="aspect-video bg-white rounded shadow-inner flex items-center justify-center">
-                                            <div class="text-center">
-                                                <span class="material-symbols-outlined text-4xl text-primary-300">group_add</span>
-                                                <p class="text-xs text-gray-500 mt-1">[Add Demo GIF]</p>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg w-10 h-10 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-primary-600 text-xl">group_add</span>
                                             </div>
+                                            <h5 class="font-semibold text-gray-900">Create Dealer Accounts</h5>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3">Import all dealer data in bulk using CSV upload or manual entry</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">upload_file</span>
+                                                CSV Import
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">person_add</span>
+                                                Manual Entry
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1725,28 +1727,29 @@
                         </div>
                         
                         <!-- Step A2 -->
-                        <div class="path-step-with-image">
-                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all overflow-hidden">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div class="p-4">
-                                        <div class="flex items-start gap-3">
-                                            <div class="bg-primary-100 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                                <span class="text-primary-600 font-bold">2</span>
-                                            </div>
-                                            <div>
-                                                <h5 class="font-semibold text-gray-900 mb-1">Generate Bulk Ads</h5>
-                                                <p class="text-sm text-gray-600">Create thousands of ads at once</p>
-                                            </div>
-                                        </div>
+                        <div class="path-step">
+                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all p-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-primary-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <span class="text-primary-600 font-bold text-lg">2</span>
                                     </div>
-                                    <!-- Image Placeholder -->
-                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-3">
-                                        <!-- Replace with: <img src="path/to/bulk-ads.gif" alt="Bulk Ad Creation" class="w-full h-full object-cover rounded"> -->
-                                        <div class="aspect-video bg-white rounded shadow-inner flex items-center justify-center">
-                                            <div class="text-center">
-                                                <span class="material-symbols-outlined text-4xl text-primary-300">auto_awesome</span>
-                                                <p class="text-xs text-gray-500 mt-1">[Add Demo GIF]</p>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg w-10 h-10 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-primary-600 text-xl">auto_awesome</span>
                                             </div>
+                                            <h5 class="font-semibold text-gray-900">Generate Bulk Ads</h5>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3">Create thousands of personalized ads at once for your entire dealer network</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">speed</span>
+                                                Bulk Generation
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">tune</span>
+                                                Customizable
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1759,28 +1762,29 @@
                         </div>
                         
                         <!-- Step A3 -->
-                        <div class="path-step-with-image">
-                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all overflow-hidden">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div class="p-4">
-                                        <div class="flex items-start gap-3">
-                                            <div class="bg-primary-100 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                                <span class="text-primary-600 font-bold">3</span>
-                                            </div>
-                                            <div>
-                                                <h5 class="font-semibold text-gray-900 mb-1">Distribute to Dealers</h5>
-                                                <p class="text-sm text-gray-600">Share ready-to-use ads instantly</p>
-                                            </div>
-                                        </div>
+                        <div class="path-step">
+                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all p-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-primary-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <span class="text-primary-600 font-bold text-lg">3</span>
                                     </div>
-                                    <!-- Image Placeholder -->
-                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-3">
-                                        <!-- Replace with: <img src="path/to/share-ads.gif" alt="Share Ads" class="w-full h-full object-cover rounded"> -->
-                                        <div class="aspect-video bg-white rounded shadow-inner flex items-center justify-center">
-                                            <div class="text-center">
-                                                <span class="material-symbols-outlined text-4xl text-primary-300">share</span>
-                                                <p class="text-xs text-gray-500 mt-1">[Add Demo GIF]</p>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg w-10 h-10 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-primary-600 text-xl">share</span>
                                             </div>
+                                            <h5 class="font-semibold text-gray-900">Distribute to Dealers</h5>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3">Share ready-to-use ads instantly across your dealer network</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">send</span>
+                                                Instant Share
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">download</span>
+                                                Download
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1810,28 +1814,29 @@
                     
                     <div class="space-y-6">
                         <!-- Step B1 -->
-                        <div class="path-step-with-image">
-                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all overflow-hidden">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div class="p-4">
-                                        <div class="flex items-start gap-3">
-                                            <div class="bg-accent-100 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                                <span class="text-accent-600 font-bold">1</span>
-                                            </div>
-                                            <div>
-                                                <h5 class="font-semibold text-gray-900 mb-1">Send Invitations</h5>
-                                                <p class="text-sm text-gray-600">Invite dealers to join platform</p>
-                                            </div>
-                                        </div>
+                        <div class="path-step">
+                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all p-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-accent-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <span class="text-accent-600 font-bold text-lg">1</span>
                                     </div>
-                                    <!-- Image Placeholder -->
-                                    <div class="bg-gradient-to-br from-accent-50 to-accent-100 p-3">
-                                        <!-- Replace with: <img src="path/to/send-invites.gif" alt="Send Invitations" class="w-full h-full object-cover rounded"> -->
-                                        <div class="aspect-video bg-white rounded shadow-inner flex items-center justify-center">
-                                            <div class="text-center">
-                                                <span class="material-symbols-outlined text-4xl text-accent-300">mail</span>
-                                                <p class="text-xs text-gray-500 mt-1">[Add Demo GIF]</p>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="bg-gradient-to-br from-accent-100 to-accent-200 rounded-lg w-10 h-10 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-accent-600 text-xl">mail</span>
                                             </div>
+                                            <h5 class="font-semibold text-gray-900">Send Invitations</h5>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3">Invite dealers to join your platform via email or universal links</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-accent-50 text-accent-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">email</span>
+                                                Email Invites
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-accent-50 text-accent-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">link</span>
+                                                Universal Links
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1844,28 +1849,29 @@
                         </div>
                         
                         <!-- Step B2 -->
-                        <div class="path-step-with-image">
-                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all overflow-hidden">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div class="p-4">
-                                        <div class="flex items-start gap-3">
-                                            <div class="bg-accent-100 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                                <span class="text-accent-600 font-bold">2</span>
-                                            </div>
-                                            <div>
-                                                <h5 class="font-semibold text-gray-900 mb-1">Dealers Self-Onboard</h5>
-                                                <p class="text-sm text-gray-600">Easy signup with business details</p>
-                                            </div>
-                                        </div>
+                        <div class="path-step">
+                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all p-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-accent-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <span class="text-accent-600 font-bold text-lg">2</span>
                                     </div>
-                                    <!-- Image Placeholder -->
-                                    <div class="bg-gradient-to-br from-accent-50 to-accent-100 p-3">
-                                        <!-- Replace with: <img src="path/to/dealer-onboard.gif" alt="Dealer Onboarding" class="w-full h-full object-cover rounded"> -->
-                                        <div class="aspect-video bg-white rounded shadow-inner flex items-center justify-center">
-                                            <div class="text-center">
-                                                <span class="material-symbols-outlined text-4xl text-accent-300">person_add</span>
-                                                <p class="text-xs text-gray-500 mt-1">[Add Demo GIF]</p>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="bg-gradient-to-br from-accent-100 to-accent-200 rounded-lg w-10 h-10 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-accent-600 text-xl">person_add</span>
                                             </div>
+                                            <h5 class="font-semibold text-gray-900">Dealers Self-Onboard</h5>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3">Easy signup process with business details and store information</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-accent-50 text-accent-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">business</span>
+                                                Business Info
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-accent-50 text-accent-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">photo_camera</span>
+                                                Store Media
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1878,28 +1884,29 @@
                         </div>
                         
                         <!-- Step B3 -->
-                        <div class="path-step-with-image">
-                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all overflow-hidden">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div class="p-4">
-                                        <div class="flex items-start gap-3">
-                                            <div class="bg-accent-100 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                                <span class="text-accent-600 font-bold">3</span>
-                                            </div>
-                                            <div>
-                                                <h5 class="font-semibold text-gray-900 mb-1">Create Ads On-Demand</h5>
-                                                <p class="text-sm text-gray-600">Generate personalized content</p>
-                                            </div>
-                                        </div>
+                        <div class="path-step">
+                            <div class="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all p-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-accent-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <span class="text-accent-600 font-bold text-lg">3</span>
                                     </div>
-                                    <!-- Image Placeholder -->
-                                    <div class="bg-gradient-to-br from-accent-50 to-accent-100 p-3">
-                                        <!-- Replace with: <img src="path/to/dealer-generate.gif" alt="Generate Ads" class="w-full h-full object-cover rounded"> -->
-                                        <div class="aspect-video bg-white rounded shadow-inner flex items-center justify-center">
-                                            <div class="text-center">
-                                                <span class="material-symbols-outlined text-4xl text-accent-300">auto_awesome</span>
-                                                <p class="text-xs text-gray-500 mt-1">[Add Demo GIF]</p>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="bg-gradient-to-br from-accent-100 to-accent-200 rounded-lg w-10 h-10 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-accent-600 text-xl">auto_awesome</span>
                                             </div>
+                                            <h5 class="font-semibold text-gray-900">Create Ads On-Demand</h5>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3">Generate personalized content whenever needed using mobile app</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-accent-50 text-accent-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">smartphone</span>
+                                                Mobile App
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 bg-accent-50 text-accent-700 rounded text-xs">
+                                                <span class="material-symbols-outlined text-xs">schedule</span>
+                                                On-Demand
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1963,8 +1970,8 @@
             
             
             <!-- Dealer App Feature -->
-            <div class="mt-16 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8">
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
+            <div class="mt-16 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 shadow-lg">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 mb-4">
                             <span class="material-symbols-outlined text-sm mr-1">group_add</span>
@@ -2006,8 +2013,16 @@
                             </button>
                         </div>
                     </div>
-                    <div class="bg-white rounded-xl p-4 shadow-lg">
-                        <img src="https://placehold.co/400x600/f3f4f6/667eea?text=Dealer+Onboarding+Flow" alt="Dealer Onboarding" class="rounded-lg w-full max-w-sm mx-auto">
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="flex flex-col items-center mx-auto" style="max-width: 200px;">
+                            <div class="rounded-xl overflow-hidden shadow-2xl ring-2 ring-primary-400 ring-offset-2 ring-offset-primary-50 mb-3 w-full">
+                                <img src="static/gifs/dealer_onboarding.gif" alt="Dealer Onboarding Demo" class="w-full h-auto object-cover" style="max-height: 400px;">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm font-bold text-gray-900">Mobile App Experience</p>
+                                <p class="text-xs text-gray-600 mt-0.5">Seamless dealer onboarding flow</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2677,4 +2692,8 @@
     </script>
 </body>
 </html>
+
+
+
+
 

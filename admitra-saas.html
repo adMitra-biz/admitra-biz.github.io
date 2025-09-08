@@ -832,6 +832,163 @@
             scroll-padding-top: 80px;
         }
         
+        /* Enhanced card styles for videos and posters */
+        .media-card {
+            position: relative;
+            border: 2px solid var(--border-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .media-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--primary-400) 0%, var(--secondary-400) 50%, var(--accent-400) 100%);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .media-card:hover {
+            border-color: var(--primary-400);
+            box-shadow: 0 12px 24px rgba(91, 153, 255, 0.15), 0 0 0 2px var(--primary-100);
+            transform: translateY(-4px) scale(1.02);
+        }
+        
+        .media-card:hover::before {
+            opacity: 0.3;
+        }
+        
+        /* Video card specific styles */
+        .video-card {
+            overflow: hidden;
+            background: var(--bg-tertiary);
+        }
+        
+        .video-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(91, 153, 255, 0.05) 100%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .video-card:hover::after {
+            opacity: 1;
+        }
+        
+        /* Poster card specific styles */
+        .poster-card {
+            overflow: hidden;
+            background: linear-gradient(to bottom, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+        }
+        
+        .poster-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(91, 153, 255, 0.03) 100%);
+            pointer-events: none;
+        }
+        
+        /* Enhanced play button */
+        .play-button-enhanced {
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+            box-shadow: 0 4px 16px rgba(91, 153, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .play-button-enhanced:hover {
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+            box-shadow: 0 8px 24px rgba(91, 153, 255, 0.6);
+        }
+        
+        /* Card corner accents */
+        .media-card::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-400) 0%, transparent 50%);
+            opacity: 0.3;
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .media-card:hover::after {
+            width: 80px;
+            height: 80px;
+            opacity: 0.5;
+        }
+        
+        /* Bottom accent strip for cards */
+        .card-accent-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-500) 0%, var(--secondary-500) 50%, var(--accent-500) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .media-card:hover .card-accent-strip {
+            transform: scaleX(1);
+        }
+        
+        /* Improved poster background pattern */
+        .poster-card-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(91, 153, 255, 0.02) 10px,
+                    rgba(91, 153, 255, 0.02) 20px
+                );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .poster-card:hover .poster-card-bg {
+            opacity: 1;
+        }
+        
+        /* Simple pop-out carousel styles */
+        .pop-out-section {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .pop-out-container {
+            position: relative;
+            border-radius: 16px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.12),
+                0 10px 20px rgba(91, 153, 255, 0.08);
+            padding: 20px;
+            background: transparent;
+            overflow: visible;
+        }
+        
+        /* Remove the background accent as it's not needed */
+        .pop-out-bg-accent {
+            display: none;
+        }
+        
         /* Navigation backdrop filter fallback */
         @supports not (backdrop-filter: blur(10px)) {
             nav {
@@ -1694,6 +1851,17 @@
             }
         }
         
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
         /* Mobile adjustments */
         @media (max-width: 768px) {
             .split-path-container {
@@ -1905,8 +2073,253 @@
                 </div>
             </div>
             
+            <!-- Showcase Section - Videos and Posters -->
+            <!-- AI in Action Section -->
+            <div class="mt-10 sm:mt-16">
+                <!-- Section Header (Boxed) -->
+                <div class="text-center mb-8 sm:mb-10">
+                    <div class="inline-flex items-center gap-2 mb-3">
+                        <div class="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent to-primary-300"></div>
+                        <h2 class="text-lg sm:text-xl font-semibold text-gray-700 uppercase tracking-wider" style="font-size: 0.875rem; letter-spacing: 0.1em;">AI in Action</h2>
+                        <div class="h-px w-8 sm:w-12 bg-gradient-to-l from-transparent to-primary-300"></div>
+                    </div>
+                    <p class="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">Hyperlocal ads created for brand dealers across India</p>
+                </div>
+
+                <!-- Posters Carousel -->
+                <div class="relative mb-2">
+                    <!-- Navigation Arrows -->
+                    <button onclick="scrollCarousel('posters-carousel', 'left')" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110 -translate-x-2 md:-translate-x-5">
+                        <span class="material-symbols-outlined text-gray-700">chevron_left</span>
+                    </button>
+                    <button onclick="scrollCarousel('posters-carousel', 'right')" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110 translate-x-2 md:translate-x-5">
+                        <span class="material-symbols-outlined text-gray-700">chevron_right</span>
+                    </button>
+                    
+                    <!-- Scroll container -->
+                    <div id="posters-carousel" class="flex gap-4 overflow-x-auto scrollbar-hide pb-4 scroll-smooth touch-pan-x" style="scroll-behavior: smooth; scroll-snap-type: x mandatory;">
+                            <!-- Mixed Poster 1 - Jindal -->
+                            <div class="group relative rounded-lg media-card poster-card cursor-pointer flex-shrink-0 snap-start" style="width: 224px; height: 336px;" onclick="openPosterModal('static/posters/jindal_enterprises_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1756995631_313500aa-2b87-4568-88b8-ac2ac97bfaca.png')">
+                                <div class="poster-card-bg"></div>
+                                <img src="static/posters/jindal_enterprises_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1756995631_313500aa-2b87-4568-88b8-ac2ac97bfaca.png" 
+                                     alt="Jindal Enterprises Poster 1" 
+                                     class="w-full h-full object-contain bg-gray-100 transform group-hover:scale-105 transition-transform duration-300">
+                                <div class="card-accent-strip"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <p class="text-sm font-semibold">Jindal Enterprises</p>
+                                    <p class="text-xs opacity-80">Automotive Campaign</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Mixed Poster 2 - Sai Tanushri -->
+                            <div class="group relative rounded-lg media-card poster-card cursor-pointer flex-shrink-0 snap-start" style="width: 224px; height: 336px;" onclick="openPosterModal('static/posters/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757337479_d3e37094-943e-4b46-b5c1-0593491f5daf.png')">
+                                <div class="poster-card-bg"></div>
+                                <img src="static/posters/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757337479_d3e37094-943e-4b46-b5c1-0593491f5daf.png" 
+                                     alt="Sai Tanushri Automobiles Poster 1" 
+                                     class="w-full h-full object-contain bg-gray-100 transform group-hover:scale-105 transition-transform duration-300">
+                                <div class="card-accent-strip"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <p class="text-sm font-semibold">Sai Tanushri Automobiles</p>
+                                    <p class="text-xs opacity-80">Vehicle Showcase</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Mixed Poster 3 - Jindal -->
+                            <div class="group relative rounded-lg media-card poster-card cursor-pointer flex-shrink-0 snap-start" style="width: 224px; height: 336px;" onclick="openPosterModal('static/posters/jindal_enterprises_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1756996354_30fcafb7-7e61-46a9-ab2c-d07e221c4454.png')">
+                                <div class="poster-card-bg"></div>
+                                <img src="static/posters/jindal_enterprises_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1756996354_30fcafb7-7e61-46a9-ab2c-d07e221c4454.png" 
+                                     alt="Jindal Enterprises Poster 2" 
+                                     class="w-full h-full object-contain bg-gray-100 transform group-hover:scale-105 transition-transform duration-300">
+                                <div class="card-accent-strip"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <p class="text-sm font-semibold">Jindal Enterprises</p>
+                                    <p class="text-xs opacity-80">Special Offers</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Mixed Poster 4 - Sai Tanushri -->
+                            <div class="group relative rounded-lg media-card poster-card cursor-pointer flex-shrink-0 snap-start" style="width: 224px; height: 336px;" onclick="openPosterModal('static/posters/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757337838_827ee1cd-96c1-4dfd-aecb-0779ed0de52b.png')">
+                                <div class="poster-card-bg"></div>
+                                <img src="static/posters/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757337838_827ee1cd-96c1-4dfd-aecb-0779ed0de52b.png" 
+                                     alt="Sai Tanushri Automobiles Poster 2" 
+                                     class="w-full h-full object-contain bg-gray-100 transform group-hover:scale-105 transition-transform duration-300">
+                                <div class="card-accent-strip"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <p class="text-sm font-semibold">Sai Tanushri Automobiles</p>
+                                    <p class="text-xs opacity-80">Service Offers</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Mixed Poster 5 - Jindal -->
+                            <div class="group relative rounded-lg media-card poster-card cursor-pointer flex-shrink-0 snap-start" style="width: 224px; height: 336px;" onclick="openPosterModal('static/posters/jindal_enterprises_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757167740_21478a22-ee49-426e-8020-67d52e0ade23.png')">
+                                <div class="poster-card-bg"></div>
+                                <img src="static/posters/jindal_enterprises_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757167740_21478a22-ee49-426e-8020-67d52e0ade23.png" 
+                                     alt="Jindal Enterprises Poster 3" 
+                                     class="w-full h-full object-contain bg-gray-100 transform group-hover:scale-105 transition-transform duration-300">
+                                <div class="card-accent-strip"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <p class="text-sm font-semibold">Jindal Enterprises</p>
+                                    <p class="text-xs opacity-80">Festival Campaign</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Mixed Poster 6 - Sai Tanushri -->
+                            <div class="group relative rounded-lg media-card poster-card cursor-pointer flex-shrink-0 snap-start" style="width: 224px; height: 336px;" onclick="openPosterModal('static/posters/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757339249_ef2a77ee-b398-43a3-a53b-25fe2af859c1.png')">
+                                <div class="poster-card-bg"></div>
+                                <img src="static/posters/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_hyperlocal_posters_final_final_poster_1757339249_ef2a77ee-b398-43a3-a53b-25fe2af859c1.png" 
+                                     alt="Sai Tanushri Automobiles Poster 3" 
+                                     class="w-full h-full object-contain bg-gray-100 transform group-hover:scale-105 transition-transform duration-300">
+                                <div class="card-accent-strip"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <p class="text-sm font-semibold">Sai Tanushri Automobiles</p>
+                                    <p class="text-xs opacity-80">New Arrivals</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Carousel (Full Width) -->
+    <div class="w-full relative -mt-8" style="overflow: hidden;">
+        <!-- Navigation Arrows -->
+        <button onclick="scrollCarousel('videos-carousel', 'left')" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110">
+            <span class="material-symbols-outlined text-gray-700">chevron_left</span>
+        </button>
+        <button onclick="scrollCarousel('videos-carousel', 'right')" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110">
+            <span class="material-symbols-outlined text-gray-700">chevron_right</span>
+        </button>
+        
+        <!-- Scroll container -->
+        <div id="videos-carousel" class="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth touch-pan-x px-4" style="scroll-behavior: smooth; scroll-snap-type: x mandatory;">
+                <!-- Video 4: Product Highlight Campaign -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 280px;" onclick="playVideo('static/brand_videos/Cobranded_ProductHighlightCampaign.mp4')">
+                    <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_ProductHighlightCampaign.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Product Highlight Campaign</p>
+                        <p class="text-xs opacity-80">Feature-focused Ad</p>
+                    </div>
+                </div>
+
+                <!-- Video 3: Kaspersky Next EDR -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 280px;" onclick="playVideo('static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4')">
+                    <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Kaspersky Next EDR</p>
+                        <p class="text-xs opacity-80">Cybersecurity Solution</p>
+                    </div>
+                </div>
+
+                <!-- Video 1: Adiva Salon x Schwarzkopf -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 280px;" onclick="playVideo('static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4')">
+                    <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Adiva Salon x Schwarzkopf</p>
+                        <p class="text-xs opacity-80">Co-branded Beauty Campaign</p>
+                    </div>
+                </div>
+                
+                <!-- Video 2: Ganesh Chaturthi Campaign -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 280px;" onclick="playVideo('static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4')">
+                    <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Ganesh Chaturthi Campaign</p>
+                        <p class="text-xs opacity-80">Festival Co-branded Ad</p>
+                    </div>
+                </div>
+                
+                <!-- Video 5: Sai Tanushri Automobiles -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 280px;" onclick="playVideo('static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4')">
+                    <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                        <source src="static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Sai Tanushri Automobiles</p>
+                        <p class="text-xs opacity-80">Generated Dealer Video</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Modal for Full-Screen Poster View -->
+    <div id="posterModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" onclick="closePosterModal()">
+        <div class="relative max-w-4xl max-h-[90vh]">
+            <img id="modalPosterImage" src="" alt="Full Screen Poster" class="max-w-full max-h-full object-contain">
+            <button onclick="closePosterModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-70 transition-all">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Modal for Full-Screen Video View -->
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden flex items-center justify-center p-4" onclick="closeVideoModal()">
+        <div class="relative flex items-center justify-center w-full h-full">
+            <video id="modalVideo" class="max-w-full max-h-full object-contain rounded-lg" controls autoplay style="max-width: min(90vw, 60vh * 9/16); max-height: 90vh;">
+                <source id="modalVideoSource" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition-all z-10">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <section class="py-12 sm:py-20 bg-white">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
             <!-- Hero Visual - Simplified Product Workflow -->
-            <div class="mt-10 sm:mt-16 max-w-7xl mx-auto px-4" style="overflow: hidden;">
+            <div class="mt-10 sm:mt-16" style="overflow: hidden;">
                 <!-- How It Works Section Header -->
                 <div class="text-center mb-8 sm:mb-10">
                     <div class="inline-flex items-center gap-2 mb-3">
@@ -3140,6 +3553,58 @@
             });
         });
         
+        // Tab functionality removed - posters and videos now display separately
+        
+        // Poster Modal Functions
+        function openPosterModal(imageSrc) {
+            const modal = document.getElementById('posterModal');
+            const modalImage = document.getElementById('modalPosterImage');
+            if (modal && modalImage) {
+                modalImage.src = imageSrc;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closePosterModal() {
+            const modal = document.getElementById('posterModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+            event.stopPropagation();
+        }
+        
+        // Video Modal Functions
+        function playVideo(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalVideoSource = document.getElementById('modalVideoSource');
+            
+            if (modal && modalVideo && modalVideoSource) {
+                modalVideoSource.src = videoSrc;
+                modalVideo.load(); // Reload the video with new source
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            
+            if (modal && modalVideo) {
+                modalVideo.pause();
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+            event.stopPropagation();
+        }
+        
         // Add scroll effect to navigation
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
@@ -3234,6 +3699,156 @@
         } else {
             console.error('Mobile menu elements not found');
         }
+        
+        // Enhanced Interactive Carousel Functionality
+        let isUserInteracting = false;
+        
+        // Scroll carousel by navigation buttons
+        function scrollCarousel(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            
+            const itemWidth = carouselId === 'videos-carousel' ? 496 : 296;
+            const scrollAmount = direction === 'left' ? -itemWidth : itemWidth;
+            
+            carousel.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Setup scroll indicators
+        function setupScrollIndicators(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            const indicatorsId = carouselId === 'videos-carousel' ? 'videos-indicators' : 'posters-indicators';
+            const indicators = document.getElementById(indicatorsId);
+            
+            if (!carousel || !indicators) return;
+            
+            const items = carousel.querySelectorAll('.snap-start');
+            const uniqueItems = carouselId === 'videos-carousel' ? 5 : 6; // 5 videos, 6 posters
+            
+            // Create indicators
+            indicators.innerHTML = '';
+            for (let i = 0; i < uniqueItems; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'w-2 h-2 rounded-full bg-gray-300 transition-all duration-200';
+                dot.onclick = () => {
+                    carousel.scrollTo({
+                        left: i * (carouselId === 'videos-carousel' ? 256 : 296),
+                        behavior: 'smooth'
+                    });
+                };
+                indicators.appendChild(dot);
+            }
+            
+            // Update active indicator on scroll
+            carousel.addEventListener('scroll', () => {
+                const scrollLeft = carousel.scrollLeft;
+                const itemWidth = carouselId === 'videos-carousel' ? 496 : 296;
+                const activeIndex = Math.round(scrollLeft / itemWidth);
+                
+                indicators.querySelectorAll('button').forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.className = 'w-8 h-2 rounded-full bg-primary-600 transition-all duration-200';
+                    } else {
+                        dot.className = 'w-2 h-2 rounded-full bg-gray-300 transition-all duration-200';
+                    }
+                });
+            });
+            
+            // Show indicators for active carousel
+            if ((carouselId === 'videos-carousel' && !document.getElementById('videos-content').classList.contains('hidden')) ||
+                (carouselId === 'posters-carousel' && !document.getElementById('posters-content').classList.contains('hidden'))) {
+                indicators.classList.remove('hidden');
+            }
+        }
+        
+        // Touch/swipe support
+        function setupTouchSupport(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            
+            let startX, scrollLeft, isDown = false;
+            
+            const handleStart = (e) => {
+                isDown = true;
+                isUserInteracting = true;
+                startX = (e.pageX || e.touches[0].pageX) - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+                carousel.style.cursor = 'grabbing';
+            };
+            
+            const handleMove = (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = (e.pageX || e.touches[0].pageX) - carousel.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                carousel.scrollLeft = scrollLeft - walk;
+            };
+            
+            const handleEnd = () => {
+                isDown = false;
+                isUserInteracting = false;
+                carousel.style.cursor = 'grab';
+            };
+            
+            // Mouse events
+            carousel.addEventListener('mousedown', handleStart);
+            carousel.addEventListener('mousemove', handleMove);
+            carousel.addEventListener('mouseup', handleEnd);
+            carousel.addEventListener('mouseleave', handleEnd);
+            
+            // Touch events
+            carousel.addEventListener('touchstart', handleStart, { passive: true });
+            carousel.addEventListener('touchmove', handleMove, { passive: false });
+            carousel.addEventListener('touchend', handleEnd);
+            
+            // Set initial cursor
+            carousel.style.cursor = 'grab';
+        }
+        
+        // Initialize carousels
+        function initializeCarousels() {
+            setupScrollIndicators('videos-carousel');
+            setupScrollIndicators('posters-carousel');
+            setupTouchSupport('videos-carousel');
+            setupTouchSupport('posters-carousel');
+            showActiveIndicators();
+        }
+        
+        // Show indicators for active carousel
+        function showActiveIndicators() {
+            const videosContent = document.getElementById('videos-content');
+            const postersContent = document.getElementById('posters-content');
+            
+            // Hide all indicators first
+            document.getElementById('videos-indicators').classList.add('hidden');
+            document.getElementById('posters-indicators').classList.add('hidden');
+            
+            // Show indicators for active carousel
+            if (videosContent && !videosContent.classList.contains('hidden')) {
+                document.getElementById('videos-indicators').classList.remove('hidden');
+            } else if (postersContent && !postersContent.classList.contains('hidden')) {
+                document.getElementById('posters-indicators').classList.remove('hidden');
+            }
+        }
+        
+        // Update tab click handlers
+        if (videosTab && postersTab) {
+            videosTab.addEventListener('click', function() {
+                setTimeout(showActiveIndicators, 100);
+            });
+            
+            postersTab.addEventListener('click', function() {
+                setTimeout(showActiveIndicators, 100);
+            });
+        }
+        
+        // Initialize when page loads
+        setTimeout(() => {
+            initializeCarousels();
+        }, 1000);
     </script>
 </body>
 </html>

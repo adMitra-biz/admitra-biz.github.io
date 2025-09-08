@@ -2022,6 +2022,125 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Enhanced Video Modal Styles for Mobile */
+        #videoModal {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        #videoModal video {
+            border-radius: 0;
+        }
+        
+        /* Mobile-specific video modal styles */
+        @media (max-width: 768px) {
+            #videoModal {
+                padding: 0;
+            }
+            
+            #videoModal video {
+                width: 100vw !important;
+                height: 100vh !important;
+                max-width: 100vw !important;
+                max-height: 100vh !important;
+                object-fit: contain;
+                border-radius: 0;
+            }
+            
+            #videoModal .absolute.top-4.right-4 {
+                top: env(safe-area-inset-top, 1rem);
+                right: env(safe-area-inset-right, 1rem);
+                z-index: 30;
+            }
+        }
+        
+        /* Prevent body scroll when video modal is open */
+        body.video-modal-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Enhanced close button visibility */
+        #videoModal button {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        #videoModal button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Video controls enhancement for mobile */
+        @media (max-width: 768px) {
+            #videoModal video::-webkit-media-controls-panel {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+            
+            #videoModal video::-webkit-media-controls {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+        /* Video Carousel Mobile Responsive Fixes */
+        @media (max-width: 640px) {
+            /* Mobile video carousel container adjustments */
+            #videos-carousel {
+                gap: 1rem !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            /* Mobile video card sizing - fit within screen */
+            .video-card {
+                width: calc(100vw - 3rem) !important;
+                max-width: 320px !important;
+                height: 180px !important;
+            }
+            
+            /* Adjust carousel navigation buttons for mobile */
+            #videos-content .absolute.left-4 {
+                left: 0.5rem !important;
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            #videos-content .absolute.right-4 {
+                right: 0.5rem !important;
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            #videos-content .absolute .material-symbols-outlined {
+                font-size: 1.25rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small mobile devices */
+            .video-card {
+                width: calc(100vw - 2.5rem) !important;
+                max-width: 280px !important;
+                height: 160px !important;
+            }
+            
+            #videos-carousel {
+                gap: 0.75rem !important;
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            /* Tablet sizing */
+            .video-card {
+                width: 400px !important;
+                height: 200px !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50" style="overflow-x: hidden; max-width: 100vw;">
@@ -2618,15 +2737,18 @@
     </div>
     
     <!-- Modal for Full-Screen Video View -->
-    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden flex items-center justify-center p-4" onclick="closeVideoModal()">
-        <div class="relative flex items-center justify-center w-full h-full">
-            <video id="modalVideo" class="max-w-full max-h-full object-contain rounded-lg" controls autoplay style="max-width: min(90vw, 60vh * 9/16); max-height: 90vh;">
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden flex items-center justify-center" onclick="closeVideoModal()">
+        <div class="relative w-full h-full flex items-center justify-center">
+            <!-- Close Button - Enhanced for mobile -->
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-60 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-opacity-80 transition-all z-20 backdrop-blur-sm border border-white border-opacity-20">
+                <span class="material-symbols-outlined text-2xl md:text-3xl">close</span>
+            </button>
+            
+            <!-- Video Player - Full screen on mobile -->
+            <video id="modalVideo" class="w-full h-full object-contain" controls autoplay onclick="event.stopPropagation()" style="max-width: 100vw; max-height: 100vh;">
                 <source id="modalVideoSource" src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition-all z-10">
-                <span class="material-symbols-outlined">close</span>
-            </button>
         </div>
     </div>
 
@@ -3698,7 +3820,7 @@
             event.stopPropagation();
         }
         
-        // Video Modal Functions
+        // Enhanced Video Modal Functions for Mobile
         function playVideo(videoSrc) {
             const modal = document.getElementById('videoModal');
             const modalVideo = document.getElementById('modalVideo');
@@ -3709,7 +3831,24 @@
                 modalVideo.load(); // Reload the video with new source
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
+                
+                // Enhanced body scroll prevention for mobile
+                document.body.classList.add('video-modal-open');
                 document.body.style.overflow = 'hidden';
+                
+                // Store current scroll position to restore later
+                const scrollY = window.scrollY;
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = '100%';
+                
+                // Add escape key listener
+                document.addEventListener('keydown', handleVideoModalEscape);
+                
+                // Auto-play and focus for better UX
+                modalVideo.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                });
             }
         }
         
@@ -3721,10 +3860,72 @@
                 modalVideo.pause();
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
+                
+                // Restore body scroll and position
+                document.body.classList.remove('video-modal-open');
+                const scrollY = document.body.style.top;
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
                 document.body.style.overflow = '';
+                
+                if (scrollY) {
+                    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                }
+                
+                // Remove escape key listener
+                document.removeEventListener('keydown', handleVideoModalEscape);
             }
-            event.stopPropagation();
+            
+            // Prevent event bubbling
+            if (event) {
+                event.stopPropagation();
+            }
         }
+        
+        // Handle escape key for video modal
+        function handleVideoModalEscape(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        }
+        
+        // Enhanced mobile video support
+        function initVideoModalSupport() {
+            const modalVideo = document.getElementById('modalVideo');
+            
+            if (modalVideo) {
+                // Handle video load events
+                modalVideo.addEventListener('loadstart', function() {
+                    console.log('Video loading started');
+                });
+                
+                modalVideo.addEventListener('canplay', function() {
+                    console.log('Video can start playing');
+                });
+                
+                modalVideo.addEventListener('error', function(e) {
+                    console.error('Video error:', e);
+                    alert('Error loading video. Please try again.');
+                    closeVideoModal();
+                });
+                
+                // Handle fullscreen changes (for browsers that support it)
+                modalVideo.addEventListener('fullscreenchange', function() {
+                    console.log('Fullscreen changed');
+                });
+                
+                // Prevent video click from closing modal
+                modalVideo.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        }
+        
+        // Initialize video modal support when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initVideoModalSupport();
+        });
         
         // Add scroll effect to navigation
         window.addEventListener('scroll', () => {
@@ -3830,12 +4031,32 @@
         // Enhanced Interactive Carousel Functionality
         let isUserInteracting = false;
         
-        // Scroll carousel by navigation buttons
+        // Scroll carousel by navigation buttons - responsive
         function scrollCarousel(carouselId, direction) {
             const carousel = document.getElementById(carouselId);
             if (!carousel) return;
             
-            const itemWidth = carouselId === 'videos-carousel' ? 496 : 296;
+            // Calculate responsive item width based on screen size
+            let itemWidth;
+            if (carouselId === 'videos-carousel') {
+                if (window.innerWidth <= 480) {
+                    // Extra small mobile
+                    itemWidth = Math.min(window.innerWidth - 40, 280) + 12; // card width + gap
+                } else if (window.innerWidth <= 640) {
+                    // Mobile
+                    itemWidth = Math.min(window.innerWidth - 48, 320) + 16; // card width + gap
+                } else if (window.innerWidth <= 1024) {
+                    // Tablet
+                    itemWidth = 400 + 24; // card width + gap
+                } else {
+                    // Desktop
+                    itemWidth = 496; // original desktop width
+                }
+            } else {
+                // Posters carousel
+                itemWidth = 296;
+            }
+            
             const scrollAmount = direction === 'left' ? -itemWidth : itemWidth;
             
             carousel.scrollBy({
@@ -3869,10 +4090,26 @@
                 indicators.appendChild(dot);
             }
             
-            // Update active indicator on scroll
+            // Update active indicator on scroll - responsive
             carousel.addEventListener('scroll', () => {
                 const scrollLeft = carousel.scrollLeft;
-                const itemWidth = carouselId === 'videos-carousel' ? 496 : 296;
+                
+                // Calculate responsive item width for indicators
+                let itemWidth;
+                if (carouselId === 'videos-carousel') {
+                    if (window.innerWidth <= 480) {
+                        itemWidth = Math.min(window.innerWidth - 40, 280) + 12;
+                    } else if (window.innerWidth <= 640) {
+                        itemWidth = Math.min(window.innerWidth - 48, 320) + 16;
+                    } else if (window.innerWidth <= 1024) {
+                        itemWidth = 400 + 24;
+                    } else {
+                        itemWidth = 496;
+                    }
+                } else {
+                    itemWidth = 296;
+                }
+                
                 const activeIndex = Math.round(scrollLeft / itemWidth);
                 
                 indicators.querySelectorAll('button').forEach((dot, index) => {
@@ -3962,6 +4199,16 @@
         }
         
         // Update tab click handlers - now handled by switchCarousel function
+        
+        // Handle window resize for responsive carousel
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Reinitialize carousels on resize to recalculate dimensions
+                initializeCarousels();
+            }, 250);
+        });
         
         // Initialize when page loads
         setTimeout(() => {

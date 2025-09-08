@@ -1051,8 +1051,12 @@
         }
         
         /* Navigation backdrop filter fallback */
-        @supports not (backdrop-filter: blur(10px)) {
+        @supports not (backdrop-filter: blur(20px)) {
             nav {
+                background-color: rgba(255, 255, 255, 0.95) !important;
+            }
+            
+            #mobile-menu > div {
                 background-color: rgba(255, 255, 255, 0.98) !important;
             }
         }
@@ -2022,8 +2026,8 @@
 </head>
 <body class="bg-gray-50" style="overflow-x: hidden; max-width: 100vw;">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full glass z-50" style="min-height: 68px; max-width: 100vw; overflow-x: hidden; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);">
-        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 h-full">
+    <nav class="fixed top-0 w-full z-50" style="min-height: 60px; max-width: 100vw; overflow-x: hidden; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-2 sm:py-3 h-full">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                     <img src="static/images/logo_nobg.png" alt="AdMitra" class="h-8 w-8 sm:h-10 sm:w-10 filter drop-shadow-md">
@@ -2060,44 +2064,44 @@
     <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden opacity-0 pointer-events-none transition-opacity duration-400 ease-out"></div>
     
     <!-- Mobile Menu Dropdown -->
-    <div id="mobile-menu" class="fixed left-0 right-0 lg:hidden transform -translate-y-full transition-all duration-500 ease-out" style="top: 68px; z-index: 55;">
+    <div id="mobile-menu" class="fixed left-0 right-0 lg:hidden transform -translate-y-full transition-all duration-500 ease-out" style="top: 60px; z-index: 55;">
         <!-- Menu Content -->
-        <div class="mx-4 mt-2 bg-white backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div class="mx-4 mt-2 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
             <!-- Menu Items -->
             <nav class="p-2">
-                <a href="#product" class="flex items-center px-4 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                <a href="#product" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">rocket_launch</span>
                     Product
                 </a>
-                <a href="#flexibility" class="flex items-center px-4 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                <a href="#flexibility" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">workflow</span>
                     Workflows
                 </a>
-                <a href="#workflow" class="flex items-center px-4 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                <a href="#workflow" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">store</span>
                     Dealer Portal
                 </a>
-                <a href="#platform" class="flex items-center px-4 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                <a href="#platform" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">hub</span>
                     Platform
                 </a>
-                <a href="#features" class="flex items-center px-4 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                <a href="#features" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">auto_awesome</span>
                     Features
                 </a>
-                <a href="#pricing" class="flex items-center px-4 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                <a href="#pricing" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">payments</span>
                     Pricing
                 </a>
-                <a href="admitra-smb.html" class="flex items-center px-4 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                <a href="admitra-smb.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">business</span>
                     For SMBs
                 </a>
             </nav>
             
             <!-- CTA Section -->
-            <div class="px-6 py-4 bg-gradient-to-r from-primary-50 to-secondary-50 border-t border-gray-100">
-                <button class="w-full btn-primary text-base py-3 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
+            <div class="px-4 py-3 bg-gradient-to-r from-primary-50 to-secondary-50 border-t border-gray-100">
+                <button class="w-full btn-primary text-base py-2.5 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
                     <span class="material-symbols-outlined text-lg">calendar_today</span>
                     Book Demo
                 </button>
@@ -3726,11 +3730,17 @@
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = '0 8px 40px rgba(0, 0, 0, 0.08)';
+                nav.style.background = 'rgba(255, 255, 255, 0.6)';
+                nav.style.backdropFilter = 'blur(25px)';
+                nav.style.webkitBackdropFilter = 'blur(25px)';
+                nav.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.08)';
+                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.3)';
             } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.7)';
-                nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.02)';
+                nav.style.background = 'rgba(255, 255, 255, 0.4)';
+                nav.style.backdropFilter = 'blur(20px)';
+                nav.style.webkitBackdropFilter = 'blur(20px)';
+                nav.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.04)';
+                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
             }
         });
         

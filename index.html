@@ -2070,8 +2070,8 @@
             transform: translateY(0);
         }
         
-        /* Enhanced Video Modal Styles for Mobile */
-        #videoModal {
+        /* Enhanced Modal Styles for Mobile */
+        #videoModal, #posterModal {
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
@@ -2102,21 +2102,44 @@
             }
         }
         
-        /* Prevent body scroll when video modal is open */
-        body.video-modal-open {
+        /* Mobile-specific poster modal styles */
+        @media (max-width: 768px) {
+            #posterModal {
+                padding: 0;
+            }
+            
+            #posterModal .relative.w-full.h-full {
+                padding: 1rem;
+            }
+            
+            #posterModal img {
+                width: 100vw !important;
+                height: 100vh !important;
+                max-width: calc(100vw - 2rem) !important;
+                max-height: calc(100vh - 2rem) !important;
+                object-fit: contain;
+                border-radius: 0;
+            }
+            
+            #posterModal .absolute.top-4.right-4 {
+                top: env(safe-area-inset-top, 1rem);
+                right: env(safe-area-inset-right, 1rem);
+                z-index: 30;
+            }
+        }
+        
+        /* Prevent body scroll when modals are open */
+        body.video-modal-open, body.poster-modal-open {
             overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
         }
         
         /* Enhanced close button visibility */
-        #videoModal button {
+        #videoModal button, #posterModal button {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
         }
         
-        #videoModal button:hover {
+        #videoModal button:hover, #posterModal button:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
         }
@@ -2984,21 +3007,21 @@
             </div>
         </div>
     </div>
-    </section>
-
-    <!-- Modal for Full-Screen Poster View -->
-    <div id="posterModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" onclick="closePosterModal()">
-        <!-- Close Button - Positioned at top-right of screen -->
-        <button onclick="closePosterModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-60 rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-80 transition-all z-20 backdrop-blur-sm border border-white border-opacity-20">
-            <span class="material-symbols-outlined text-xl">close</span>
-        </button>
-        
-        <div class="relative max-w-4xl max-h-[90vh]">
-            <img id="modalPosterImage" src="" alt="Full Screen Poster" class="max-w-full max-h-full object-contain">
+    
+    <!-- Modal for Full-Screen Poster View - Inside AI in Action Section -->
+    <div id="posterModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center" onclick="closePosterModal()">
+        <div class="relative w-full h-full flex items-center justify-center p-4">
+            <!-- Close Button - Enhanced for mobile -->
+            <button onclick="closePosterModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-60 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-opacity-80 transition-all z-20 backdrop-blur-sm border border-white border-opacity-20">
+                <span class="material-symbols-outlined text-xl md:text-2xl">close</span>
+            </button>
+            
+            <!-- Poster Image - Responsive sizing -->
+            <img id="modalPosterImage" src="" alt="Full Screen Poster" class="max-w-full max-h-full object-contain" onclick="event.stopPropagation()" style="max-width: 100vw; max-height: 100vh;">
         </div>
     </div>
     
-    <!-- Modal for Full-Screen Video View -->
+    <!-- Modal for Full-Screen Video View - Inside AI in Action Section -->
     <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden flex items-center justify-center" onclick="closeVideoModal()">
         <div class="relative w-full h-full flex items-center justify-center">
             <!-- Close Button - Enhanced for mobile -->
@@ -3013,6 +3036,8 @@
             </video>
         </div>
     </div>
+    
+    </section>
 
     <!-- Stats Section -->
     <section class="py-12 sm:py-16 bg-white">
@@ -3435,25 +3460,6 @@
                         <p class="text-gray-600 text-sm">
                             Share directly to social media, WhatsApp, or download for offline marketing use
                         </p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Visual Demo -->
-            <div class="mt-16 glass rounded-3xl p-8 sm:p-10 animate-slideInScale" style="animation-delay: 0.4s;">
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4">See the Magic in Action</h3>
-                        <p class="text-gray-600 mb-6">
-                            Watch how a single campaign transforms into thousands of unique, localized ads across your dealer network.
-                        </p>
-                        <button class="btn-primary flex items-center gap-2">
-                            <span class="material-symbols-outlined">play_circle</span>
-                            Play Demo Video
-                        </button>
-                    </div>
-                    <div class="bg-white rounded-xl p-2 shadow-lg">
-                        <img src="https://placehold.co/600x400/f3f4f6/667eea?text=Campaign+to+Ads+Demo" alt="Demo" class="rounded-lg w-full">
                     </div>
                 </div>
             </div>
@@ -4067,26 +4073,51 @@
             }
         }
         
-        // Poster Modal Functions
+        // Enhanced Poster Modal Functions for Mobile
         function openPosterModal(imageSrc) {
             const modal = document.getElementById('posterModal');
             const modalImage = document.getElementById('modalPosterImage');
+            
             if (modal && modalImage) {
                 modalImage.src = imageSrc;
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
+                
+                // Enhanced body scroll prevention for mobile
+                document.body.classList.add('poster-modal-open');
                 document.body.style.overflow = 'hidden';
+                
+                // Add escape key listener
+                document.addEventListener('keydown', handlePosterModalEscape);
             }
         }
         
         function closePosterModal() {
             const modal = document.getElementById('posterModal');
+            
             if (modal) {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
+                
+                // Restore body scroll
+                document.body.classList.remove('poster-modal-open');
                 document.body.style.overflow = '';
+                
+                // Remove escape key listener
+                document.removeEventListener('keydown', handlePosterModalEscape);
             }
-            event.stopPropagation();
+            
+            // Prevent event bubbling
+            if (typeof event !== 'undefined' && event) {
+                event.stopPropagation();
+            }
+        }
+        
+        // Handle escape key for poster modal
+        function handlePosterModalEscape(e) {
+            if (e.key === 'Escape') {
+                closePosterModal();
+            }
         }
         
         // Enhanced Video Modal Functions for Mobile
@@ -4104,12 +4135,6 @@
                 // Enhanced body scroll prevention for mobile
                 document.body.classList.add('video-modal-open');
                 document.body.style.overflow = 'hidden';
-                
-                // Store current scroll position to restore later
-                const scrollY = window.scrollY;
-                document.body.style.position = 'fixed';
-                document.body.style.top = `-${scrollY}px`;
-                document.body.style.width = '100%';
                 
                 // Add escape key listener
                 document.addEventListener('keydown', handleVideoModalEscape);
@@ -4130,24 +4155,16 @@
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 
-                // Restore body scroll and position
+                // Restore body scroll
                 document.body.classList.remove('video-modal-open');
-                const scrollY = document.body.style.top;
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.width = '';
                 document.body.style.overflow = '';
-                
-                if (scrollY) {
-                    window.scrollTo(0, parseInt(scrollY || '0') * -1);
-                }
                 
                 // Remove escape key listener
                 document.removeEventListener('keydown', handleVideoModalEscape);
             }
             
             // Prevent event bubbling
-            if (event) {
+            if (typeof event !== 'undefined' && event) {
                 event.stopPropagation();
             }
         }

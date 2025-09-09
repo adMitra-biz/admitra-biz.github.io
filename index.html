@@ -2430,6 +2430,29 @@
             .video-card {
                 isolation: isolate;
             }
+            
+            /* iOS-specific carousel hiding fixes */
+            .carousel-content.hidden {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                position: absolute !important;
+                left: -9999px !important;
+                opacity: 0 !important;
+            }
+            
+            /* Ensure visible carousels override the hidden state */
+            .carousel-content:not(.hidden) {
+                display: block !important;
+                visibility: visible !important;
+                height: auto !important;
+                position: relative !important;
+                left: auto !important;
+                opacity: 1 !important;
+            }
         }
         
         /* Poster Carousel Mobile Responsive Fixes */

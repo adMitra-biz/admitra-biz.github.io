@@ -2180,6 +2180,61 @@
             }
         }
         
+        /* Video Loader Styles */
+        .video-loader {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-radius: 1rem;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .video-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Simple Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(59, 130, 246, 0.2);
+            border-top: 3px solid var(--primary-500);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Video loaded state */
+        .video-with-loader.loaded {
+            z-index: 2;
+        }
+        
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            /* This targets iOS Safari specifically */
+            .video-card video {
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+            
+            #videos-content {
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+                will-change: transform;
+            }
+            
+            /* Fix iOS Safari video display issues */
+            .video-card {
+                isolation: isolate;
+            }
+        }
+        
         /* Poster Carousel Mobile Responsive Fixes */
         @media (max-width: 640px) {
             /* Mobile poster carousel container adjustments */
@@ -2608,9 +2663,12 @@
         <div id="videos-carousel" class="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth touch-pan-x px-4" style="scroll-behavior: smooth; scroll-snap-type: x mandatory;">
             <!-- Video 4: Product Highlight Campaign -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_ProductHighlightCampaign.mp4')">
-                <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_ProductHighlightCampaign.mp4" type="video/mp4">
                 </video>
+                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                    <div class="spinner"></div>
+                </div>
                 <div class="card-accent-strip"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -2626,9 +2684,12 @@
 
             <!-- Video 3: Kaspersky Next EDR -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4')">
-                <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4" type="video/mp4">
                 </video>
+                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                    <div class="spinner"></div>
+                </div>
                 <div class="card-accent-strip"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -2644,9 +2705,12 @@
 
             <!-- Video 1: Adiva Salon x Schwarzkopf -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4')">
-                <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4" type="video/mp4">
                 </video>
+                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                    <div class="spinner"></div>
+                </div>
                 <div class="card-accent-strip"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -2662,9 +2726,12 @@
             
             <!-- Video 2: Ganesh Chaturthi Campaign -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4')">
-                <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4" type="video/mp4">
                 </video>
+                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                    <div class="spinner"></div>
+                </div>
                 <div class="card-accent-strip"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -2680,9 +2747,12 @@
             
             <!-- Video 5: Sai Tanushri Automobiles -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4')">
-                <video class="w-full h-full object-cover" preload="metadata" muted style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
                     <source src="static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4" type="video/mp4">
                 </video>
+                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                    <div class="spinner"></div>
+                </div>
                 <div class="card-accent-strip"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -4423,6 +4493,67 @@
         
         // Update tab click handlers - now handled by switchCarousel function
         
+        // Video loader management
+        function initializeVideoLoaders() {
+            const videoElements = document.querySelectorAll('.video-with-loader');
+            
+            videoElements.forEach(video => {
+                const loader = video.parentElement.querySelector('.video-loader');
+                
+                // Show actual video thumbnail when metadata loads
+                video.addEventListener('loadedmetadata', function() {
+                    if (loader) {
+                        loader.classList.add('hidden');
+                    }
+                    video.classList.add('loaded');
+                });
+                
+                // Also handle loadeddata event for better compatibility
+                video.addEventListener('loadeddata', function() {
+                    if (loader) {
+                        loader.classList.add('hidden');
+                    }
+                    video.classList.add('loaded');
+                });
+                
+                // Handle error case
+                video.addEventListener('error', function() {
+                    if (loader) {
+                        loader.innerHTML = '<div class="text-gray-500 text-sm">Video unavailable</div>';
+                    }
+                });
+                
+                // Force load metadata to show actual video frame
+                video.preload = 'metadata';
+                video.load();
+            });
+        }
+        
+        // iOS Safari specific video carousel fixes
+        function fixiOSVideoDisplay() {
+            // Check if we're on iOS Safari
+            const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            
+            if (isiOS) {
+                // Force videos carousel to be visible on iOS
+                const videosContent = document.getElementById('videos-content');
+                const videosTab = document.getElementById('videos-tab');
+                
+                if (videosContent && videosTab) {
+                    // Ensure videos tab is active
+                    videosTab.classList.add('active');
+                    // Ensure videos content is not hidden
+                    videosContent.classList.remove('hidden');
+                    // Force repaint
+                    videosContent.style.display = 'block';
+                    videosContent.offsetHeight; // Trigger reflow
+                }
+            }
+            
+            // Initialize video loaders after iOS fixes
+            initializeVideoLoaders();
+        }
+        
         // Handle window resize for responsive carousel
         let resizeTimeout;
         window.addEventListener('resize', () => {
@@ -4436,7 +4567,12 @@
         // Initialize when page loads
         setTimeout(() => {
             initializeCarousels();
+            // Fix iOS video display issues
+            fixiOSVideoDisplay();
         }, 1000);
+        
+        // Also fix on window load (in case timeout is too early)
+        window.addEventListener('load', fixiOSVideoDisplay);
     </script>
 </body>
 </html>

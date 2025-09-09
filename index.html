@@ -770,64 +770,111 @@
             }
         }
         
-        /* Tab Pills - Badge-inspired style */
+        /* Button Group Toggle - Modern unified design */
+        .button-group-toggle {
+            display: inline-flex;
+            background: var(--bg-secondary);
+            padding: 6px;
+            border-radius: 50px;
+            border: 2px solid var(--primary-200);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Sliding background indicator */
+        .button-group-toggle::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            height: calc(100% - 12px);
+            width: calc(50% - 9px);
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+            border-radius: 50px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .button-group-toggle.posters-active::before {
+            transform: translateX(calc(100% + 6px));
+        }
+        
+        /* Tab Pills - Redesigned for button group */
         .tab-pill {
-            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
-            color: var(--text-secondary);
+            background: transparent;
+            color: var(--gray-600);
             padding: 8px 20px;
-            border-radius: 24px;
+            border-radius: 50px;
             font-size: 13px;
             font-weight: 600;
             letter-spacing: 0.3px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             display: inline-flex;
             align-items: center;
             gap: 6px;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
+            min-width: 110px;
+            justify-content: center;
         }
         
-        .tab-pill:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        .tab-pill:hover:not(.active) {
+            color: var(--gray-700);
         }
         
         .tab-pill.active {
-            background: var(--gradient-secondary);
-            color: var(--text-inverse);
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* Remove individual pill backgrounds and shadows */
+        .tab-pill:hover {
+            transform: none;
+            box-shadow: none;
         }
         
         .tab-pill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .tab-pill:hover::before {
-            left: 100%;
+            display: none;
         }
         
         .tab-pill .material-symbols-outlined {
-            font-size: 16px;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+        
+        .tab-pill.active .material-symbols-outlined {
+            transform: scale(1.1);
         }
         
         @media (min-width: 640px) {
+            .button-group-toggle {
+                padding: 8px;
+                border-radius: 50px;
+            }
+            
+            .button-group-toggle::before {
+                top: 8px;
+                left: 8px;
+                height: calc(100% - 16px);
+                width: calc(50% - 12px);
+            }
+            
+            .button-group-toggle.posters-active::before {
+                transform: translateX(calc(100% + 8px));
+            }
+            
             .tab-pill {
                 font-size: 14px;
                 padding: 10px 24px;
+                min-width: 130px;
             }
             
             .tab-pill .material-symbols-outlined {
-                font-size: 18px;
+                font-size: 20px;
             }
         }
         
@@ -2352,15 +2399,15 @@
                     <p class="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">Hyperlocal ads created for brand dealers across India</p>
                 </div>
 
-            <!-- Tab Controls -->
+            <!-- Tab Controls - Button Group -->
             <div class="flex justify-center mb-6">
-                <div class="inline-flex items-center gap-2">
+                <div class="button-group-toggle" id="toggle-group">
                     <button id="videos-tab" onclick="switchCarousel('videos')" class="tab-pill active">
-                        <span class="material-symbols-outlined text-sm">movie</span>
+                        <span class="material-symbols-outlined">movie</span>
                         Videos
                     </button>
                     <button id="posters-tab" onclick="switchCarousel('posters')" class="tab-pill">
-                        <span class="material-symbols-outlined text-sm">image</span>
+                        <span class="material-symbols-outlined">image</span>
                         Posters
                     </button>
                 </div>
@@ -3923,11 +3970,15 @@
             const videosTab = document.getElementById('videos-tab');
             const postersContent = document.getElementById('posters-content');
             const videosContent = document.getElementById('videos-content');
+            const toggleGroup = document.getElementById('toggle-group');
             
             if (type === 'posters') {
                 // Update tab styles
                 postersTab.classList.add('active');
                 videosTab.classList.remove('active');
+                
+                // Update toggle group class for sliding indicator
+                toggleGroup.classList.add('posters-active');
                 
                 // Show/hide content
                 postersContent.classList.remove('hidden');
@@ -3936,6 +3987,9 @@
                 // Update tab styles
                 videosTab.classList.add('active');
                 postersTab.classList.remove('active');
+                
+                // Update toggle group class for sliding indicator
+                toggleGroup.classList.remove('posters-active');
                 
                 // Show/hide content
                 videosContent.classList.remove('hidden');

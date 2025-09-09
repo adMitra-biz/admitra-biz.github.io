@@ -2119,6 +2119,20 @@
             }
         }
         
+        /* Mobile Touch Behavior */
+        @media (max-width: 768px) {
+            #videos-carousel, #posters-carousel {
+                touch-action: pan-x pan-y !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            /* Ensure body allows vertical scrolling */
+            body {
+                touch-action: pan-y !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+        }
+        
         /* Poster Carousel Mobile Responsive Fixes */
         @media (max-width: 640px) {
             /* Mobile poster carousel container adjustments */
@@ -4279,25 +4293,34 @@
             }
         }
         
-        // Touch/swipe support
+        // Touch/swipe support - Desktop only for enhanced interaction
         function setupTouchSupport(carouselId) {
             const carousel = document.getElementById(carouselId);
             if (!carousel) return;
             
+            // Only enable custom touch handling on desktop/tablet, let mobile use native scrolling
+            if (window.innerWidth <= 768) {
+                return; // Skip custom touch handling on mobile - use CSS only
+            }
+            
             let startX, scrollLeft, isDown = false;
             
             const handleStart = (e) => {
+                // Only handle mouse events on desktop
+                if (e.type === 'touchstart') return;
+                
                 isDown = true;
                 isUserInteracting = true;
-                startX = (e.pageX || e.touches[0].pageX) - carousel.offsetLeft;
+                startX = e.pageX - carousel.offsetLeft;
                 scrollLeft = carousel.scrollLeft;
                 carousel.style.cursor = 'grabbing';
             };
             
             const handleMove = (e) => {
-                if (!isDown) return;
+                if (!isDown || e.type === 'touchmove') return;
+                
                 e.preventDefault();
-                const x = (e.pageX || e.touches[0].pageX) - carousel.offsetLeft;
+                const x = e.pageX - carousel.offsetLeft;
                 const walk = (x - startX) * 1.5;
                 carousel.scrollLeft = scrollLeft - walk;
             };
@@ -4308,16 +4331,11 @@
                 carousel.style.cursor = 'grab';
             };
             
-            // Mouse events
+            // Only mouse events for desktop interaction
             carousel.addEventListener('mousedown', handleStart);
             carousel.addEventListener('mousemove', handleMove);
             carousel.addEventListener('mouseup', handleEnd);
             carousel.addEventListener('mouseleave', handleEnd);
-            
-            // Touch events
-            carousel.addEventListener('touchstart', handleStart, { passive: true });
-            carousel.addEventListener('touchmove', handleMove, { passive: false });
-            carousel.addEventListener('touchend', handleEnd);
             
             // Set initial cursor
             carousel.style.cursor = 'grab';

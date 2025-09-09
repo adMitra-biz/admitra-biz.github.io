@@ -1004,17 +1004,49 @@
             pointer-events: none;
         }
         
-        /* Enhanced play button */
+        /* Enhanced play button with ultra-transparent glossy effect */
         .play-button-enhanced {
-            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
-            box-shadow: 0 4px 16px rgba(91, 153, 255, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            /* Very minimal shadow for visibility */
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Ultra-subtle glossy highlight effect */
+        .play-button-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
         
         .play-button-enhanced:hover {
-            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
-            box-shadow: 0 8px 24px rgba(91, 153, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 4px 12px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(var(--primary-rgb), 0.15);
+            transform: scale(1.02);
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        /* Animate glossy highlight on hover */
+        .play-button-enhanced:hover::before {
+            transform: translateX(100%);
         }
         
         /* Card corner accents */
@@ -1255,16 +1287,46 @@
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Ensure clean reset of transforms */
+        #mobile-menu-btn:not(:hover):not(:active):not(:focus) {
+            transform: none;
         }
         
         #mobile-menu-btn:hover {
             background-color: var(--primary-50);
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 4px 15px rgba(var(--primary-500-rgb), 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+        }
+        
+        /* Remove hover effects on touch devices to prevent stuck states */
+        @media (hover: none) and (pointer: coarse) {
+            #mobile-menu-btn:hover {
+                background-color: initial;
+                transform: none;
+                box-shadow: none;
+            }
         }
         
         #mobile-menu-btn:active {
             transform: scale(0.95);
+        }
+        
+        /* Focus state for accessibility */
+        #mobile-menu-btn:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
+        }
+        
+        /* Touch feedback for mobile devices */
+        @media (hover: none) and (pointer: coarse) {
+            #mobile-menu-btn:active {
+                background-color: var(--primary-100);
+                transform: scale(0.98);
+            }
         }
         
         /* Menu button icon rotation animation */
@@ -1290,7 +1352,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(var(--primary-500-rgb), 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.1), transparent);
             transition: left 0.6s ease-in-out;
         }
         
@@ -2497,11 +2559,11 @@
         <!-- Posters Carousel (Full Width Style) - Now outside constrained container -->
         <div id="posters-content" class="carousel-content hidden w-full relative mt-6" style="overflow: hidden;">
         <!-- Navigation Arrows -->
-        <button onclick="scrollCarousel('posters-carousel', 'left')" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110">
-            <span class="material-symbols-outlined text-gray-700">chevron_left</span>
+        <button onclick="scrollCarousel('posters-carousel', 'left')" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
+            <span class="material-symbols-outlined text-white">chevron_left</span>
         </button>
-        <button onclick="scrollCarousel('posters-carousel', 'right')" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110">
-            <span class="material-symbols-outlined text-gray-700">chevron_right</span>
+        <button onclick="scrollCarousel('posters-carousel', 'right')" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
+            <span class="material-symbols-outlined text-white">chevron_right</span>
         </button>
         
         <!-- Scroll container -->
@@ -2675,11 +2737,11 @@
         <!-- Videos Carousel (Full Width Style) - Now inside product section but outside constrained container -->
         <div id="videos-content" class="carousel-content w-full relative mt-6" style="overflow: hidden;">
         <!-- Navigation Arrows -->
-        <button onclick="scrollCarousel('videos-carousel', 'left')" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110">
-            <span class="material-symbols-outlined text-gray-700">chevron_left</span>
+        <button onclick="scrollCarousel('videos-carousel', 'left')" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
+            <span class="material-symbols-outlined text-white">chevron_left</span>
         </button>
-        <button onclick="scrollCarousel('videos-carousel', 'right')" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-white transition-all duration-200 hover:scale-110">
-            <span class="material-symbols-outlined text-gray-700">chevron_right</span>
+        <button onclick="scrollCarousel('videos-carousel', 'right')" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
+            <span class="material-symbols-outlined text-white">chevron_right</span>
         </button>
         
         <!-- Scroll container -->
@@ -4285,6 +4347,35 @@
                 e.preventDefault();
                 e.stopPropagation();
                 toggleMobileMenu();
+            });
+            
+            // Touch event handlers to prevent stuck hover states
+            mobileMenuBtn.addEventListener('touchstart', function(e) {
+                // Force remove any hover classes that might be stuck
+                mobileMenuBtn.blur();
+                mobileMenuBtn.style.transform = '';
+            });
+            
+            mobileMenuBtn.addEventListener('touchend', function(e) {
+                // Ensure clean state after touch
+                setTimeout(() => {
+                    mobileMenuBtn.blur();
+                    mobileMenuBtn.style.transform = '';
+                }, 100);
+            });
+            
+            // Additional cleanup for various edge cases
+            mobileMenuBtn.addEventListener('touchcancel', function(e) {
+                mobileMenuBtn.blur();
+                mobileMenuBtn.style.transform = '';
+            });
+            
+            // Clean up on orientation change
+            window.addEventListener('orientationchange', function() {
+                setTimeout(() => {
+                    mobileMenuBtn.blur();
+                    mobileMenuBtn.style.transform = '';
+                }, 200);
             });
             
             // Close menu when clicking on backdrop

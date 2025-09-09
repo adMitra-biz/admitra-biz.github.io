@@ -2692,6 +2692,144 @@
 
             </div>
         </div>
+
+        <div id="videos-content" class="carousel-content w-full relative mt-6" style="overflow: hidden;">
+            <!-- Navigation Arrows -->
+            <button onclick="scrollCarousel('videos-carousel', 'left')" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
+                <span class="material-symbols-outlined text-white">chevron_left</span>
+            </button>
+            <button onclick="scrollCarousel('videos-carousel', 'right')" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
+                <span class="material-symbols-outlined text-white">chevron_right</span>
+            </button>
+            
+            <!-- Scroll container -->
+            <div id="videos-carousel" class="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth touch-pan-x px-4" style="scroll-behavior: smooth; scroll-snap-type: x mandatory;">
+                <!-- Video 4: Product Highlight Campaign -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_ProductHighlightCampaign.mp4')">
+                    <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                           playsinline webkit-playsinline 
+                           disablepictureinpicture
+                           x-webkit-airplay="deny"
+                           style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_ProductHighlightCampaign.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Product Highlight Campaign</p>
+                        <p class="text-xs opacity-80">Feature-focused Ad</p>
+                    </div>
+                </div>
+    
+                <!-- Video 3: Kaspersky Next EDR -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4')">
+                    <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                           playsinline webkit-playsinline 
+                           disablepictureinpicture
+                           x-webkit-airplay="deny"
+                           style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Kaspersky Next EDR</p>
+                        <p class="text-xs opacity-80">Cybersecurity Solution</p>
+                    </div>
+                </div>
+    
+                <!-- Video 1: Adiva Salon x Schwarzkopf -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4')">
+                    <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                           playsinline webkit-playsinline 
+                           disablepictureinpicture
+                           x-webkit-airplay="deny"
+                           style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Adiva Salon x Schwarzkopf</p>
+                        <p class="text-xs opacity-80">Co-branded Beauty Campaign</p>
+                    </div>
+                </div>
+                
+                <!-- Video 2: Ganesh Chaturthi Campaign -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4')">
+                    <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                           playsinline webkit-playsinline 
+                           disablepictureinpicture
+                           x-webkit-airplay="deny"
+                           style="object-position: center;">
+                        <source src="static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Ganesh Chaturthi Campaign</p>
+                        <p class="text-xs opacity-80">Festival Co-branded Ad</p>
+                    </div>
+                </div>
+                
+                <!-- Video 5: Sai Tanushri Automobiles -->
+                <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4')">
+                    <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                           playsinline webkit-playsinline 
+                           disablepictureinpicture
+                           x-webkit-airplay="deny"
+                           style="object-position: center;">
+                        <source src="static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="card-accent-strip"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-semibold">Sai Tanushri Automobiles</p>
+                        <p class="text-xs opacity-80">Generated Dealer Video</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <!-- Posters Carousel (Full Width Style) - Now outside constrained container -->
         <div id="posters-content" class="carousel-content hidden w-full relative mt-6" style="overflow: hidden;">
@@ -2872,143 +3010,7 @@
     </div>
         
         <!-- Videos Carousel (Full Width Style) - Now inside product section but outside constrained container -->
-        <div id="videos-content" class="carousel-content w-full relative mt-6" style="overflow: hidden;">
-        <!-- Navigation Arrows -->
-        <button onclick="scrollCarousel('videos-carousel', 'left')" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
-            <span class="material-symbols-outlined text-white">chevron_left</span>
-        </button>
-        <button onclick="scrollCarousel('videos-carousel', 'right')" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/20 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-black/30 transition-all duration-200 hover:scale-110">
-            <span class="material-symbols-outlined text-white">chevron_right</span>
-        </button>
-        
-        <!-- Scroll container -->
-        <div id="videos-carousel" class="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth touch-pan-x px-4" style="scroll-behavior: smooth; scroll-snap-type: x mandatory;">
-            <!-- Video 4: Product Highlight Campaign -->
-            <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_ProductHighlightCampaign.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
-                       playsinline webkit-playsinline 
-                       disablepictureinpicture
-                       x-webkit-airplay="deny"
-                       style="object-position: center;">
-                    <source src="static/brand_videos/Cobranded_ProductHighlightCampaign.mp4" type="video/mp4">
-                </video>
-                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
-                    <div class="spinner"></div>
-                </div>
-                <div class="card-accent-strip"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                        <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p class="text-sm font-semibold">Product Highlight Campaign</p>
-                    <p class="text-xs opacity-80">Feature-focused Ad</p>
-                </div>
-            </div>
 
-            <!-- Video 3: Kaspersky Next EDR -->
-            <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
-                       playsinline webkit-playsinline 
-                       disablepictureinpicture
-                       x-webkit-airplay="deny"
-                       style="object-position: center;">
-                    <source src="static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4" type="video/mp4">
-                </video>
-                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
-                    <div class="spinner"></div>
-                </div>
-                <div class="card-accent-strip"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                        <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p class="text-sm font-semibold">Kaspersky Next EDR</p>
-                    <p class="text-xs opacity-80">Cybersecurity Solution</p>
-                </div>
-            </div>
-
-            <!-- Video 1: Adiva Salon x Schwarzkopf -->
-            <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
-                       playsinline webkit-playsinline 
-                       disablepictureinpicture
-                       x-webkit-airplay="deny"
-                       style="object-position: center;">
-                    <source src="static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4" type="video/mp4">
-                </video>
-                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
-                    <div class="spinner"></div>
-                </div>
-                <div class="card-accent-strip"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                        <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p class="text-sm font-semibold">Adiva Salon x Schwarzkopf</p>
-                    <p class="text-xs opacity-80">Co-branded Beauty Campaign</p>
-                </div>
-            </div>
-            
-            <!-- Video 2: Ganesh Chaturthi Campaign -->
-            <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
-                       playsinline webkit-playsinline 
-                       disablepictureinpicture
-                       x-webkit-airplay="deny"
-                       style="object-position: center;">
-                    <source src="static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4" type="video/mp4">
-                </video>
-                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
-                    <div class="spinner"></div>
-                </div>
-                <div class="card-accent-strip"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                        <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p class="text-sm font-semibold">Ganesh Chaturthi Campaign</p>
-                    <p class="text-xs opacity-80">Festival Co-branded Ad</p>
-                </div>
-            </div>
-            
-            <!-- Video 5: Sai Tanushri Automobiles -->
-            <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
-                       playsinline webkit-playsinline 
-                       disablepictureinpicture
-                       x-webkit-airplay="deny"
-                       style="object-position: center;">
-                    <source src="static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4" type="video/mp4">
-                </video>
-                <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
-                    <div class="spinner"></div>
-                </div>
-                <div class="card-accent-strip"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 play-button-enhanced rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                        <span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p class="text-sm font-semibold">Sai Tanushri Automobiles</p>
-                    <p class="text-xs opacity-80">Generated Dealer Video</p>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <!-- How It Works Section - Now inside product section -->
     <div class="py-4">

@@ -2146,6 +2146,7 @@
         @media (max-width: 768px) {
             #videoModal {
                 padding: 0;
+                z-index: 60 !important;
             }
             
             #videoModal video {
@@ -2160,7 +2161,59 @@
             #videoModal .absolute.top-4.right-4 {
                 top: env(safe-area-inset-top, 1rem);
                 right: env(safe-area-inset-right, 1rem);
-                z-index: 30;
+                z-index: 70;
+            }
+        }
+        
+        /* iOS-specific video modal styles */
+        @supports (-webkit-touch-callout: none) {
+            #videoModal {
+                z-index: 60 !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                background: black !important;
+            }
+            
+            #videoModal video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw !important;
+                height: 100vh !important;
+                object-fit: contain;
+                z-index: 61;
+                /* Force inline playback on iOS */
+                -webkit-playsinline: true;
+                /* Prevent fullscreen button */
+                -webkit-video-fullscreen-button: none;
+                /* Disable airplay */
+                -webkit-airplay: disabled;
+            }
+            
+            #videoModal .absolute {
+                position: fixed !important;
+                top: env(safe-area-inset-top, 20px) !important;
+                right: env(safe-area-inset-right, 20px) !important;
+                z-index: 70 !important;
+            }
+            
+            /* Hide navigation when video modal is open on iOS */
+            body.video-modal-open nav {
+                z-index: 40 !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                transition: opacity 0.3s ease !important;
+            }
+            
+            /* Prevent iOS double-tap zoom on video */
+            #videoModal video {
+                touch-action: manipulation;
+                user-select: none;
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
             }
         }
         
@@ -2327,6 +2380,7 @@
                 gap: 1rem !important;
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
+                padding-bottom: 1rem !important; /* Reduce bottom padding to match video carousel visual spacing */
             }
             
             /* Mobile poster card sizing - fit within screen */
@@ -2379,6 +2433,7 @@
                 gap: 0.75rem !important;
                 padding-left: 0.75rem !important;
                 padding-right: 0.75rem !important;
+                padding-bottom: 0.75rem !important; /* Reduce bottom padding for extra small mobile */
             }
         }
         
@@ -2748,7 +2803,11 @@
         <div id="videos-carousel" class="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth touch-pan-x px-4" style="scroll-behavior: smooth; scroll-snap-type: x mandatory;">
             <!-- Video 4: Product Highlight Campaign -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_ProductHighlightCampaign.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                       playsinline webkit-playsinline 
+                       disablepictureinpicture
+                       x-webkit-airplay="deny"
+                       style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_ProductHighlightCampaign.mp4" type="video/mp4">
                 </video>
                 <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -2769,7 +2828,11 @@
 
             <!-- Video 3: Kaspersky Next EDR -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                       playsinline webkit-playsinline 
+                       disablepictureinpicture
+                       x-webkit-airplay="deny"
+                       style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_KasperskyNextEDROptimum.mp4" type="video/mp4">
                 </video>
                 <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -2790,7 +2853,11 @@
 
             <!-- Video 1: Adiva Salon x Schwarzkopf -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                       playsinline webkit-playsinline 
+                       disablepictureinpicture
+                       x-webkit-airplay="deny"
+                       style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_AdivaSalonSchwarzkopf.mp4" type="video/mp4">
                 </video>
                 <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -2811,7 +2878,11 @@
             
             <!-- Video 2: Ganesh Chaturthi Campaign -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                       playsinline webkit-playsinline 
+                       disablepictureinpicture
+                       x-webkit-airplay="deny"
+                       style="object-position: center;">
                     <source src="static/brand_videos/Cobranded_GaneshChaturthiCampaign.mp4" type="video/mp4">
                 </video>
                 <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -2832,7 +2903,11 @@
             
             <!-- Video 5: Sai Tanushri Automobiles -->
             <div class="group relative rounded-xl media-card video-card flex-shrink-0 snap-start" style="width: 480px; height: 225px;" onclick="playVideo('static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4')">
-                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted playsinline webkit-playsinline style="object-position: center;">
+                <video class="w-full h-full object-cover video-with-loader" preload="metadata" muted 
+                       playsinline webkit-playsinline 
+                       disablepictureinpicture
+                       x-webkit-airplay="deny"
+                       style="object-position: center;">
                     <source src="static/brand_videos/sai_tanushri_automobiles_7deba698-012b-45fb-b478-bf20738690a4_generated-videos_ad_video_aa414ccc-ae93-4ddd-b631-6acaadd331d8_794d7cca-341f-4ad4-bf13-6945c8e12eb5.mp4" type="video/mp4">
                 </video>
                 <div class="video-loader absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -3084,7 +3159,7 @@
     </div>
     
     <!-- Modal for Full-Screen Video View - Inside AI in Action Section -->
-    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden flex items-center justify-center" onclick="closeVideoModal()">
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-[60] hidden flex items-center justify-center" onclick="closeVideoModal()">
         <div class="relative w-full h-full flex items-center justify-center">
             <!-- Close Button - Enhanced for mobile -->
             <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-60 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-opacity-80 transition-all z-20 backdrop-blur-sm border border-white border-opacity-20">
@@ -3092,7 +3167,11 @@
             </button>
             
             <!-- Video Player - Full screen on mobile -->
-            <video id="modalVideo" class="w-full h-full object-contain" controls autoplay onclick="event.stopPropagation()" style="max-width: 100vw; max-height: 100vh;">
+            <video id="modalVideo" class="w-full h-full object-contain" controls autoplay onclick="event.stopPropagation()" 
+                   style="max-width: 100vw; max-height: 100vh;"
+                   playsinline webkit-playsinline
+                   disablepictureinpicture
+                   x-webkit-airplay="deny">
                 <source id="modalVideoSource" src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -4187,39 +4266,77 @@
             const modal = document.getElementById('videoModal');
             const modalVideo = document.getElementById('modalVideo');
             const modalVideoSource = document.getElementById('modalVideoSource');
+            const nav = document.querySelector('nav');
             
             if (modal && modalVideo && modalVideoSource) {
+                // Set iOS-specific attributes to prevent native fullscreen
+                modalVideo.setAttribute('playsinline', '');
+                modalVideo.setAttribute('webkit-playsinline', '');
+                modalVideo.setAttribute('disablepictureinpicture', '');
+                modalVideo.setAttribute('x-webkit-airplay', 'deny');
+                
+                // Prevent fullscreen API usage on iOS
+                if (modalVideo.webkitEnterFullscreen) {
+                    modalVideo.webkitEnterFullscreen = function() {
+                        console.log('Blocked webkitEnterFullscreen');
+                        return false;
+                    };
+                }
+                
                 modalVideoSource.src = videoSrc;
                 modalVideo.load(); // Reload the video with new source
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 
-                // Enhanced body scroll prevention for mobile
+                // Enhanced body scroll prevention for mobile - same as poster modal
                 document.body.classList.add('video-modal-open');
                 document.body.style.overflow = 'hidden';
+                
+                // Force navigation to be hidden on iOS
+                if (nav) {
+                    nav.style.zIndex = '40';
+                    nav.style.opacity = '0';
+                    nav.style.pointerEvents = 'none';
+                }
+                
+                // Force modal to highest z-index
+                modal.style.zIndex = '9999';
                 
                 // Add escape key listener
                 document.addEventListener('keydown', handleVideoModalEscape);
                 
                 // Auto-play and focus for better UX
-                modalVideo.play().catch(e => {
-                    console.log('Auto-play prevented:', e);
-                });
+                setTimeout(() => {
+                    modalVideo.play().catch(e => {
+                        console.log('Auto-play prevented:', e);
+                    });
+                }, 100);
             }
         }
         
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
             const modalVideo = document.getElementById('modalVideo');
+            const nav = document.querySelector('nav');
             
             if (modal && modalVideo) {
                 modalVideo.pause();
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 
-                // Restore body scroll
+                // Restore body scroll - same as poster modal
                 document.body.classList.remove('video-modal-open');
                 document.body.style.overflow = '';
+                
+                // Restore navigation visibility
+                if (nav) {
+                    nav.style.zIndex = '50';
+                    nav.style.opacity = '';
+                    nav.style.pointerEvents = '';
+                }
+                
+                // Reset modal z-index
+                modal.style.zIndex = '';
                 
                 // Remove escape key listener
                 document.removeEventListener('keydown', handleVideoModalEscape);
@@ -4243,6 +4360,12 @@
             const modalVideo = document.getElementById('modalVideo');
             
             if (modalVideo) {
+                // Set iOS-specific attributes at initialization
+                modalVideo.setAttribute('playsinline', '');
+                modalVideo.setAttribute('webkit-playsinline', '');
+                modalVideo.setAttribute('disablepictureinpicture', '');
+                modalVideo.setAttribute('x-webkit-airplay', 'deny');
+                
                 // Handle video load events
                 modalVideo.addEventListener('loadstart', function() {
                     console.log('Video loading started');
@@ -4258,6 +4381,24 @@
                     closeVideoModal();
                 });
                 
+                // Prevent iOS fullscreen behavior
+                modalVideo.addEventListener('webkitbeginfullscreen', function(e) {
+                    console.log('Blocking iOS fullscreen attempt');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                });
+                
+                modalVideo.addEventListener('webkitendfullscreen', function(e) {
+                    console.log('iOS fullscreen ended - keeping modal open');
+                    // Ensure modal stays visible
+                    const modal = document.getElementById('videoModal');
+                    if (modal) {
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                    }
+                });
+                
                 // Handle fullscreen changes (for browsers that support it)
                 modalVideo.addEventListener('fullscreenchange', function() {
                     console.log('Fullscreen changed');
@@ -4265,6 +4406,12 @@
                 
                 // Prevent video click from closing modal
                 modalVideo.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+                
+                // Additional iOS-specific prevention
+                modalVideo.addEventListener('touchstart', function(e) {
+                    // Prevent double-tap to fullscreen on iOS
                     e.stopPropagation();
                 });
             }

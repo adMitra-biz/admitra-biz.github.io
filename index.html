@@ -1546,6 +1546,8 @@
         .to-primary-200 { --tw-gradient-to: var(--primary-200) !important; }
         .from-secondary-100 { --tw-gradient-from: var(--secondary-100) !important; }
         .to-secondary-100 { --tw-gradient-to: var(--secondary-100) !important; }
+        .to-secondary-200 { --tw-gradient-to: var(--secondary-200) !important; }
+        .border-secondary-200 { border-color: var(--secondary-200) !important; }
         
         /* Hover states */
         .hover\\:bg-primary-50:hover { background-color: var(--primary-50) !important; }
@@ -2647,18 +2649,44 @@
                     </button>
                 </div>
                 
-                <div class="mt-8 sm:mt-12 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-8 text-gray-500 text-xs sm:text-sm">
-                    <div class="flex items-center gap-1 sm:gap-2">
-                        <span class="material-symbols-outlined text-success-500 text-base sm:text-xl">check_circle</span>
-                        <span class="whitespace-nowrap">No credit card required</span>
+                <!-- Why Hyperlocal & Co-branded - Integrated Design -->
+                <div class="mt-10 sm:mt-12 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-center sm:gap-6 lg:gap-10 px-4 sm:px-0">
+                    <!-- Hyperlocal -->
+                    <div class="group flex flex-col sm:flex-row items-center text-center sm:text-left gap-3 sm:gap-2 transition-all duration-300">
+                        <div class="relative flex-shrink-0">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-primary-600/20 rounded-full blur-lg group-hover:blur-xl transition-all duration-300 scale-125"></div>
+                            <div class="relative w-12 h-12 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full bg-gradient-to-br from-primary-50/60 to-primary-100/40 backdrop-blur-sm flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-600 text-xl sm:text-lg">location_on</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex flex-col sm:inline">
+                                <span class="font-semibold text-base sm:text-sm text-gray-800 group-hover:text-primary-700 transition-colors sm:mr-1.5">3x higher engagement</span>
+                                <span class="text-sm sm:text-sm text-gray-500 sm:inline">when customers see hyperlocal content</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-1 sm:gap-2">
-                        <span class="material-symbols-outlined text-success-500 text-base sm:text-xl">check_circle</span>
-                        <span class="whitespace-nowrap">14-day free trial</span>
+                    
+                    <!-- Separator - Mobile: Horizontal line, Desktop: Vertical line -->
+                    <div class="flex items-center justify-center sm:hidden w-full">
+                        <div class="h-px w-16 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
                     </div>
-                    <div class="flex items-center gap-1 sm:gap-2">
-                        <span class="material-symbols-outlined text-success-500 text-base sm:text-xl">check_circle</span>
-                        <span class="whitespace-nowrap">Cancel anytime</span>
+                    <div class="hidden sm:block w-px h-5 lg:h-6 bg-gradient-to-b from-transparent via-gray-300/60 to-transparent flex-shrink-0"></div>
+                    
+                    <!-- Co-branded -->
+                    <div class="group flex flex-col sm:flex-row items-center text-center sm:text-left gap-3 sm:gap-2 transition-all duration-300">
+                        <div class="relative flex-shrink-0">
+                            <div class="absolute inset-0 bg-gradient-to-br from-secondary-400/20 to-secondary-600/20 rounded-full blur-lg group-hover:blur-xl transition-all duration-300 scale-125"></div>
+                            <div class="relative w-12 h-12 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full bg-gradient-to-br from-secondary-50/60 to-secondary-100/40 backdrop-blur-sm flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary-600 text-xl sm:text-lg">handshake</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex flex-col sm:inline">
+                                <span class="font-semibold text-base sm:text-sm text-gray-800 group-hover:text-secondary-700 transition-colors sm:mr-1.5">5x more dealer shares</span>
+                                <span class="text-sm sm:text-sm text-gray-500 sm:inline">with co-branded advertising</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

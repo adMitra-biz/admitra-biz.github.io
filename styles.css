@@ -1963,23 +1963,6 @@
             position: relative;
         }
         
-        /* Add dividing line between paths on desktop */
-        @media (min-width: 1024px) {
-            .split-paths::before {
-                content: '';
-                position: absolute;
-                left: 50%;
-                top: 0;
-                bottom: 0;
-                width: 1px;
-                background: linear-gradient(to bottom, 
-                    transparent 0%, 
-                    var(--gray-200) 20%, 
-                    var(--gray-200) 80%, 
-                    transparent 100%);
-                transform: translateX(-50%);
-            }
-        }
         
         /* Path containers */
         .path-container {
@@ -2517,5 +2500,115 @@
             .poster-card {
                 width: 240px !important;
                 height: 360px !important;
+            }
+        }
+        
+        /* Flexibility section: center single flow and increase card sizes/typography */
+        #flexibility .split-paths {
+            place-items: center;
+        }
+        
+        /* Smooth transitions for flow containers */
+        #flexibility .path-container {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        #flexibility .path-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        #flexibility .path-container:not(.hidden) {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        
+        /* Enhanced toggle styling for flexibility section */
+        #flexibility .button-group-toggle {
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
+            border: 2px solid var(--primary-100);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        
+        #flexibility .tab-pill {
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            min-width: 120px;
+            padding: 12px 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        #flexibility .tab-pill .material-symbols-outlined {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        #flexibility .tab-pill.active .material-symbols-outlined {
+            transform: scale(1.05);
+        }
+        
+        /* Mobile responsive adjustments for flexibility toggle */
+        @media (max-width: 640px) {
+            #flexibility .tab-pill {
+                min-width: 100px;
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+            
+            #flexibility .tab-pill .material-symbols-outlined {
+                font-size: 18px;
+            }
+        }
+        
+        #flexibility .path-container {
+            width: 100%;
+            max-width: 880px;
+        }
+        
+        #flexibility .path-step .bg-white {
+            padding: 1.75rem;
+        }
+        
+        #flexibility .path-step h5 {
+            font-size: 1.25rem; /* ~20px */
+            line-height: 1.4;
+        }
+        
+        #flexibility .path-step p.text-sm {
+            font-size: 1rem; /* ~16px override */
+            line-height: 1.6;
+        }
+        
+        /* Result box padding bump */
+        #flexibility .path-container > div:last-child {
+            padding: 1.25rem;
+        }
+        
+        /* Slightly larger section helper text */
+        #flexibility .path-header p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 1024px) {
+            #flexibility .path-container {
+                max-width: 960px;
+            }
+            #flexibility .path-step .bg-white {
+                padding: 2rem;
+            }
+            #flexibility .path-step h5 {
+                font-size: 1.375rem; /* ~22px */
+            }
+            #flexibility .path-step p.text-sm {
+                font-size: 1.0625rem; /* ~17px */
+            }
+            #flexibility .path-container > div:last-child {
+                padding: 1.5rem;
             }
         }

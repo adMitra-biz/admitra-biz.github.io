@@ -2653,19 +2653,7 @@
             box-shadow: none;
         }
         
-        /* Keep numbered icons consistent on hover */
-        .workflow-tab:hover .bg-gradient-to-br {
-            background: linear-gradient(to bottom right, var(--primary-100), var(--primary-200)) !important;
-        }
-        
-        .workflow-tab:hover .material-symbols-outlined {
-            color: var(--primary-600) !important;
-        }
-        
-        .workflow-tab:hover .bg-primary-500 {
-            background-color: var(--primary-500) !important;
-            color: white !important;
-        }
+        /* Remove hover effects on icon backgrounds to prevent white background appearance */
         
         .workflow-tab::before {
             display: none;

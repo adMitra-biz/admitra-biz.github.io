@@ -2351,6 +2351,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeCarousels();
             fixiOSVideoDisplay();
+            
+            // Ensure workflow toggle renders properly on mobile
+            const workflowToggle = document.getElementById('workflow-toggle-group');
+            if (workflowToggle && window.innerWidth <= 640) {
+                // Force a small repaint to ensure mobile styles are applied
+                requestAnimationFrame(() => {
+                    workflowToggle.style.display = 'flex';
+                });
+            }
         });
         
         // Also fix on window load for any remaining assets

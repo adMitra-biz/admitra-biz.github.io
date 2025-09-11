@@ -2499,9 +2499,12 @@
             overflow: hidden;
             max-width: 100%;
             width: auto;
+            /* Ensure stable initial rendering */
+            opacity: 1;
+            visibility: visible;
         }
         
-        /* Mobile vertical layout */
+        /* Mobile vertical layout - with loading stability */
         @media (max-width: 640px) {
             .workflow-toggle-group {
                 flex-direction: column;
@@ -2509,6 +2512,9 @@
                 padding: 4px;
                 max-width: 280px;
                 margin: 0 auto;
+                /* Ensure stable rendering during CSS loading */
+                min-height: 200px;
+                transition: all 0.2s ease-out;
             }
         }
         
@@ -2539,7 +2545,7 @@
             transform: translateX(calc(300% + 18px));
         }
         
-        /* Mobile vertical indicator */
+        /* Mobile vertical indicator - with loading safety */
         @media (max-width: 640px) {
             .workflow-toggle-group::before {
                 top: 4px;
@@ -2547,6 +2553,9 @@
                 height: calc(25% - 6px);
                 width: calc(100% - 8px);
                 border-radius: 16px;
+                /* Prevent flicker during loading */
+                will-change: transform;
+                backface-visibility: hidden;
             }
             
             .workflow-toggle-group.step2-active::before {

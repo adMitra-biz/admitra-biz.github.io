@@ -2298,6 +2298,11 @@
             z-index: 2;
         }
         
+        /* Ensure play button stays on top of loaded videos */
+        .video-card .absolute.inset-0.flex.items-center.justify-center {
+            z-index: 3;
+        }
+        
         /* iOS Safari specific fixes */
         @supports (-webkit-touch-callout: none) {
             /* This targets iOS Safari specifically */

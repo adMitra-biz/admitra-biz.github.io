@@ -2522,7 +2522,7 @@
             }
         }
         
-        /* Workflow Toggle Styles - Match video/poster carousel exactly */
+        /* Workflow Toggle Styles - Stable loading with no transitions during initialization */
         .workflow-toggle-group {
             display: flex;
             background: var(--bg-secondary);
@@ -2534,12 +2534,15 @@
             overflow: hidden;
             max-width: 100%;
             width: auto;
-            /* Ensure stable initial rendering */
+            /* Ensure stable initial rendering - no transitions during CSS loading */
             opacity: 1;
             visibility: visible;
+            /* Prevent layout shift during loading */
+            contain: layout;
+            will-change: auto;
         }
         
-        /* Mobile vertical layout - with loading stability */
+        /* Mobile vertical layout - stable loading */
         @media (max-width: 640px) {
             .workflow-toggle-group {
                 flex-direction: column;
@@ -2547,8 +2550,14 @@
                 padding: 4px;
                 max-width: 280px;
                 margin: 0 auto;
-                /* Ensure stable rendering during CSS loading */
+                /* Stable height to prevent layout shift */
                 min-height: 200px;
+                /* No transitions during initial load - will be added via JS when ready */
+                transition: none;
+            }
+            
+            /* Only enable transitions after CSS is fully loaded */
+            .workflow-toggle-group.css-loaded {
                 transition: all 0.2s ease-out;
             }
         }

@@ -2704,12 +2704,10 @@
         }
         
         #flexibility .path-step h5 {
-            font-size: 1.25rem; /* ~20px */
             line-height: 1.4;
         }
         
         #flexibility .path-step p.text-sm {
-            font-size: 1rem; /* ~16px override */
             line-height: 1.6;
         }
         
@@ -2732,10 +2730,10 @@
                 padding: 2rem;
             }
             #flexibility .path-step h5 {
-                font-size: 1.375rem; /* ~22px */
+                line-height: 1.4;
             }
             #flexibility .path-step p.text-sm {
-                font-size: 1.0625rem; /* ~17px */
+                line-height: 1.6;
             }
             #flexibility .path-container > div:last-child {
                 padding: 1.5rem;

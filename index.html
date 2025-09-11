@@ -1616,10 +1616,8 @@
                 
                 // Show poster content with animation
                 postersContent.classList.remove('hidden');
-                // Add fade-in animation after a brief delay to ensure display change is processed
-                setTimeout(() => {
-                    postersContent.classList.add('fade-in');
-                }, 10);
+                // Add fade-in animation immediately
+                postersContent.classList.add('fade-in');
                 
             } else if (type === 'videos') {
                 // Update tab styles
@@ -1634,10 +1632,8 @@
                 
                 // Show video content with animation
                 videosContent.classList.remove('hidden');
-                // Add fade-in animation after a brief delay to ensure display change is processed
-                setTimeout(() => {
-                    videosContent.classList.add('fade-in');
-                }, 10);
+                // Add fade-in animation immediately
+                videosContent.classList.add('fade-in');
             }
         }
 
@@ -1668,10 +1664,7 @@
                 // Show/hide content
                 brandFlow.classList.add('hidden');
                 dealerFlow.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    dealerFlow.classList.add('fade-in');
-                }, 10);
+                dealerFlow.classList.add('fade-in');
             } else {
                 // Default to brand
                 brandTab.classList.add('active');
@@ -1683,10 +1676,7 @@
                 
                 dealerFlow.classList.add('hidden');
                 brandFlow.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    brandFlow.classList.add('fade-in');
-                }, 10);
+                brandFlow.classList.add('fade-in');
             }
         }
         
@@ -1838,11 +1828,9 @@
                 document.addEventListener('keydown', handleVideoModalEscape);
                 
                 // Auto-play and focus for better UX
-                setTimeout(() => {
-                    modalVideo.play().catch(e => {
-                        console.log('Auto-play prevented:', e);
-                    });
-                }, 100);
+                modalVideo.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                });
             }
         }
         
@@ -2037,10 +2025,8 @@
             
             mobileMenuBtn.addEventListener('touchend', function(e) {
                 // Ensure clean state after touch
-                setTimeout(() => {
-                    mobileMenuBtn.blur();
-                    mobileMenuBtn.style.transform = '';
-                }, 100);
+                mobileMenuBtn.blur();
+                mobileMenuBtn.style.transform = '';
             });
             
             // Additional cleanup for various edge cases
@@ -2051,10 +2037,8 @@
             
             // Clean up on orientation change
             window.addEventListener('orientationchange', function() {
-                setTimeout(() => {
-                    mobileMenuBtn.blur();
-                    mobileMenuBtn.style.transform = '';
-                }, 200);
+                mobileMenuBtn.blur();
+                mobileMenuBtn.style.transform = '';
             });
             
             // Close menu when clicking on backdrop
@@ -2351,14 +2335,13 @@
             }, 250);
         });
         
-        // Initialize when page loads
-        setTimeout(() => {
+        // Initialize immediately when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
             initializeCarousels();
-            // Fix iOS video display issues
             fixiOSVideoDisplay();
-        }, 1000);
+        });
         
-        // Also fix on window load (in case timeout is too early)
+        // Also fix on window load for any remaining assets
         window.addEventListener('load', fixiOSVideoDisplay);
     </script>
 </body>

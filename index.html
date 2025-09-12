@@ -98,7 +98,8 @@
                 </div>
                 <h1 class="text-3xl sm:text-5xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight display-font">
                     The AI Platform <br>
-                    <span class="gradient-text">Making Every Ad Personal</span>
+                    <span class="gradient-text">Making Every Ad</span><br>
+                    <span class="gradient-text"><span id="animated-word">Hyperlocal</span></span>
                 </h1>
                 
                 <p class="text-base sm:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-3xl mx-auto px-2 sm:px-0">
@@ -1671,6 +1672,26 @@
                     });
                 }
             });
+        });
+        
+        // Text switching for hero title - no animation, just instant change
+        function initTextSwitching() {
+            const animatedWord = document.getElementById('animated-word');
+            const words = ['Hyperlocal', 'Personal', 'Lovable'];
+            let currentIndex = 0;
+            
+            function switchToNextWord() {
+                currentIndex = (currentIndex + 1) % words.length;
+                animatedWord.textContent = words[currentIndex];
+            }
+            
+            // Switch word every 3 seconds - instant change, no animation
+            setInterval(switchToNextWord, 3000);
+        }
+        
+        // Initialize text switching when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initTextSwitching();
         });
         
         // Tab switching functionality - Industry standard implementation

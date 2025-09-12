@@ -2479,6 +2479,25 @@
             }
         }
 
+        /* Clean Typewriter Effect - No Cursor */
+        .typewriter-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typewriter-text {
+            white-space: nowrap;
+            display: inline-block;
+            height: 1.2em; /* Fixed height to prevent layout shift */
+            line-height: 1.2em; /* Match height for proper text alignment */
+            /* Ensure text is visible - override gradient text issues */
+            color: transparent !important;
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 50%, var(--primary-700) 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
         /* Print styles for enterprise documentation */
         @media print {
             .result-premium,

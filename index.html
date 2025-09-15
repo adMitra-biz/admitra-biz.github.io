@@ -28,6 +28,7 @@
                     <a href="#flexibility" class="nav-item">Workflows</a>
                     <a href="#workflow" class="nav-item">Dealer Portal</a>
                     <a href="#features" class="nav-item">Features</a>
+                    <a href="#faq" class="nav-item">FAQ</a>
                     <!-- <a href="admitra-smb.html" class="nav-item">For SMBs</a> -->
                 </div>
                 
@@ -70,6 +71,10 @@
                 <a href="#features" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">auto_awesome</span>
                     Features
+                </a>
+                <a href="#faq" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
+                    <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">help</span>
+                    FAQ
                 </a>
                 <a href="admitra-smb.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 hover:text-primary-700 rounded-xl transition-all duration-300 font-medium text-base group">
                     <span class="material-symbols-outlined mr-4 text-primary-500 group-hover:text-primary-600 transition-colors duration-300 text-xl">business</span>
@@ -1601,6 +1606,226 @@
         </div>
     </section>
     
+    <!-- FAQ Section -->
+    <section id="faq" class="py-12 sm:py-20" style="background: linear-gradient(180deg, white 0%, var(--bg-tertiary) 100%);">
+        <div class="w-full max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <div class="badge mb-6">
+                    <span class="material-symbols-outlined text-sm">help</span>
+                    Frequently Asked Questions
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 display-font">
+                    Got Questions? We've Got Answers
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Everything you need to know about AdMitra's hyperlocal co-branded advertising platform
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Differentiation & Core Value -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">How is AdMitra different from other AI ad generation platforms?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                AdMitra is the only platform providing <strong>bulk hyperlocality at scale</strong>. We create thousands of unique, co-branded ads featuring both your national brand and local dealer identities through our proprietary AI engine - something impossible with simple prompting. We're building deep-rooted local marketing channels through each dealer, not just creating generic ads.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">What does "co-branded" mean and why does it matter?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                Co-branded ads feature both your <strong>national brand</strong> and <strong>local dealer identity</strong> in one advertisement. This makes ads <strong>5x more likely</strong> to be shared because dealers feel ownership, and customers trust them more seeing familiar local business names, resulting in higher conversion rates.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">How does hyperlocal targeting work at scale?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                Our <strong>AI Director</strong> understands each dealer's location, local events, cultural nuances, and seasonal trends to automatically generate thousands of unique ad variations. Every ad feels personally crafted for that specific market while maintaining brand consistency.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">What makes AdMitra's AI Scene Creator unique?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                Our <strong>AI Scene Creator</strong> uses advanced feedback-loop technology to understand your campaign objectives, brand guidelines, and target audience. Unlike simple text-to-video tools, it creates high-quality, reusable scenes that become the foundation for unlimited personalized variations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Capabilities -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">What types of content can AdMitra generate?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                AdMitra generates high-quality video ads, static posters, and social media content with personalized narrations, dynamic text overlays, and contextual visuals. We support formats optimized for Instagram stories, YouTube ads, Facebook posts, and WhatsApp marketing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">How many languages does AdMitra support?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                AdMitra supports <strong>15+ Indian languages</strong> including Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Malayalam, and Punjabi. Our AI understands regional dialects, cultural nuances, and local expressions for authentic audience resonance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">How quickly can ads be generated?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                AdMitra generates personalized ads in <strong>under 3 minutes</strong> whether for 1 dealer or 10,000 dealers, maintaining the same speed and quality. Scale from individual requests to bulk network-wide campaigns without compromising generation time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">Can I customize the generated content?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                <strong>Yes!</strong> AdMitra offers post-generation refinement tools to adjust messaging, swap visuals, modify narrations, and fine-tune branding. We also support smart narrative frameworks like <strong>Problem-Agitation-Solution</strong> and <strong>Before-After</strong> formats.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Model & Implementation -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">Is AdMitra running a free trial for select agencies?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                <strong>Yes!</strong> We're currently piloting with select brands and agencies. Book a demo and we'll help you get onboarded with hands-on support to maximize the platform's potential for your dealer network.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">How does pricing work for dealer networks?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                Our pricing scales with your dealer network size, content volume, and features needed. Whether managing 10 or 10,000 dealers, we offer cost-effective solutions that deliver strong ROI through increased dealer engagement and improved campaign performance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">What do I need to get started with AdMitra?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                Getting started requires your brand assets, dealer list, and campaign objectives. Our team handles technical setup, training, and onboarding. Most brands generate their first hyperlocal ads within <strong>one week</strong> of signing up.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">How do you onboard an entire dealer network?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                We offer flexible onboarding: bulk import your dealer database, send email invitations, or enable dealer self-registration with approval. Our platform supports both brand-led workflows and dealer self-service portals within brand guidelines.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control & Compliance -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">How do you ensure brand compliance across all dealer content?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                AdMitra maintains <strong>100% brand compliance</strong> through approved asset libraries, automated guideline checks, and AI-powered validation. All content follows your brand standards and you control dealer asset access and content publication.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="faq-question w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-900 text-lg">What kind of analytics and reporting do you provide?</span>
+                        <span class="material-symbols-outlined text-primary-600 faq-icon transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 hidden">
+                        <div class="pt-2 border-t border-gray-100">
+                            <p class="text-gray-600 leading-relaxed">
+                                Our platform provides comprehensive analytics including campaign effectiveness, dealer engagement, content performance by region/language, and ROI tracking. See which dealers are most active, what content performs best, and how campaigns drive local business growth.
+                            </p>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    
     
     <!-- CTA Section -->
     <section class="py-12 sm:py-20 text-white relative overflow-hidden" style="background: var(--gradient-brand);">
@@ -2662,6 +2887,46 @@
                 // Removed parallax initialization for better performance
             }, 100);
         });
+
+        // FAQ Accordion functionality
+        function toggleFaq(button) {
+            const faqItem = button.closest('.faq-item');
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = button.querySelector('.faq-icon');
+            const isOpen = !answer.classList.contains('hidden');
+            
+            if (isOpen) {
+                // Close the FAQ
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+                icon.textContent = 'expand_more';
+                button.setAttribute('aria-expanded', 'false');
+            } else {
+                // Close all other FAQs first
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    const otherAnswer = item.querySelector('.faq-answer');
+                    const otherIcon = item.querySelector('.faq-icon');
+                    const otherButton = item.querySelector('.faq-question');
+                    
+                    if (otherAnswer && !otherAnswer.classList.contains('hidden')) {
+                        otherAnswer.classList.add('hidden');
+                        if (otherIcon) {
+                            otherIcon.style.transform = 'rotate(0deg)';
+                            otherIcon.textContent = 'expand_more';
+                        }
+                        if (otherButton) {
+                            otherButton.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+                
+                // Open this FAQ
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+                icon.textContent = 'expand_less';
+                button.setAttribute('aria-expanded', 'true');
+            }
+        }
     </script>
 </body>
 </html>

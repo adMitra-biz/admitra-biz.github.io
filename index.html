@@ -1944,9 +1944,10 @@
             let currentIndex = 0;
             let isDeleting = false;
             let currentText = '';
-            let typeSpeed = 100; // Typing speed in ms
-            let deleteSpeed = 80; // Deleting speed in ms
-            let pauseTime = 2000; // Pause between words in ms
+            let typeSpeed = 75; // Typing speed in ms (faster)
+            let deleteSpeed = 65; // Deleting speed in ms (faster)
+            let pauseTime = 2500; // Pause between words in ms (longer pause)
+            let isFirstHyperlocal = true; // Flag to track first "Hyperlocal" display
             
             function typeWriter() {
                 const fullText = words[currentIndex];
@@ -1975,7 +1976,13 @@
                 
                 if (!isDeleting && currentText === fullText) {
                     // Finished typing current word, pause then start deleting
-                    speed = pauseTime;
+                    if (currentIndex === 0 && isFirstHyperlocal) {
+                        // First time showing "Hyperlocal" - longer pause for viewers to read the complete sentence
+                        speed = 5000; // 5 seconds for first "Hyperlocal"
+                        isFirstHyperlocal = false;
+                    } else {
+                        speed = pauseTime;
+                    }
                     isDeleting = true;
                 } else if (isDeleting && currentText === '') {
                     // Finished deleting, move to next word

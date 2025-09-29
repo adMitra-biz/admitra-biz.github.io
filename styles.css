@@ -104,6 +104,7 @@
             --gradient-brand: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-600) 100%);
             --gradient-vibrant: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-500) 100%);
             --gradient-subtle: linear-gradient(180deg, rgba(240, 247, 255, 0.5) 0%, rgba(248, 250, 252, 0) 100%);
+            --gradient-hero: linear-gradient(135deg, var(--secondary-500) 0%, var(--accent-600) 50%, var(--primary-700) 100%);
         }
         
         * {
@@ -182,7 +183,17 @@
             font-weight: 800;
             /* text-fill-color is only supported with vendor prefix */
         }
-        
+
+        .gradient-text-hero {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
         /* Modern Glass Effect */
         .glass {
             background: rgba(255, 255, 255, 0.7);
@@ -2492,7 +2503,7 @@
             line-height: 1.2em; /* Match height for proper text alignment */
             /* Ensure text is visible - override gradient text issues */
             color: transparent !important;
-            background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 50%, var(--primary-700) 100%) !important;
+            background: var(--gradient-hero) !important;
             -webkit-background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
             background-clip: text !important;

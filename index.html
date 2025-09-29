@@ -109,9 +109,9 @@
                     Now Piloting with Select Brands
                 </div>
                 <h1 class="text-3xl sm:text-5xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight display-font">
-                    The Future of 
-                    <span class="gradient-text">Advertising is</span><br>
-                    <span class="gradient-text"><span class="typewriter-container"><span id="animated-word" class="typewriter-text">Hyperlocal</span></span></span>
+                    Create Thousands of<br>
+                    <span class="gradient-text-hero"><span class="typewriter-container"><span id="animated-word" class="typewriter-text">Personalized</span></span></span> Ads<br>
+                    for Your <span class="gradient-text-hero">Dealers</span> in <span class="gradient-text-hero">Minutes</span>
                 </h1>
                 
                 <p class="text-base sm:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-3xl mx-auto px-2 sm:px-0">
@@ -1947,14 +1947,14 @@
         // Modern Typewriter Effect for hero title
         function initTypewriterEffect() {
             const animatedWord = document.getElementById('animated-word');
-            const words = ['Hyperlocal', 'Personal', 'Scalable'];
+            const words = ['Personalized', 'Hyperlocal'];
             let currentIndex = 0;
             let isDeleting = false;
             let currentText = '';
             let typeSpeed = 75; // Typing speed in ms (faster)
             let deleteSpeed = 65; // Deleting speed in ms (faster)
             let pauseTime = 2500; // Pause between words in ms (longer pause)
-            let isFirstHyperlocal = true; // Flag to track first "Hyperlocal" display
+            let isFirstHyperlocal = true; // Flag to track first word display
             
             function typeWriter() {
                 const fullText = words[currentIndex];

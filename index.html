@@ -634,30 +634,25 @@
         <!-- Videos Carousel (Full Width Style) - Now inside product section but outside constrained container -->
 
     
-    <!-- Modal for Full-Screen Poster View - Inside AI in Action Section -->
-    <div id="posterModal" class="fixed inset-0 bg-black bg-opacity-90 z-[60] hidden flex items-center justify-center" onclick="closePosterModal()">
+    </section>
+
+    <!-- Global Modals -->
+    <div id="posterModal" class="fixed inset-0 bg-black bg-opacity-90 z-[9999] hidden flex items-center justify-center" onclick="closePosterModal()">
         <div class="relative w-full h-full flex items-center justify-center p-4">
-            <!-- Close Button - Enhanced for mobile -->
             <button onclick="closePosterModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-60 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-opacity-80 transition-all z-20 backdrop-blur-sm border border-white border-opacity-20">
                 <span class="material-symbols-outlined text-xl md:text-2xl">close</span>
             </button>
-            
-            <!-- Poster Image - Responsive sizing -->
-            <img id="modalPosterImage" src="" alt="Full Screen Poster" class="max-w-full max-h-full object-contain" onclick="event.stopPropagation()" style="max-width: 100vw; max-height: 100vh;" loading="lazy" decoding="async">
+            <img id="modalPosterImage" src="" alt="Full Screen Poster" class="max-w-full max-h-full object-contain" onclick="event.stopPropagation()" style="max-width: 100vw;" loading="lazy" decoding="async">
         </div>
     </div>
-    
-    <!-- Modal for Full-Screen Video View - Inside AI in Action Section -->
-    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-[60] hidden flex items-center justify-center" onclick="closeVideoModal()">
+
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-95 z-[9999] hidden flex items-center justify-center" onclick="closeVideoModal()">
         <div class="relative w-full h-full flex items-center justify-center">
-            <!-- Close Button - Enhanced for mobile -->
             <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white bg-black bg-opacity-60 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-opacity-80 transition-all z-20 backdrop-blur-sm border border-white border-opacity-20">
                 <span class="material-symbols-outlined text-2xl md:text-3xl">close</span>
             </button>
-            
-            <!-- Video Player - Full screen on mobile -->
-            <video id="modalVideo" class="w-full h-full object-contain" controls autoplay onclick="event.stopPropagation()" 
-                   style="max-width: 100vw; max-height: 100vh;"
+            <video id="modalVideo" class="w-full h-full object-contain" controls autoplay onclick="event.stopPropagation()"
+                   style="max-width: 100vw;"
                    preload="none"
                    playsinline webkit-playsinline
                    disablepictureinpicture
@@ -667,8 +662,6 @@
             </video>
         </div>
     </div>
-    
-    </section>
 
     <!-- Stats Section -->
     <section class="py-12 sm:py-16 bg-white">
@@ -2211,21 +2204,79 @@
             });
         }
         
+        // Viewport helpers for iOS Safari dynamic toolbar
+        function updateViewportHeight() {
+            const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+            if (vh > 0) {
+                document.documentElement.style.setProperty('--viewport-height', `${vh}px`);
+            }
+        }
+
+        // Shared modal scroll management helpers
+        const MODAL_SCROLL_CLASS = 'modal-scroll-locked';
+        const HTML_MODAL_CLASS = 'modal-open';
+        const BODY_MODAL_STATES = ['poster-modal-open', 'video-modal-open'];
+
+        function lockScroll(stateClass) {
+            updateViewportHeight();
+            const currentScroll = window.scrollY || document.documentElement.scrollTop || 0;
+            const storedScroll = parseInt(document.body.dataset.scrollLock || '0', 10);
+            const scrollY = document.body.classList.contains(MODAL_SCROLL_CLASS) && !Number.isNaN(storedScroll)
+                ? storedScroll
+                : currentScroll;
+
+            document.body.dataset.scrollLock = scrollY.toString();
+            document.body.dataset.scrollLockState = stateClass;
+
+            BODY_MODAL_STATES.forEach(cls => {
+                if (cls !== stateClass) {
+                    document.body.classList.remove(cls);
+                }
+            });
+
+            document.documentElement.classList.add(HTML_MODAL_CLASS);
+            document.body.classList.add(stateClass, MODAL_SCROLL_CLASS);
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function unlockScroll(stateClass) {
+            document.body.classList.remove(stateClass);
+
+            if (document.body.dataset.scrollLockState !== stateClass) {
+                return;
+            }
+
+            const storedScroll = parseInt(document.body.dataset.scrollLock || '0', 10);
+
+            document.body.classList.remove(MODAL_SCROLL_CLASS);
+            document.body.style.top = '';
+            document.body.style.overflow = '';
+
+            document.documentElement.classList.remove(HTML_MODAL_CLASS);
+
+            delete document.body.dataset.scrollLockState;
+            delete document.body.dataset.scrollLock;
+
+            requestAnimationFrame(() => {
+                window.scrollTo(0, storedScroll);
+            });
+        }
+
         // Enhanced Poster Modal Functions for Mobile
         function openPosterModal(imageSrc) {
             const modal = document.getElementById('posterModal');
             const modalImage = document.getElementById('modalPosterImage');
             const nav = document.querySelector('nav');
-            
+
             if (modal && modalImage) {
                 modalImage.src = imageSrc;
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-                
+
                 // Enhanced body scroll prevention for mobile - same as video modal
-                document.body.classList.add('poster-modal-open');
-                document.body.style.overflow = 'hidden';
-                
+                lockScroll('poster-modal-open');
+
                 // Force navigation to be hidden on iOS
                 if (nav) {
                     nav.style.zIndex = '40';
@@ -2244,29 +2295,28 @@
         function closePosterModal() {
             const modal = document.getElementById('posterModal');
             const nav = document.querySelector('nav');
-            
+
             if (modal) {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
-                
-                // Restore body scroll - same as video modal
-                document.body.classList.remove('poster-modal-open');
-                document.body.style.overflow = '';
-                
+
                 // Restore navigation visibility
                 if (nav) {
                     nav.style.zIndex = '50';
                     nav.style.opacity = '';
                     nav.style.pointerEvents = '';
                 }
-                
+
                 // Reset modal z-index
                 modal.style.zIndex = '';
-                
+
                 // Remove escape key listener
                 document.removeEventListener('keydown', handlePosterModalEscape);
             }
-            
+
+            // Restore body scroll state after modal closes
+            unlockScroll('poster-modal-open');
+
             // Prevent event bubbling
             if (typeof event !== 'undefined' && event) {
                 event.stopPropagation();
@@ -2306,11 +2356,10 @@
                 modalVideo.load(); // Reload the video with new source
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-                
+
                 // Enhanced body scroll prevention for mobile - same as poster modal
-                document.body.classList.add('video-modal-open');
-                document.body.style.overflow = 'hidden';
-                
+                lockScroll('video-modal-open');
+
                 // Force navigation to be hidden on iOS
                 if (nav) {
                     nav.style.zIndex = '40';
@@ -2335,16 +2384,12 @@
             const modal = document.getElementById('videoModal');
             const modalVideo = document.getElementById('modalVideo');
             const nav = document.querySelector('nav');
-            
+
             if (modal && modalVideo) {
                 modalVideo.pause();
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
-                
-                // Restore body scroll - same as poster modal
-                document.body.classList.remove('video-modal-open');
-                document.body.style.overflow = '';
-                
+
                 // Restore navigation visibility
                 if (nav) {
                     nav.style.zIndex = '50';
@@ -2354,11 +2399,14 @@
                 
                 // Reset modal z-index
                 modal.style.zIndex = '';
-                
+
                 // Remove escape key listener
                 document.removeEventListener('keydown', handleVideoModalEscape);
             }
-            
+
+            // Restore body scroll state after modal closes
+            unlockScroll('video-modal-open');
+
             // Prevent event bubbling
             if (typeof event !== 'undefined' && event) {
                 event.stopPropagation();
@@ -2825,15 +2873,24 @@
         // Handle window resize for responsive carousel
         let resizeTimeout;
         window.addEventListener('resize', () => {
+            updateViewportHeight();
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 // Reinitialize carousels on resize to recalculate dimensions
                 initializeCarousels();
             }, 250);
         });
+
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                updateViewportHeight();
+                initializeCarousels();
+            }, 120);
+        });
         
         // Initialize immediately when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
+            updateViewportHeight();
             initializeCarousels();
             fixiOSVideoDisplay();
             
@@ -2994,8 +3051,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-

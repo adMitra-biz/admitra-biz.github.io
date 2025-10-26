@@ -34,18 +34,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary colors (modern blue)
+        // Primary colors (AdMitra logo blue)
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          50: '#e8f3fe',
+          100: '#d1e7fd',
+          200: '#a3cffb',
+          300: '#75b7f9',
+          400: '#479ff7',
+          500: '#1e88e5',
+          600: '#1976d2',
+          700: '#1565c0',
+          800: '#0d47a1',
+          900: '#0a3d8f',
         },
         // Secondary colors (teal)
         secondary: {
